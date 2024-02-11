@@ -19,7 +19,7 @@ public class DisplayEmployeeDetails {
             while (resultSet.next()) {
                 System.out.println("Employee ID: " + resultSet.getInt("employee_id"));
                 System.out.println("Employee Name: " + resultSet.getString("last_name"));
-                System.out.println("Employee Department: " + resultSet.getString("department"));
+                System.out.println("First Name: " + resultSet.getString("first_name"));
                 // Print other details as needed
                 System.out.println("-------------------------");
             }
