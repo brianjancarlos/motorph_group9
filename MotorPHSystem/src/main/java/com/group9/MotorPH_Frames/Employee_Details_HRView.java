@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package MotorPH_Frames;
+package com.group9.MotorPH_Frames;
 
-import Services.DisplayEmployeeDetails;
+import com.group9.domain.EmployeeDetails;
+import com.group9.services.DisplayEmployeeDetails;
 
 
 /**
@@ -17,8 +18,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+import com.group9.services.MotorPHDatabaseConnection;
 
 public class Employee_Details_HRView extends javax.swing.JFrame {
 
@@ -30,15 +33,9 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
     
     public Employee_Details_HRView() {
         initComponents();
+        InitializeForm();
+        refreshTable();
         
-        String URL = "jdbc:postgresql://localhost:5432/motorph_masterdb";
-        String USER = "postgres";
-        String PASSWORD = "gR0up9!"; 
-        try {
-            con = DriverManager.getConnection(URL,USER,PASSWORD);           
-        } catch(SQLException ex) {
-            System.out.println("Error: " + ex.getMessage());
-        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,18 +47,13 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnDisplayAll = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_employees = new javax.swing.JTable();
+        lblMotorPHEmployeeDetails = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        btnDisplayAll.setText("DisplayAll");
-        btnDisplayAll.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDisplayAllActionPerformed(evt);
-            }
-        });
+        setTitle("MotorPH Employee View");
+        setResizable(false);
 
         tbl_employees.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -84,49 +76,70 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_employees);
 
+        lblMotorPHEmployeeDetails.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        lblMotorPHEmployeeDetails.setText("MotorPH Employee Details");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(btnDisplayAll)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(31, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(176, 176, 176)
+                .addComponent(lblMotorPHEmployeeDetails)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(195, 195, 195)
-                .addComponent(btnDisplayAll)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
+                .addComponent(lblMotorPHEmployeeDetails)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addGap(25, 25, 25))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void InitializeForm() {
+        DefaultTableModel model = (DefaultTableModel) tbl_employees.getModel();
+        model.setRowCount(0); // Clear existing data in the table
 
-    private void btnDisplayAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisplayAllActionPerformed
-        // TODO add your handling code here:
-           String sql="SELECT employee_id, last_name, first_name, birthday FROM public.employee_details";
-           try {
-               PreparedStatement pst = con.prepareStatement(sql);
-               ResultSet rs = pst.executeQuery();
-               
-               DefaultTableModel model = (DefaultTableModel) tbl_employees.getModel();
-               while(rs.next()){
-                   model.addRow(new String[]{rs.getNString(1), rs.getNString(2),rs.getNString(3), rs.getNString(4)});
-               }
-           }catch(SQLException ex) {
-            System.out.println("Error: " + ex.getMessage());
-           }
+        MotorPHDatabaseConnection dbConnection = new MotorPHDatabaseConnection();
+        if (dbConnection.connect()) {
+            List<EmployeeDetails> employeeDetail = dbConnection.getAllEmployeeDetails();
+            dbConnection.close();
 
-    }//GEN-LAST:event_btnDisplayAllActionPerformed
+            for (EmployeeDetails EmployeeDetail : employeeDetail) {
+                Object[] rowData = {EmployeeDetail.getEmployeeId(), EmployeeDetail.getFirstName(), EmployeeDetail.getLastName(), EmployeeDetail.getBirthday()};
+                model.addRow(rowData);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Failed to connect to the database.");
+        }
+    }
+    
+    private void refreshTable() {
+        DefaultTableModel model = (DefaultTableModel) tbl_employees.getModel();
+        model.setRowCount(0); // Clear existing data in the table
 
+        MotorPHDatabaseConnection dbConnection = new MotorPHDatabaseConnection();
+        if (dbConnection.connect()) {
+            List<EmployeeDetails> employeeDetail = dbConnection.getAllEmployeeDetails();
+            dbConnection.close();
+            
+            for (EmployeeDetails EmployeeDetail : employeeDetail) {
+                Object[] rowData = {EmployeeDetail.getEmployeeId(), EmployeeDetail.getFirstName(), EmployeeDetail.getLastName(), EmployeeDetail.getBirthday()};
+                model.addRow(rowData);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Failed to connect to the database.");
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -161,9 +174,8 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDisplayAll;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblMotorPHEmployeeDetails;
     private javax.swing.JTable tbl_employees;
     // End of variables declaration//GEN-END:variables
 
