@@ -13,16 +13,16 @@ public class EmployeeDetails {
     private String firstName;
     private String birthday;
 
-    public EmployeeDetails(String employeeId, String lastName, String firstName, String birthdate) {
+    public EmployeeDetails(String employeeId, String lastName, String firstName, String birthday) {
         this.employeeId = employeeId;
         this.lastName = lastName;
         this.firstName = firstName;
-        this.birthday = birthdate;
+        this.birthday = birthday;
     }
-    
+
     
     public String getEmployeeId() {
-         return employeeId;
+        return employeeId;
     }
 
     public void setEmployeeId(String employeeId) {
@@ -52,6 +52,7 @@ public class EmployeeDetails {
     public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
-    
+
+
     
 }

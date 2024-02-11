@@ -37,7 +37,7 @@ public class MotorPHDatabaseConnection {
     public List<EmployeeDetails> getAllEmployeeDetails() {
         List<EmployeeDetails> employeeDetails = new ArrayList<>();
         if (connection != null) {
-            String query = "SELECT * FROM employee_details";
+            String query = "SELECT * FROM employee_details ORDER by employee_id";
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
                 ResultSet resultSet = preparedStatement.executeQuery();
