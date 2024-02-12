@@ -53,6 +53,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MotorPH Employee View");
+        setName("frm_employeeDetails"); // NOI18N
         setResizable(false);
 
         tbl_employees.setModel(new javax.swing.table.DefaultTableModel(
