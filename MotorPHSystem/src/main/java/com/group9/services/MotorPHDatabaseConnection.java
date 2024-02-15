@@ -52,7 +52,9 @@ public class MotorPHDatabaseConnection {
                     String status = resultSet.getString("status");
                     String sss = resultSet.getString("sss_id");
                     String philhealth = resultSet.getString("philhealth_id");
-                    EmployeeDetails employeeDetail = new EmployeeDetails(employeeId, lastName, firstName, birthday, address, phone, status, sss, philhealth);
+                    String tin = resultSet.getString("tin_id");
+                    String pagibig = resultSet.getString("pagibig_id");
+                    EmployeeDetails employeeDetail = new EmployeeDetails(employeeId, lastName, firstName, birthday, address, phone, status, sss, philhealth, tin, pagibig);
                     employeeDetails.add(employeeDetail);
                 }
 
