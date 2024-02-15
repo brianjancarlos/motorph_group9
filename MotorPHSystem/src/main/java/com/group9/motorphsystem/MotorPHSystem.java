@@ -6,15 +6,19 @@ package com.group9.motorphsystem;
 
 //import Services.DisplayEmployeeDetails;
 import com.group9.MotorPH_Frames.Employee_Details_HRView;
-/**
+//import com.group9.MotorPH_Frames.Gross_Weekly;
+/*
  *
  * @author brianjancarlos
  */
 public class MotorPHSystem {
 
     public static void main(String[] args) {
-        Employee_Details_HRView  employees_view = new Employee_Details_HRView();
-        employees_view.setVisible(true);
+         Employee_Details_HRView  employees_view = new Employee_Details_HRView();
+         employees_view.setVisible(true);
+        // Gross_Weekly  gross_weekly_view = new Gross_Weekly();
+        //gross_weekly_view.setVisible(true);
+        
     }
 }
 // create a new class called displayEmployeeDetails and show the employee details from a postgressql database
