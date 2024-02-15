@@ -13,6 +13,7 @@ public class EmployeeDetails {
     private String firstName;
     private String birthday;
 
+    // Contructs
     public EmployeeDetails(String employeeId, String lastName, String firstName, String birthday) {
         this.employeeId = employeeId;
         this.lastName = lastName;
@@ -20,7 +21,7 @@ public class EmployeeDetails {
         this.birthday = birthday;
     }
 
-    
+    //Getters and Setters
     public String getEmployeeId() {
         return employeeId;
     }
