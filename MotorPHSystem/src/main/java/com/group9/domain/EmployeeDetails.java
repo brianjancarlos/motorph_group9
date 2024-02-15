@@ -12,16 +12,25 @@ public class EmployeeDetails {
     private String lastName ;
     private String firstName;
     private String birthday;
+    private String address;
+    private String phone;
+    private String status;
+    private String sss;
+    private String philhealth;
 
     // Contructs
-    public EmployeeDetails(String employeeId, String lastName, String firstName, String birthday) {
+    public EmployeeDetails(String employeeId, String lastName, String firstName, String birthday, String address, String phone, String status, String sss, String philhealth) {
         this.employeeId = employeeId;
         this.lastName = lastName;
         this.firstName = firstName;
         this.birthday = birthday;
+        this.address = address;
+        this.phone = phone;
+        this.status = status;
+        this.sss = sss;
+        this.philhealth = philhealth;
     }
 
-    //Getters and Setters
     public String getEmployeeId() {
         return employeeId;
     }
@@ -54,6 +63,47 @@ public class EmployeeDetails {
         this.birthday = birthday;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getSss() {
+        return sss;
+    }
+
+    public void setSss(String sss) {
+        this.sss = sss;
+    }
+
+    public String getPhilhealth() {
+        return philhealth;
+    }
+
+    public void setPhilhealth(String philhealth) {
+        this.philhealth = philhealth;
+    }
+
+    
 
     
 }

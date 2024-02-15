@@ -43,11 +43,16 @@ public class MotorPHDatabaseConnection {
                 ResultSet resultSet = preparedStatement.executeQuery();
 
                 while (resultSet.next()) {
-                    String employeeId = resultSet.getString("employee_id");
+                    String employeeId = resultSet.getString("employee_id"); // these are the column names in the employee_details db
                     String lastName = resultSet.getString("last_name");
                     String firstName = resultSet.getString("first_name");
                     String birthday = resultSet.getString("birthday");
-                    EmployeeDetails employeeDetail = new EmployeeDetails(employeeId, lastName, firstName, birthday);
+                    String address = resultSet.getString("address");
+                    String phone = resultSet.getString("phone_number");
+                    String status = resultSet.getString("status");
+                    String sss = resultSet.getString("sss_id");
+                    String philhealth = resultSet.getString("philhealth_id");
+                    EmployeeDetails employeeDetail = new EmployeeDetails(employeeId, lastName, firstName, birthday, address, phone, status, sss, philhealth);
                     employeeDetails.add(employeeDetail);
                 }
 
