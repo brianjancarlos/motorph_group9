@@ -87,18 +87,18 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
 
         tbl_employees.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Employee ID", "Last Name", "First Name", "Birthday", "Address", "Phone", "Status", "SSS", "Philhealth"
+                "Employee ID", "Last Name", "First Name", "Birthday", "Address", "Phone", "Status", "SSS", "Philhealth", "TIN", "Pag-Ibig ID"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -371,6 +371,8 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
         txt_status.setText(model.getValueAt(selected_row, 6).toString());
         txt_sss_num.setText(model.getValueAt(selected_row, 7).toString());
         txt_philhealth_num.setText(model.getValueAt(selected_row, 8).toString());
+        txt_tin_number.setText(model.getValueAt(selected_row, 9).toString());
+        txt_pagibig_num.setText(model.getValueAt(selected_row, 10).toString());
     }//GEN-LAST:event_tbl_employeesMouseClicked
 
     private void InitializeForm() {
@@ -385,7 +387,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
             for (EmployeeDetails EmployeeDetail : employeeDetail) {
                 Object[] rowData = {EmployeeDetail.getEmployeeId(), EmployeeDetail.getFirstName(), EmployeeDetail.getLastName(),
                     EmployeeDetail.getBirthday(), EmployeeDetail.getAddress(), EmployeeDetail.getPhone(),
-                    EmployeeDetail.getStatus(), EmployeeDetail.getSss(), EmployeeDetail.getPhilhealth()};
+                    EmployeeDetail.getStatus(), EmployeeDetail.getSss(), EmployeeDetail.getPhilhealth(), EmployeeDetail.getTin(), EmployeeDetail.getPagibig()};
                 model.addRow(rowData);
             }
         } else {
@@ -403,9 +405,9 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
             dbConnection.close();
 
             for (EmployeeDetails EmployeeDetail : employeeDetail) {
-                Object[] rowData = {EmployeeDetail.getEmployeeId(), EmployeeDetail.getFirstName(), EmployeeDetail.getLastName(), EmployeeDetail.getBirthday(),
-                    EmployeeDetail.getAddress(), EmployeeDetail.getPhone(),
-                    EmployeeDetail.getStatus(), EmployeeDetail.getSss(), EmployeeDetail.getPhilhealth()};
+                Object[] rowData = {EmployeeDetail.getEmployeeId(), EmployeeDetail.getFirstName(), EmployeeDetail.getLastName(),
+                    EmployeeDetail.getBirthday(), EmployeeDetail.getAddress(), EmployeeDetail.getPhone(),
+                    EmployeeDetail.getStatus(), EmployeeDetail.getSss(), EmployeeDetail.getPhilhealth(), EmployeeDetail.getTin(), EmployeeDetail.getPagibig()};
                 model.addRow(rowData);
             }
         } else {

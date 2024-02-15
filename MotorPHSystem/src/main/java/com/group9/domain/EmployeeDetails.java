@@ -17,9 +17,12 @@ public class EmployeeDetails {
     private String status;
     private String sss;
     private String philhealth;
+    private String tin;
+    private String pagibig;
 
     // Contructs
-    public EmployeeDetails(String employeeId, String lastName, String firstName, String birthday, String address, String phone, String status, String sss, String philhealth) {
+
+    public EmployeeDetails(String employeeId, String lastName, String firstName, String birthday, String address, String phone, String status, String sss, String philhealth, String tin, String pagibig) {
         this.employeeId = employeeId;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -29,7 +32,10 @@ public class EmployeeDetails {
         this.status = status;
         this.sss = sss;
         this.philhealth = philhealth;
+        this.tin = tin;
+        this.pagibig = pagibig;
     }
+//Getter and Setters
 
     public String getEmployeeId() {
         return employeeId;
@@ -103,7 +109,23 @@ public class EmployeeDetails {
         this.philhealth = philhealth;
     }
 
-    
+    public String getTin() {
+        return tin;
+    }
 
+    public void setTin(String tin) {
+        this.tin = tin;
+    }
+
+    public String getPagibig() {
+        return pagibig;
+    }
+
+    public void setPagibig(String pagibig) {
+        this.pagibig = pagibig;
+    }
     
-}
+    }
+
+
+
