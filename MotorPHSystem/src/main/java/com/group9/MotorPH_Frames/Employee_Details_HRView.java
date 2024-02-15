@@ -166,6 +166,11 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
         txt_supervisor.setEditable(false);
 
         btn_clear.setText("Clear");
+        btn_clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_clearActionPerformed(evt);
+            }
+        });
 
         btn_edit.setText("Edit");
 
@@ -394,6 +399,23 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
         txt_position.setText(model.getValueAt(selected_row, 11).toString());
         txt_supervisor.setText(model.getValueAt(selected_row, 12).toString());
     }//GEN-LAST:event_tbl_employeesMouseClicked
+
+    private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
+        txt_employee_id.setText(null);
+        txt_first_name.setText(null);
+        txt_last_name.setText(null);
+        txt_birthday.setText(null);
+        txtarea_address.setText(null);
+        txtarea_address.setText(null);
+        txt_phone.setText(null);
+        txt_status.setText(null);
+        txt_sss_num.setText(null);
+        txt_philhealth_num.setText(null);
+        txt_tin_number.setText(null);
+        txt_pagibig_num.setText(null);
+        txt_position.setText(null);
+        txt_supervisor.setText(null);
+    }//GEN-LAST:event_btn_clearActionPerformed
 
     private void InitializeForm() {
         DefaultTableModel model = (DefaultTableModel) tbl_employees.getModel();
