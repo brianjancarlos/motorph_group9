@@ -55,7 +55,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btn_clear = new javax.swing.JButton();
         btn_edit = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btn_delete_record = new javax.swing.JButton();
         btn_add_record = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         lbl_pagibig_num = new javax.swing.JLabel();
@@ -131,10 +131,10 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
 
         btn_edit.setText("Edit");
 
-        jButton1.setText("Delete");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_delete_record.setText("Delete");
+        btn_delete_record.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_delete_recordActionPerformed(evt);
             }
         });
 
@@ -157,7 +157,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btn_clear)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btn_delete_record)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -168,7 +168,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
                     .addComponent(btn_add_record)
                     .addComponent(btn_edit)
                     .addComponent(btn_clear)
-                    .addComponent(jButton1))
+                    .addComponent(btn_delete_record))
                 .addContainerGap())
         );
 
@@ -463,7 +463,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_add_recordActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_delete_recordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_delete_recordActionPerformed
         int selected_row = tbl_employees.getSelectedRow();
         if (selected_row == -1) {
             JOptionPane.showMessageDialog(null, "No record selected", "Error", JOptionPane.ERROR_MESSAGE);
@@ -475,7 +475,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
         int employee_id = Integer.parseInt(model.getValueAt(selected_row, 0).toString());
 
         // Show a confirmation dialog box
-        int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this record?", "Confirm Deletion", JOptionPane.YES_NO_OPTION);
+        int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this record?: " + employee_id, "Confirm Deletion", JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {
             try {
                 // Establish a connection to the database
@@ -501,7 +501,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "An error occurred: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_delete_recordActionPerformed
 // This Search function is used for case-insensitive search/filter via Search textbox
 
     public void Search(String str) {
@@ -597,8 +597,8 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_add_record;
     private javax.swing.JButton btn_clear;
+    private javax.swing.JButton btn_delete_record;
     private javax.swing.JButton btn_edit;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
