@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import com.group9.services.MotorPHDatabaseConnection;
 import com.group9.domain.EmployeeDetails;
+import com.group9.services.DatabaseConnectionManager;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -131,6 +132,11 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
         btn_edit.setText("Edit");
 
         jButton1.setText("Delete");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         btn_add_record.setText("Add");
         btn_add_record.addActionListener(new java.awt.event.ActionListener() {
@@ -432,8 +438,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
     private void btn_add_recordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_add_recordActionPerformed
         try {
             // Establish a connection to the database
-            Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/motorph_masterdb", "postgres", "gR0up9!");
-
+            Connection conn = DatabaseConnectionManager.getConnection();
             // Create a SQL INSERT statement
             String sql = "INSERT INTO employee_details (first_name, last_name, address) VALUES (?, ?, ?)";
 
@@ -457,6 +462,46 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "An error occurred: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btn_add_recordActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int selected_row = tbl_employees.getSelectedRow();
+        if (selected_row == -1) {
+            JOptionPane.showMessageDialog(null, "No record selected", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Get the employee_id of the selected row
+        DefaultTableModel model = (DefaultTableModel) tbl_employees.getModel();
+        int employee_id = Integer.parseInt(model.getValueAt(selected_row, 0).toString());
+
+        // Show a confirmation dialog box
+        int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this record?", "Confirm Deletion", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            try {
+                // Establish a connection to the database
+                Connection conn = DatabaseConnectionManager.getConnection();
+
+                // Prepare a SQL DELETE statement
+                String sql = "DELETE FROM employee_details WHERE employee_id = ?";
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+
+                // Set the employee_id
+                pstmt.setInt(1, employee_id);
+
+                // Execute the DELETE statement
+                pstmt.executeUpdate();
+
+                // Refresh the JTable
+                refreshTable();
+
+                // Close the connection
+                conn.close();
+            } catch (SQLException e) {
+                // Handle any SQL exceptions
+                JOptionPane.showMessageDialog(null, "An error occurred: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 // This Search function is used for case-insensitive search/filter via Search textbox
 
     public void Search(String str) {
