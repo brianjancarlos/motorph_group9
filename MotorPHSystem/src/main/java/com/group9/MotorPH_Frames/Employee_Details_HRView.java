@@ -5,26 +5,20 @@
 package com.group9.MotorPH_Frames;
 
 import com.group9.domain.EmployeeDetails;
-import com.group9.services.DisplayEmployeeDetails;
 
 /**
  *
  * @author brianjancarlos
  */
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import com.group9.services.MotorPHDatabaseConnection;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Arrays;
 import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
+import javax.swing.text.JTextComponent;
 
 public class Employee_Details_HRView extends javax.swing.JFrame {
 
@@ -400,6 +394,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbl_employeesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_employeesMouseClicked
+
         int selected_row = tbl_employees.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) tbl_employees.getModel();
 
@@ -420,20 +415,16 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
     }//GEN-LAST:event_tbl_employeesMouseClicked
 
     private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
-        txt_employee_id.setText(null); // Clears all text field in the JFrame
-        txt_first_name.setText(null);
-        txt_last_name.setText(null);
-        txt_birthday.setText(null);
-        txtarea_address.setText(null);
-        txtarea_address.setText(null);
-        txt_phone.setText(null);
-        txt_status.setText(null);
-        txt_sss_num.setText(null);
-        txt_philhealth_num.setText(null);
-        txt_tin_number.setText(null);
-        txt_pagibig_num.setText(null);
-        txt_position.setText(null);
-        txt_supervisor.setText(null);
+        List<JTextComponent> fields = Arrays.asList(
+                txt_employee_id, txt_first_name, txt_last_name, txt_birthday, txtarea_address,
+                txt_phone, txt_status, txt_sss_num, txt_philhealth_num, txt_tin_number,
+                txt_pagibig_num, txt_position, txt_supervisor
+        );
+
+        for (JTextComponent field : fields) {
+            field.setText(null);
+        }
+
         txt_searchbox.setToolTipText("Search");
         txt_searchbox.setText("Search..");
         Search("*"); // Resets Searchbox and refresh the JTable
