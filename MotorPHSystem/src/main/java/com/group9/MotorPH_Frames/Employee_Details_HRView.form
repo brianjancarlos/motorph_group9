@@ -169,6 +169,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Add"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_add_recordActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -350,9 +353,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_position">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbl_last_name">
           <Properties>
@@ -360,21 +360,15 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_first_name">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_sss_num">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_phone">
+        </Component>
+        <Component class="javax.swing.JTextField" name="txt_employee_id">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txt_employee_id">
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane3">
           <AuxValues>
@@ -385,7 +379,6 @@
           <SubComponents>
             <Component class="javax.swing.JTextArea" name="txtarea_address">
               <Properties>
-                <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
                 <Property name="wrapStyleWord" type="boolean" value="true"/>
@@ -394,29 +387,14 @@
           </SubComponents>
         </Container>
         <Component class="javax.swing.JTextField" name="txt_tin_number">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_last_name">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_pagibig_num">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_birthday">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_supervisor">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbl_status">
           <Properties>
@@ -429,9 +407,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_status">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbl_first_name">
           <Properties>
@@ -469,9 +444,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_philhealth_num">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>
