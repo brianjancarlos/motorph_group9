@@ -4,8 +4,6 @@
  */
 package com.group9.MotorPH_Frames;
 
-import com.group9.domain.EmployeeDetails;
-
 /**
  *
  * @author brianjancarlos
@@ -15,6 +13,12 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import com.group9.services.MotorPHDatabaseConnection;
+import com.group9.domain.EmployeeDetails;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
@@ -129,6 +133,11 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
         jButton1.setText("Delete");
 
         btn_add_record.setText("Add");
+        btn_add_record.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_add_recordActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -165,37 +174,18 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
 
         lbl_employee_id.setText("Employee ID");
 
-        txt_position.setEditable(false);
-
         lbl_last_name.setText("Last Name");
 
-        txt_first_name.setEditable(false);
+        txt_employee_id.setEditable(false);
 
-        txt_sss_num.setEditable(false);
-
-        txt_phone.setEditable(false);
-
-        txtarea_address.setEditable(false);
         txtarea_address.setColumns(20);
         txtarea_address.setRows(5);
         txtarea_address.setWrapStyleWord(true);
         jScrollPane3.setViewportView(txtarea_address);
 
-        txt_tin_number.setEditable(false);
-
-        txt_last_name.setEditable(false);
-
-        txt_pagibig_num.setEditable(false);
-
-        txt_birthday.setEditable(false);
-
-        txt_supervisor.setEditable(false);
-
         lbl_status.setText("Status");
 
         lbl_philhealth_num.setText("Philhealth");
-
-        txt_status.setEditable(false);
 
         lbl_first_name.setText("First Name");
 
@@ -210,8 +200,6 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
         lbl_tin_num.setText("TIN");
 
         lbl_supervisor.setText("Supervisor");
-
-        txt_philhealth_num.setEditable(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -397,7 +385,6 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
 
         int selected_row = tbl_employees.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) tbl_employees.getModel();
-
         txt_employee_id.setText(model.getValueAt(selected_row, 0).toString()); // Get Column 0 which is the Employee ID
         txt_first_name.setText(model.getValueAt(selected_row, 1).toString());
         txt_last_name.setText(model.getValueAt(selected_row, 2).toString());
@@ -415,6 +402,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
     }//GEN-LAST:event_tbl_employeesMouseClicked
 
     private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tbl_employees.getModel();
         List<JTextComponent> fields = Arrays.asList(
                 txt_employee_id, txt_first_name, txt_last_name, txt_birthday, txtarea_address,
                 txt_phone, txt_status, txt_sss_num, txt_philhealth_num, txt_tin_number,
@@ -428,6 +416,8 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
         txt_searchbox.setToolTipText("Search");
         txt_searchbox.setText("Search..");
         Search("*"); // Resets Searchbox and refresh the JTable
+        refreshTable();
+
     }//GEN-LAST:event_btn_clearActionPerformed
 
     private void txt_searchboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_searchboxActionPerformed
@@ -438,7 +428,37 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
         String searchString = txt_searchbox.getText();
         Search(searchString);
     }//GEN-LAST:event_txt_searchboxKeyReleased
-    // This Search function is used for case-insensitive search/filter via Search textbox
+
+    private void btn_add_recordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_add_recordActionPerformed
+        try {
+            // Establish a connection to the database
+            Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/motorph_masterdb", "postgres", "gR0up9!");
+
+            // Create a SQL INSERT statement
+            String sql = "INSERT INTO employee_details (first_name, last_name, address) VALUES (?, ?, ?)";
+
+            // Prepare the statement
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            // Set the values from the text fields
+            pstmt.setString(1, txt_first_name.getText());
+            pstmt.setString(2, txt_last_name.getText());
+            pstmt.setString(3, txtarea_address.getText());
+
+            // Execute the statement
+            pstmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Record Added Name: " + txt_first_name.getText() + " " + txt_last_name.getText());
+            // Close the connection
+            conn.close();
+            refreshTable();
+
+        } catch (SQLException e) {
+            // Handle any SQL exceptions
+            JOptionPane.showMessageDialog(null, "An error occurred: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_add_recordActionPerformed
+// This Search function is used for case-insensitive search/filter via Search textbox
+
     public void Search(String str) {
         DefaultTableModel model = (DefaultTableModel) tbl_employees.getModel();
         TableRowSorter<DefaultTableModel> tableSorter = new TableRowSorter<>(model);
@@ -502,16 +522,24 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Employee_Details_HRView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Employee_Details_HRView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Employee_Details_HRView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Employee_Details_HRView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Employee_Details_HRView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Employee_Details_HRView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Employee_Details_HRView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Employee_Details_HRView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
