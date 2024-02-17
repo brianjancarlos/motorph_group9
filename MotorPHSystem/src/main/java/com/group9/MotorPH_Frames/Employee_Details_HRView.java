@@ -15,14 +15,11 @@ import javax.swing.table.DefaultTableModel;
 import com.group9.services.MotorPHDatabaseConnection;
 import com.group9.domain.EmployeeDetails;
 import com.group9.services.DatabaseConnectionManager;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
@@ -33,7 +30,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
     /**
      * Creates new form Employee_Details_HRView
      */
-    Connection con;
+    //Connection con;
 
     public Employee_Details_HRView() {
         initComponents();
@@ -133,6 +130,11 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
         });
 
         btn_edit.setText("Edit");
+        btn_edit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editActionPerformed(evt);
+            }
+        });
 
         btn_delete_record.setText("Delete");
         btn_delete_record.addActionListener(new java.awt.event.ActionListener() {
@@ -482,13 +484,13 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
             Connection conn = DatabaseConnectionManager.getConnection();
 
             // Create a SQL INSERT statement
-            String sql = "INSERT INTO employee_details (first_name, last_name, birthday, address, phone_number, status, sss_id, philhealth_id, tin_id, pagibig_id, position_name, immediate_supervisor) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO employee_details (first_name, last_name, birthday, address, phone_number, status, sss_id, philhealth_id, "
+                    + "tin_id, pagibig_id, position_name, immediate_supervisor) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             // Prepare the statement
             PreparedStatement pstmt = conn.prepareStatement(sql);
 
             // Set the values from the text fields
-            // pstmt.setInt(1, Integer.parseInt(txt_employee_id.getText()));
             pstmt.setString(1, txt_first_name.getText());
             pstmt.setString(2, txt_last_name.getText());
             pstmt.setDate(3, java.sql.Date.valueOf(txt_birthday.getText()));
@@ -515,6 +517,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "An error occurred: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE, null);
     }//GEN-LAST:event_btn_add_recordActionPerformed
     }
+
     private void btn_delete_recordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_delete_recordActionPerformed
         int selected_row = tbl_employees.getSelectedRow();
         if (selected_row == -1) {
@@ -554,6 +557,10 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btn_delete_recordActionPerformed
+
+    private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_editActionPerformed
 // This Search function is used for case-insensitive search/filter via Search textbox
 
     public void Search(String str) {
