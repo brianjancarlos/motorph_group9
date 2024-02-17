@@ -111,9 +111,17 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbl_employees.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tbl_employeesFocusLost(evt);
+            }
+        });
         tbl_employees.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_employeesMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tbl_employeesMouseExited(evt);
             }
         });
         jScrollPane1.setViewportView(tbl_employees);
@@ -398,7 +406,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbl_employeesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_employeesMouseClicked
-
+        btn_delete_record.setEnabled(true);
         int selected_row = tbl_employees.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) tbl_employees.getModel();
         txt_employee_id.setText(model.getValueAt(selected_row, 0).toString()); // Get Column 0 which is the Employee ID
@@ -420,15 +428,16 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
     private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
         DefaultTableModel model = (DefaultTableModel) tbl_employees.getModel();
         List<JTextComponent> fields = Arrays.asList(
-                txt_employee_id, txt_first_name, txt_last_name, txt_birthday, txtarea_address,
-                txt_phone, txt_status, txt_sss_num, txt_philhealth_num, txt_tin_number,
+                txt_employee_id, txt_first_name, txt_last_name, txtarea_address,
+                txt_phone, txt_sss_num, txt_philhealth_num, txt_tin_number,
                 txt_pagibig_num, txt_position, txt_supervisor
         );
 
         for (JTextComponent field : fields) {
             field.setText(null);
         }
-
+        txt_birthday.setText("yyyy-MM-dd");
+        txt_status.setText("Probationary");
         txt_searchbox.setToolTipText("Search");
         txt_searchbox.setText("Search..");
         Search("*"); // Resets Searchbox and refresh the JTable
@@ -447,35 +456,8 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
 
     private void btn_add_recordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_add_recordActionPerformed
         try {
-            // Check if any field is empty
-            if (txt_first_name.getText().isEmpty() || txt_last_name.getText().isEmpty() || txt_birthday.getText().isEmpty() || txtarea_address.getText().isEmpty() || txt_phone.getText().isEmpty() || txt_status.getText().isEmpty() || txt_sss_num.getText().isEmpty() || txt_philhealth_num.getText().isEmpty() || txt_tin_number.getText().isEmpty() || txt_pagibig_num.getText().isEmpty() || txt_position.getText().isEmpty() || txt_supervisor.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "All fields are mandatory", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            // Check if the fields that should only contain integers contain valid integers
-            try {
-
-                Integer.valueOf(txt_sss_num.getText());
-                Integer.valueOf(txt_philhealth_num.getText());
-                Integer.valueOf(txt_tin_number.getText());
-                Integer.valueOf(txt_pagibig_num.getText());
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Invalid integer value. Please enter numbers only on " + "SSS: " + txt_sss_num.getText()
-                        + " Philhealth:" + txt_philhealth_num.getText() + " TIN:" + txt_tin_number.getText() + " PAGIBIG:" + txt_pagibig_num.getText(), "Error", JOptionPane.ERROR_MESSAGE
-                );
-                return;
-            }
-            // Check if txt_birthday contains a valid date
-            try {
-                LocalDate.parse(txt_birthday.getText(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            } catch (DateTimeParseException e) {
-                JOptionPane.showMessageDialog(null, "Invalid date value:" + txt_birthday.getText() + " Please enter in yyyy-MM-dd format", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            // Check if txt_status is either "Regular" or "Probationary"
-            String status = txt_status.getText();
-            if (!status.equals("Regular") && !status.equals("Probationary")) {
-                JOptionPane.showMessageDialog(null, "Invalid status value: " + status + ". Please enter either 'Regular' or 'Probationary'", "Error", JOptionPane.ERROR_MESSAGE);
+            // Check correct inputs from textfields !validated = If validation is true/successful then proceed
+            if (!validateFields()) {
                 return;
             }
             // Establish a connection to the database
@@ -531,7 +513,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
         int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this record?: " + employee_id, "Confirm Deletion", JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {
             try {
-                // Establish a connection to the database
+                // Establish a connection to the database using import DatabaseConnectionManager Class
                 Connection conn = DatabaseConnectionManager.getConnection();
 
                 // Prepare a SQL DELETE statement
@@ -559,38 +541,11 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
     private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
 
         try {
-// Check if any field is empty
-            if (txt_first_name.getText().isEmpty() || txt_last_name.getText().isEmpty() || txt_birthday.getText().isEmpty() || txtarea_address.getText().isEmpty() || txt_phone.getText().isEmpty() || txt_status.getText().isEmpty() || txt_sss_num.getText().isEmpty() || txt_philhealth_num.getText().isEmpty() || txt_tin_number.getText().isEmpty() || txt_pagibig_num.getText().isEmpty() || txt_position.getText().isEmpty() || txt_supervisor.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "All fields are mandatory", "Error", JOptionPane.ERROR_MESSAGE);
+            // Check correct inputs from textfields
+            if (!validateFields()) {
                 return;
             }
-            // Check if the fields that should only contain integers contain valid integers
-            try {
-
-                Integer.valueOf(txt_sss_num.getText());
-                Integer.valueOf(txt_philhealth_num.getText());
-                Integer.valueOf(txt_tin_number.getText());
-                Integer.valueOf(txt_pagibig_num.getText());
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Invalid integer value. Please enter numbers only on " + "SSS: " + txt_sss_num.getText()
-                        + " Philhealth:" + txt_philhealth_num.getText() + " TIN:" + txt_tin_number.getText() + " PAGIBIG:" + txt_pagibig_num.getText(), "Error", JOptionPane.ERROR_MESSAGE
-                );
-                return;
-            }
-            // Check if txt_birthday contains a valid date
-            try {
-                LocalDate.parse(txt_birthday.getText(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            } catch (DateTimeParseException e) {
-                JOptionPane.showMessageDialog(null, "Invalid date value:" + txt_birthday.getText() + " Please enter in yyyy-MM-dd format", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            // Check if txt_status is either "Regular" or "Probationary"
-            String status = txt_status.getText();
-            if (!status.equals("Regular") && !status.equals("Probationary")) {
-                JOptionPane.showMessageDialog(null, "Invalid status value: " + status + ". Please enter either 'Regular' or 'Probationary'", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            // Establish a connection to the database
+            // Establish a connection to the database using import DatabaseConnectionManager Class
             Connection conn = DatabaseConnectionManager.getConnection();
 
             // Create a SQL UPDATE statement
@@ -628,13 +583,63 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "An error occurred: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE, null);
         }
     }//GEN-LAST:event_btn_editActionPerformed
-// This Search function is used for case-insensitive search/filter via Search textbox
 
+    private void tbl_employeesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_employeesMouseExited
+        // TODO add your handling code here:
+        //btn_delete_record.setEnabled(false);
+    }//GEN-LAST:event_tbl_employeesMouseExited
+
+    private void tbl_employeesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tbl_employeesFocusLost
+
+    }//GEN-LAST:event_tbl_employeesFocusLost
+    
+    /****************************************************
+    *
+    * Place custom developed methods below this section
+    * 
+    *****************************************************/
+    
+    // This Search function is used for case-insensitive search/filter via Search textbox
     public void Search(String str) {
         DefaultTableModel model = (DefaultTableModel) tbl_employees.getModel();
         TableRowSorter<DefaultTableModel> tableSorter = new TableRowSorter<>(model);
         tbl_employees.setRowSorter(tableSorter);
         tableSorter.setRowFilter(RowFilter.regexFilter("(?i)" + str)); // "(?i)" + makes the search case-INsensitive
+    }
+
+    private boolean validateFields() {
+        // Check if any field is empty
+        if (txt_first_name.getText().isEmpty() || txt_last_name.getText().isEmpty() || txt_birthday.getText().isEmpty() || txtarea_address.getText().isEmpty() || txt_phone.getText().isEmpty() || txt_status.getText().isEmpty() || txt_sss_num.getText().isEmpty() || txt_philhealth_num.getText().isEmpty() || txt_tin_number.getText().isEmpty() || txt_pagibig_num.getText().isEmpty() || txt_position.getText().isEmpty() || txt_supervisor.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "All fields are mandatory", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        // Check if the fields that should only contain integers contain valid integers
+        try {
+            Integer.valueOf(txt_sss_num.getText());
+            Integer.valueOf(txt_philhealth_num.getText());
+            Integer.valueOf(txt_tin_number.getText());
+            Integer.valueOf(txt_pagibig_num.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid integer value. Please enter numbers only on " + "SSS: " + txt_sss_num.getText()
+                    + " Philhealth:" + txt_philhealth_num.getText() + " TIN:" + txt_tin_number.getText() + " PAGIBIG:" + txt_pagibig_num.getText(), "Error", JOptionPane.ERROR_MESSAGE
+            );
+            return false;
+        }
+
+        // Check if txt_birthday contains a valid date
+        try {
+            LocalDate.parse(txt_birthday.getText(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        } catch (DateTimeParseException e) {
+            JOptionPane.showMessageDialog(null, "Invalid date value:" + txt_birthday.getText() + " Please enter in yyyy-MM-dd format", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        // Check if txt_status is either "Regular" or "Probationary"
+        String status = txt_status.getText();
+        if (!status.equals("Regular") && !status.equals("Probationary")) {
+            JOptionPane.showMessageDialog(null, "Invalid status value: " + status + ". Please enter either 'Regular' or 'Probationary'", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
     }
 
     private void InitializeForm() {
