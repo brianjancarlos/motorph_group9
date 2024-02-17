@@ -26,81 +26,29 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="312" max="-2" attributes="0"/>
-              <Component id="lbl_MotorPHEmployeeDetails" pref="492" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="349" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="lbl_phone" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lbl_status" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txt_phone" linkSize="5" pref="231" max="32767" attributes="0"/>
-                          <Component id="txt_status" linkSize="5" min="-2" pref="130" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="lbl_address" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lbl_birthday" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lbl_last_name" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lbl_first_name" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lbl_employee_id" alignment="0" pref="118" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txt_birthday" linkSize="5" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txt_last_name" linkSize="5" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txt_first_name" linkSize="5" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txt_employee_id" linkSize="5" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jScrollPane3" alignment="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
-              <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lbl_supervisor" alignment="0" max="32767" attributes="0"/>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="lbl_position" max="32767" attributes="0"/>
-                          <Component id="lbl_pagibig_num" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="lbl_sss_num" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lbl_philhealth_num" alignment="0" pref="171" max="32767" attributes="0"/>
-                          <Component id="lbl_tin_num" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="txt_tin_number" alignment="0" pref="327" max="32767" attributes="0"/>
-                      <Component id="txt_pagibig_num" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txt_philhealth_num" alignment="1" max="32767" attributes="0"/>
-                      <Component id="txt_position" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txt_supervisor" alignment="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Component id="txt_sss_num" min="-2" pref="327" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="1029" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane1" min="-2" pref="1029" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jPanel1" max="32767" attributes="0"/>
+                                  <Component id="txt_searchbox" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
               </Group>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="312" max="-2" attributes="0"/>
+              <Component id="lbl_MotorPHEmployeeDetails" min="-2" pref="443" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -108,105 +56,14 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Component id="lbl_MotorPHEmployeeDetails" min="-2" pref="56" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                      <Component id="txt_philhealth_num" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="txt_tin_number" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lbl_employee_id" linkSize="4" min="-2" pref="17" max="-2" attributes="0"/>
-                          <Component id="lbl_sss_num" linkSize="9" min="-2" pref="23" max="-2" attributes="0"/>
-                          <Component id="txt_sss_num" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Group type="102" alignment="3" attributes="0">
-                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                              <Component id="lbl_first_name" linkSize="4" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="3" attributes="0">
-                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                              <Component id="lbl_philhealth_num" linkSize="9" min="-2" pref="23" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Group type="102" alignment="3" attributes="0">
-                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lbl_last_name" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txt_last_name" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="3" attributes="0">
-                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                              <Component id="lbl_tin_num" linkSize="9" min="-2" pref="23" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Group type="102" alignment="3" attributes="0">
-                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lbl_birthday" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txt_birthday" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="3" attributes="0">
-                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lbl_pagibig_num" linkSize="9" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
-                                  <Component id="txt_pagibig_num" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jScrollPane3" min="-2" pref="66" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                      <Component id="txt_employee_id" linkSize="4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                      <Component id="txt_first_name" linkSize="4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txt_position" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbl_position" linkSize="9" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txt_supervisor" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbl_supervisor" linkSize="9" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Component id="lbl_address" linkSize="4" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="51" pref="51" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lbl_status" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txt_status" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="txt_phone" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbl_phone" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace pref="12" max="32767" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+              <Component id="txt_searchbox" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jPanel1" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="240" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
@@ -256,144 +113,20 @@
         <Property name="text" type="java.lang.String" value="MotorPH Employee Details"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lbl_employee_id">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Employee ID"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lbl_first_name">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="First Name"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lbl_last_name">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Last Name"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lbl_birthday">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Birthday"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lbl_address">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Address"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lbl_phone">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Phone"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lbl_status">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Status"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txt_employee_id">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txt_first_name">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txt_last_name">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txt_birthday">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txt_phone">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txt_status">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lbl_sss_num">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="SSS"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lbl_philhealth_num">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Philhealth"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lbl_tin_num">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="TIN"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lbl_pagibig_num">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Pag-ibig"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lbl_position">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Position"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lbl_supervisor">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Supervisor"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txt_sss_num">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txt_philhealth_num">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txt_tin_number">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txt_pagibig_num">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txt_position">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txt_supervisor">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
-    </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lbl_search" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   <Component id="btn_add_record" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btn_edit" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btn_clear" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_delete_record" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -404,10 +137,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btn_add_record" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbl_search" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btn_edit" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btn_clear" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btn_delete_record" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -427,43 +159,317 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Edit"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="lbl_search">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Search"/>
-          </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lbl_searchActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_editActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btn_delete_record">
           <Properties>
             <Property name="text" type="java.lang.String" value="Delete"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_delete_recordActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btn_add_record">
           <Properties>
             <Property name="text" type="java.lang.String" value="Add"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_add_recordActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane3">
-      <AuxValues>
-        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-      </AuxValues>
+    <Container class="javax.swing.JPanel" name="jPanel2">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
 
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lbl_status" alignment="1" min="-2" pref="77" max="-2" attributes="0"/>
+                              <Component id="lbl_phone" min="-2" pref="80" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="txt_phone" linkSize="5" pref="231" max="32767" attributes="0"/>
+                              <Component id="txt_status" linkSize="5" min="-2" pref="130" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="lbl_birthday" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="lbl_first_name" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="lbl_employee_id" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="lbl_last_name" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
+                                      <Component id="lbl_address" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="txt_birthday" linkSize="5" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txt_last_name" linkSize="5" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txt_first_name" linkSize="5" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txt_employee_id" linkSize="5" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jScrollPane3" alignment="0" min="-2" pref="231" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="lbl_sss_num" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lbl_philhealth_num" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lbl_tin_num" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="lbl_pagibig_num" min="-2" pref="135" max="-2" attributes="0"/>
+                      <Component id="lbl_position" min="-2" pref="147" max="-2" attributes="0"/>
+                      <Component id="lbl_supervisor" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="txt_supervisor" min="-2" pref="327" max="-2" attributes="0"/>
+                      <Component id="txt_sss_num" min="-2" pref="324" max="-2" attributes="0"/>
+                      <Component id="txt_philhealth_num" alignment="0" min="-2" pref="324" max="-2" attributes="0"/>
+                      <Component id="txt_position" min="-2" pref="324" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="txt_pagibig_num" alignment="0" pref="324" max="32767" attributes="0"/>
+                          <Component id="txt_tin_number" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbl_employee_id" linkSize="4" min="-2" pref="17" max="-2" attributes="0"/>
+                              <Component id="lbl_sss_num" linkSize="9" min="-2" pref="23" max="-2" attributes="0"/>
+                              <Component id="txt_sss_num" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lbl_first_name" linkSize="4" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="lbl_philhealth_num" linkSize="9" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <Component id="txt_philhealth_num" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lbl_tin_num" linkSize="9" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <Component id="txt_tin_number" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="lbl_last_name" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txt_last_name" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="lbl_birthday" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txt_birthday" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                  <Component id="txt_pagibig_num" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbl_pagibig_num" linkSize="9" min="-2" pref="23" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                          <Component id="txt_employee_id" linkSize="4" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="txt_first_name" linkSize="4" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbl_position" linkSize="9" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                              <Component id="txt_position" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="16" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="txt_supervisor" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbl_supervisor" linkSize="9" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lbl_address" linkSize="4" min="-2" max="-2" attributes="0"/>
+                              <Component id="jScrollPane3" min="-2" pref="66" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txt_phone" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbl_phone" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lbl_status" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txt_status" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="txtarea_address">
+        <Component class="javax.swing.JLabel" name="lbl_pagibig_num">
           <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="rows" type="int" value="5"/>
-            <Property name="wrapStyleWord" type="boolean" value="true"/>
+            <Property name="text" type="java.lang.String" value="Pag-ibig"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JLabel" name="lbl_sss_num">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="SSS"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbl_employee_id">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Employee ID"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txt_position">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbl_last_name">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Last Name"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txt_first_name">
+        </Component>
+        <Component class="javax.swing.JTextField" name="txt_sss_num">
+        </Component>
+        <Component class="javax.swing.JTextField" name="txt_phone">
+        </Component>
+        <Component class="javax.swing.JTextField" name="txt_employee_id">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTextArea" name="txtarea_address">
+              <Properties>
+                <Property name="columns" type="int" value="20"/>
+                <Property name="rows" type="int" value="5"/>
+                <Property name="wrapStyleWord" type="boolean" value="true"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JTextField" name="txt_tin_number">
+        </Component>
+        <Component class="javax.swing.JTextField" name="txt_last_name">
+        </Component>
+        <Component class="javax.swing.JTextField" name="txt_pagibig_num">
+        </Component>
+        <Component class="javax.swing.JTextField" name="txt_birthday">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="yyyy-MM-dd"/>
+            <Property name="toolTipText" type="java.lang.String" value="yyyy-MM-dd"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txt_supervisor">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbl_status">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Status"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbl_philhealth_num">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Philhealth"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txt_status">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Probationary"/>
+            <Property name="toolTipText" type="java.lang.String" value="Regular or Probationary"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbl_first_name">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="First Name"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbl_position">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Position"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbl_address">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Address"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbl_phone">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Phone"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbl_birthday">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Birthday"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbl_tin_num">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="TIN"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbl_supervisor">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Supervisor"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txt_philhealth_num">
+        </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JTextField" name="txt_searchbox">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Search..."/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_searchboxActionPerformed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_searchboxKeyReleased"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>
