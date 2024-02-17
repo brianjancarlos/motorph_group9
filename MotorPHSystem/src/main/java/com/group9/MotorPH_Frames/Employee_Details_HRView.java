@@ -615,12 +615,12 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
         }
         // Check if the fields that should only contain integers contain valid integers
         try {
-            Integer.valueOf(txt_sss_num.getText());
-            Integer.valueOf(txt_philhealth_num.getText());
-            Integer.valueOf(txt_tin_number.getText());
-            Integer.valueOf(txt_pagibig_num.getText());
+            Long.valueOf(txt_sss_num.getText());
+            Long.valueOf(txt_philhealth_num.getText());
+            Long.valueOf(txt_tin_number.getText());
+            Long.valueOf(txt_pagibig_num.getText());
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Invalid integer value. Please enter numbers only on " + "SSS: " + txt_sss_num.getText()
+            JOptionPane.showMessageDialog(null, "Invalid Number value. Please enter numbers only on " + "SSS: " + txt_sss_num.getText()
                     + " Philhealth:" + txt_philhealth_num.getText() + " TIN:" + txt_tin_number.getText() + " PAGIBIG:" + txt_pagibig_num.getText(), "Error", JOptionPane.ERROR_MESSAGE
             );
             return false;
