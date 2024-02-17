@@ -192,9 +192,15 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
         txtarea_address.setWrapStyleWord(true);
         jScrollPane3.setViewportView(txtarea_address);
 
+        txt_birthday.setText("yyyy-MM-dd");
+        txt_birthday.setToolTipText("yyyy-MM-dd");
+
         lbl_status.setText("Status");
 
         lbl_philhealth_num.setText("Philhealth");
+
+        txt_status.setText("Probationary");
+        txt_status.setToolTipText("Regular or Probationary");
 
         lbl_first_name.setText("First Name");
 
@@ -296,9 +302,9 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lbl_birthday)
                                 .addComponent(txt_birthday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lbl_pagibig_num, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txt_pagibig_num, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txt_pagibig_num, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lbl_pagibig_num, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addComponent(txt_employee_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -464,6 +470,12 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
                 LocalDate.parse(txt_birthday.getText(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             } catch (DateTimeParseException e) {
                 JOptionPane.showMessageDialog(null, "Invalid date value:" + txt_birthday.getText() + " Please enter in yyyy-MM-dd format", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            // Check if txt_status is either "Regular" or "Probationary"
+            String status = txt_status.getText();
+            if (!status.equals("Regular") && !status.equals("Probationary")) {
+                JOptionPane.showMessageDialog(null, "Invalid status value: " + status + ". Please enter either 'Regular' or 'Probationary'", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             // Establish a connection to the database
