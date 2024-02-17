@@ -289,9 +289,9 @@
                                   <Component id="lbl_birthday" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txt_birthday" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                  <Component id="lbl_pagibig_num" linkSize="9" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="0" attributes="0">
                                   <Component id="txt_pagibig_num" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbl_pagibig_num" linkSize="9" min="-2" pref="23" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -396,6 +396,10 @@
         <Component class="javax.swing.JTextField" name="txt_pagibig_num">
         </Component>
         <Component class="javax.swing.JTextField" name="txt_birthday">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="yyyy-MM-dd"/>
+            <Property name="toolTipText" type="java.lang.String" value="yyyy-MM-dd"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_supervisor">
         </Component>
@@ -410,6 +414,10 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_status">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Probationary"/>
+            <Property name="toolTipText" type="java.lang.String" value="Regular or Probationary"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbl_first_name">
           <Properties>
