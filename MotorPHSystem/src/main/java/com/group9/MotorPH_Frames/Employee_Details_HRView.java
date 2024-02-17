@@ -19,6 +19,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.RowFilter;
@@ -437,36 +440,73 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
 
     private void btn_add_recordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_add_recordActionPerformed
         try {
+            // Check if any field is empty
+            if (txt_first_name.getText().isEmpty() || txt_last_name.getText().isEmpty() || txt_birthday.getText().isEmpty() || txtarea_address.getText().isEmpty() || txt_phone.getText().isEmpty() || txt_status.getText().isEmpty() || txt_sss_num.getText().isEmpty() || txt_philhealth_num.getText().isEmpty() || txt_tin_number.getText().isEmpty() || txt_pagibig_num.getText().isEmpty() || txt_position.getText().isEmpty() || txt_supervisor.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "All fields are mandatory", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            // Check if the fields that should only contain integers contain valid integers
+            try {
+
+                Integer.valueOf(txt_sss_num.getText());
+                Integer.valueOf(txt_philhealth_num.getText());
+                Integer.valueOf(txt_tin_number.getText());
+                Integer.valueOf(txt_pagibig_num.getText());
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Invalid integer value. Please enter numbers only on " + "SSS: " + txt_sss_num.getText()
+                        + " Philhealth:" + txt_philhealth_num.getText() + " TIN:" + txt_tin_number.getText() + " PAGIBIG:" + txt_pagibig_num.getText(), "Error", JOptionPane.ERROR_MESSAGE
+                );
+                return;
+            }
+
+            // Check if txt_birthday contains a valid date
+            try {
+                LocalDate.parse(txt_birthday.getText(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            } catch (DateTimeParseException e) {
+                JOptionPane.showMessageDialog(null, "Invalid date value:" + txt_birthday.getText() + " Please enter in yyyy-MM-dd format", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             // Establish a connection to the database
             Connection conn = DatabaseConnectionManager.getConnection();
+
             // Create a SQL INSERT statement
-            String sql = "INSERT INTO employee_details (first_name, last_name, address) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO employee_details (first_name, last_name, birthday, address, phone_number, status, sss_id, philhealth_id, tin_id, pagibig_id, position_name, immediate_supervisor) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             // Prepare the statement
             PreparedStatement pstmt = conn.prepareStatement(sql);
 
             // Set the values from the text fields
+            // pstmt.setInt(1, Integer.parseInt(txt_employee_id.getText()));
             pstmt.setString(1, txt_first_name.getText());
             pstmt.setString(2, txt_last_name.getText());
-            pstmt.setString(3, txtarea_address.getText());
+            pstmt.setDate(3, java.sql.Date.valueOf(txt_birthday.getText()));
+            pstmt.setString(4, txtarea_address.getText());
+            pstmt.setString(5, txt_phone.getText());
+            pstmt.setString(6, txt_status.getText());
+            pstmt.setString(7, txt_sss_num.getText());
+            pstmt.setString(8, txt_philhealth_num.getText());
+            pstmt.setString(9, txt_tin_number.getText());
+            pstmt.setString(10, txt_pagibig_num.getText());
+            pstmt.setString(11, txt_position.getText());
+            pstmt.setString(12, txt_supervisor.getText());
 
             // Execute the statement
             pstmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Record Added Name: " + txt_first_name.getText() + " " + txt_last_name.getText());
+            JOptionPane.showMessageDialog(null, "Record Added Name: " + txt_first_name.getText() + " " + txt_last_name.getText(), "Add Record", JOptionPane.INFORMATION_MESSAGE, null);
+
             // Close the connection
             conn.close();
             refreshTable();
 
         } catch (SQLException e) {
             // Handle any SQL exceptions
-            JOptionPane.showMessageDialog(null, "An error occurred: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
+            JOptionPane.showMessageDialog(null, "An error occurred: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE, null);
     }//GEN-LAST:event_btn_add_recordActionPerformed
-
+    }
     private void btn_delete_recordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_delete_recordActionPerformed
         int selected_row = tbl_employees.getSelectedRow();
         if (selected_row == -1) {
-            JOptionPane.showMessageDialog(null, "No record selected", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No record selected", "Error", JOptionPane.ERROR_MESSAGE, null);
             return;
         }
 
@@ -498,7 +538,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
                 conn.close();
             } catch (SQLException e) {
                 // Handle any SQL exceptions
-                JOptionPane.showMessageDialog(null, "An error occurred: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "An error occurred: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE, null);
             }
         }
     }//GEN-LAST:event_btn_delete_recordActionPerformed
