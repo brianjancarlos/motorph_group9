@@ -456,7 +456,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
 
     private void btn_add_recordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_add_recordActionPerformed
         try {
-            // Check correct inputs from textfields
+            // Check correct inputs from textfields !validated = If validation is true/successful then proceed
             if (!validateFields()) {
                 return;
             }
@@ -513,7 +513,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
         int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this record?: " + employee_id, "Confirm Deletion", JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {
             try {
-                // Establish a connection to the database
+                // Establish a connection to the database using import DatabaseConnectionManager Class
                 Connection conn = DatabaseConnectionManager.getConnection();
 
                 // Prepare a SQL DELETE statement
@@ -545,7 +545,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
             if (!validateFields()) {
                 return;
             }
-            // Establish a connection to the database
+            // Establish a connection to the database using import DatabaseConnectionManager Class
             Connection conn = DatabaseConnectionManager.getConnection();
 
             // Create a SQL UPDATE statement
@@ -592,6 +592,12 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
     private void tbl_employeesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tbl_employeesFocusLost
 
     }//GEN-LAST:event_tbl_employeesFocusLost
+    
+    /****************************************************
+    *
+    * Place custom developed methods below this section
+    * 
+    *****************************************************/
     
     // This Search function is used for case-insensitive search/filter via Search textbox
     public void Search(String str) {
