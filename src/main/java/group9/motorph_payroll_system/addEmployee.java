@@ -102,7 +102,7 @@ public class addEmployee extends javax.swing.JFrame {
         javax.swing.JLabel jLabel21 = new javax.swing.JLabel();
         jTextBasicSalary = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jBtnClear.setText("Clear");
         jBtnClear.addActionListener(new java.awt.event.ActionListener() {
