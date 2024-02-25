@@ -11,56 +11,67 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import java.util.Calendar;
-import java.util.Date;
+//import java.util.Date;
 import java.util.GregorianCalendar;
+import com.group9.services.DatabaseConnectionManager;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author nativ
  */
 public class login_portal extends javax.swing.JFrame {
-    Connection conn = null;
+
+    //Connection conn = null;
     ResultSet rs = null;
-    PreparedStatement pst = null;
-    
+    //PreparedStatement pst = null;
+
     /*
     Connection conn = null;: Declares a placeholder variable for connecting to a database.
 
     ResultSet rs = null;: Declares a placeholder variable for storing query results.
 
     PreparedStatement pst = null;: Declares a placeholder variable for preparing SQL statements. 
-    */
-
+     */
     /**
      * Creates new form login_portal
      */
     public login_portal() {
-        initComponents();
-        Toolkit toolkit = getToolkit();
-        Dimension size = toolkit.getScreenSize();
-        setLocation(size.width/2 - getWidth()/2,size.height/2 - getHeight()/2);
-        
-        
-           // Call the static method from database_connection class to establish connection
-        conn = database_connection.java_database_connection();
-        currentDate();
+        try {
+            initComponents();
+            Toolkit toolkit = getToolkit();
+            Dimension size = toolkit.getScreenSize();
+            setLocation(size.width / 2 - getWidth() / 2, size.height / 2 - getHeight() / 2);
+
+            // Call the static method from database_connection class to establish connection
+            //conn = database_connection.java_database_connection();
+            // Establish a connection to the database MotorPH.services
+            Connection conn = DatabaseConnectionManager.getConnection();
+            //Displays Current date in form
+            currentDate();
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(login_portal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
-    public void currentDate(){
-        
+
+    public void currentDate() {
+
         Calendar cal = new GregorianCalendar();
         int month = cal.get(Calendar.MONTH);
         int year = cal.get(Calendar.YEAR);
         int day = cal.get(Calendar.DAY_OF_MONTH);
-        
-        lbl_date.setText((month + 1)+"/"+day+"/"+year);
-        
+
+        lbl_date.setText((month + 1) + "/" + day + "/" + year);
+
         int second = cal.get(Calendar.SECOND);
         int minute = cal.get(Calendar.MINUTE);
         int hour = cal.get(Calendar.HOUR);
-        
-        lbl_time.setText(hour+":"+(minute)+":"+second);
-        
+
+        lbl_time.setText(hour + ":" + (minute) + ":" + second);
+
     }
 
     /**
@@ -200,76 +211,75 @@ public class login_portal extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_usernameActionPerformed
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
-       String sql = "select id, username, password, selectuser FROM login.login_credentials WHERE (username =? and password =? and selectuser =?)";
-       
-       //  block is used to enclose code that may potentially throw exception.
-       try{
-           int count = 0;
-           
-           pst = conn.prepareStatement(sql);
-           /*
+        // String sql = "select id, username, password, selectuser FROM login.login_credentials WHERE (username =? and password =? and selectuser =?)";
+        String sql = "select employee_id, emp_password, role_description FROM login_details_and_role WHERE (employee_id = ? and emp_password = ?)";
+
+        //  block is used to enclose code that may potentially throw exception.
+        try {
+            int count = 0;
+            // Establish a connection to the database MotorPH.services
+            Connection conn = DatabaseConnectionManager.getConnection();
+
+            //pst = conn.prepareStatement(sql);
+            // Prepare the statement
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            /*
            prepares a SQL statement (sql) for execution using a database connection (conn) and 
            assigns the prepared statement to the variable pst.
-           */
-        
-           //  PreparedStatement object, to store a text value in a database, making it easier to work with data.
-           pst.setString(1, txt_username.getText());
-           pst.setString(2, txt_password.getText());
-           pst.setString(3, txt_combo.getSelectedItem().toString());
-           
-           //gets information from a database using the stored query.
-           rs = pst.executeQuery();
-           
-           /*
+             */
+
+            //  PreparedStatement object, to store a text value in a database, making it easier to work with data.
+            pstmt.setInt(1, Integer.parseInt(txt_username.getText()));
+            pstmt.setString(2, txt_password.getText());
+            //pstmt.setString(3, txt_combo.getSelectedItem().toString());
+
+            //gets information from a database using the stored query.
+            rs = pstmt.executeQuery();
+
+
+            /*
            The "while" loop goes through each row of data retrieved from the database, 
            counting them one by one, usually to keep track of how many rows were found.
-           */
-           
-           while(rs.next()){
-               int id = rs.getInt(1);
-               Emp.empid = id;
-               count =  count + 1;
-           }
-           //Retrieves the selected item from a combo box as a string and stores it in a variable called access.
-           String access = (txt_combo.getSelectedItem().toString());
-           
-           if(access.equals("Admin")){
-               if(count ==1){
-                   JOptionPane.showMessageDialog(null, "Login successful");
-                   MainMenuPortal j = new MainMenuPortal();
-                   j.setVisible(true);
-                   this.dispose();
-                   
-               }else{
-                   JOptionPane.showMessageDialog(null, "Invalid username or password");
-                   
-               }
-               
-           }
-           
-           
-       //block is used to handle those exceptions gracefully.
-       }catch(Exception e){
-           
-           JOptionPane.showMessageDialog(null, e);
-       }
-       
-       
-       /*block makes sure that certain things related to the database are closed properly, 
-       which helps keep the program running smoothly and prevents problems.
-       */
-   
-       
-       finally{
-            try{
+             */
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                Emp.empid = id;
+                count = count + 1;
+            }
+            //Retrieves the selected item from a combo box as a string and stores it in a variable called access.
+            String access = (txt_combo.getSelectedItem().toString());
+
+            if (access.equals("Admin")) {
+                if (count == 1) {
+                    JOptionPane.showMessageDialog(null, "Login successful");
+                    MainMenuPortal j = new MainMenuPortal();
+                    j.setVisible(true);
+                    this.dispose();
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalid username or password");
+
+                }
+
+            }
             rs.close();
-            pst.close();
-         }catch(Exception e){
-         
-    }
-        
+            conn.close();
+            //block is used to handle those exceptions gracefully.
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e);
+        } /*block makes sure that certain things related to the database are closed properly, 
+       which helps keep the program running smoothly and prevents problems.
+//         */ finally {
+//            try {
+//                rs.close();
+//                pstmt.close();
+//            } catch (Exception e) {
+//
+//            }
+//
        }
-     
+
     }//GEN-LAST:event_btn_loginActionPerformed
 
     private void txt_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_passwordActionPerformed
