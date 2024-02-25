@@ -53,8 +53,8 @@ public class MainMenuPortal extends javax.swing.JFrame {
         btn_payroll = new javax.swing.JButton();
         lbl_adminportal = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        mnu_employee = new javax.swing.JMenu();
+        mnu_report = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -159,11 +159,11 @@ public class MainMenuPortal extends javax.swing.JFrame {
         lbl_adminportal.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         lbl_adminportal.setText("Admin Portal");
 
-        jMenu1.setText("Employee");
-        jMenuBar1.add(jMenu1);
+        mnu_employee.setText("Employee");
+        jMenuBar1.add(mnu_employee);
 
-        jMenu2.setText("Report");
-        jMenuBar1.add(jMenu2);
+        mnu_report.setText("Report");
+        jMenuBar1.add(mnu_report);
 
         jMenu3.setText("About");
         jMenuBar1.add(jMenu3);
@@ -232,8 +232,8 @@ public class MainMenuPortal extends javax.swing.JFrame {
     private void btn_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_logoutActionPerformed
         // Logout button
 
-        login_portal x = new login_portal();
-        x.setVisible(true);
+        login_portal login_ui = new login_portal();
+        login_ui.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_logoutActionPerformed
 
@@ -255,9 +255,12 @@ public class MainMenuPortal extends javax.swing.JFrame {
 
     private void btn_employeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_employeeActionPerformed
         // add employee
-        
-        addEmployee x = new addEmployee();
-        x.setVisible(true);
+        //Show EmplooyeeDetails_view
+        Employee_Details_HRView employeeDetailsHRView = new Employee_Details_HRView();
+        employeeDetailsHRView.setVisible(true);
+        this.dispose();
+//        addEmployee x = new addEmployee();
+//        x.setVisible(true);
         
     }//GEN-LAST:event_btn_employeeActionPerformed
 
@@ -311,8 +314,6 @@ public class MainMenuPortal extends javax.swing.JFrame {
     private javax.swing.JButton btn_employee;
     private javax.swing.JButton btn_logout;
     private javax.swing.JButton btn_payroll;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
@@ -323,5 +324,7 @@ public class MainMenuPortal extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_emp;
     private javax.swing.JLabel lbl_loggedin_user;
     private javax.swing.JLabel lbl_welcome;
+    private javax.swing.JMenu mnu_employee;
+    private javax.swing.JMenu mnu_report;
     // End of variables declaration//GEN-END:variables
 }

@@ -24,17 +24,9 @@ import java.util.logging.Logger;
  */
 public class login_portal extends javax.swing.JFrame {
 
-    //Connection conn = null;
+    // ResultSet rs = null;: Declares a placeholder variable for storing query results.
     ResultSet rs = null;
-    //PreparedStatement pst = null;
 
-    /*
-    Connection conn = null;: Declares a placeholder variable for connecting to a database.
-
-    ResultSet rs = null;: Declares a placeholder variable for storing query results.
-
-    PreparedStatement pst = null;: Declares a placeholder variable for preparing SQL statements. 
-     */
     /**
      * Creates new form login_portal
      */
@@ -45,8 +37,6 @@ public class login_portal extends javax.swing.JFrame {
             Dimension size = toolkit.getScreenSize();
             setLocation(size.width / 2 - getWidth() / 2, size.height / 2 - getHeight() / 2);
 
-            // Call the static method from database_connection class to establish connection
-            //conn = database_connection.java_database_connection();
             // Establish a connection to the database MotorPH.services
             Connection conn = DatabaseConnectionManager.getConnection();
             //Displays Current date in form
@@ -120,9 +110,7 @@ public class login_portal extends javax.swing.JFrame {
             }
         });
 
-        btn_login.setBackground(new java.awt.Color(51, 102, 255));
         btn_login.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_login.setForeground(new java.awt.Color(255, 255, 255));
         btn_login.setText("Login");
         btn_login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,7 +199,7 @@ public class login_portal extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_usernameActionPerformed
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
-        // String sql = "select id, username, password, selectuser FROM login.login_credentials WHERE (username =? and password =? and selectuser =?)";
+
         String sql = "select employee_id, emp_password, role_description FROM login_details_and_role WHERE (employee_id = ? and emp_password = ?)";
 
         //  block is used to enclose code that may potentially throw exception.
@@ -220,7 +208,6 @@ public class login_portal extends javax.swing.JFrame {
             // Establish a connection to the database MotorPH.services
             Connection conn = DatabaseConnectionManager.getConnection();
 
-            //pst = conn.prepareStatement(sql);
             // Prepare the statement
             PreparedStatement pstmt = conn.prepareStatement(sql);
             /*
@@ -235,7 +222,6 @@ public class login_portal extends javax.swing.JFrame {
 
             //gets information from a database using the stored query.
             rs = pstmt.executeQuery();
-
 
             /*
            The "while" loop goes through each row of data retrieved from the database, 
@@ -270,15 +256,9 @@ public class login_portal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         } /*block makes sure that certain things related to the database are closed properly, 
        which helps keep the program running smoothly and prevents problems.
-//         */ finally {
-//            try {
-//                rs.close();
-//                pstmt.close();
-//            } catch (Exception e) {
-//
-//            }
-//
-       }
+         */ finally {
+
+        }
 
     }//GEN-LAST:event_btn_loginActionPerformed
 
