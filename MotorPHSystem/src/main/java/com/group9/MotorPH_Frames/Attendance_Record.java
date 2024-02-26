@@ -4,7 +4,6 @@
  */
 package com.group9.MotorPH_Frames;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.table.DefaultTableModel;
@@ -20,7 +19,7 @@ import javax.swing.table.TableRowSorter;
  * @author nativ
  */
 public class Attendance_Record extends javax.swing.JFrame {
-    
+
 //Global Declarations
     ResultSet rs = null;
     PreparedStatement pst = null;
@@ -32,61 +31,53 @@ public class Attendance_Record extends javax.swing.JFrame {
     public Attendance_Record() {
         initComponents();
     }
-    
-       //Filter data
-        private void filter (String query)
-        {
-            TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
-            jTable1.setRowSorter(tr);
-            
-            tr.setRowFilter(RowFilter.regexFilter(query));
-        }
-        
-        
-        public void showData(String d1, String d2){
+
+    //Filter data
+    private void filter(String query) {
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        jTable1.setRowSorter(tr);
+
+        tr.setRowFilter(RowFilter.regexFilter(query));
+    }
+
+    public void showData(String d1, String d2) {
         Connection conn = database_connection.java_database_connection();
-      
-        
-        try{
-            
-              // if no date selected display all data
-            if(d1.equals("") || d2.equals(""))
-            {
+
+        try {
+
+            // if no date selected display all data
+            if (d1.equals("") || d2.equals("")) {
                 pst = conn.prepareStatement("SELECT * FROM employee_data.attendance_record");
-                
-            }else {
+
+            } else {
                 pst = conn.prepareStatement("SELECT * FROM employee_data.attendance_record WHERE workdate BETWEEN ? AND ? ");
-              
+
                 pst.setString(1, d1);
                 pst.setString(2, d2);
-           
-            }
-            
-            rs = pst.executeQuery();
-                DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
 
-                
-                
-             Object[] row;
-            
-            while(rs.next())
-            {
+            }
+
+            rs = pst.executeQuery();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+            Object[] row;
+
+            while (rs.next()) {
                 row = new Object[6];
                 row[0] = rs.getInt(1);
                 row[1] = rs.getString(2);
                 row[2] = rs.getString(3);
                 row[3] = rs.getString(4);
-                 row[4] = rs.getString(5);
-                 row[5] = rs.getString(6);
-                
+                row[4] = rs.getString(5);
+                row[5] = rs.getString(6);
+
                 model.addRow(row);
             }
-            
-            
-        }catch(SQLException e){
+
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
-             }
-        
+        }
+
     }
 
     /**
@@ -100,9 +91,9 @@ public class Attendance_Record extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        jButton1 = new javax.swing.JButton();
+        dateChooser_startDate = new com.toedter.calendar.JDateChooser();
+        dateChooser_endDate = new com.toedter.calendar.JDateChooser();
+        btn_search = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txt_search = new javax.swing.JTextField();
@@ -128,14 +119,14 @@ public class Attendance_Record extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jDateChooser1.setDateFormatString("MM/dd/yyyy");
+        dateChooser_startDate.setDateFormatString("MM/dd/yyyy");
 
-        jDateChooser2.setDateFormatString("MM/dd/yyyy");
+        dateChooser_endDate.setDateFormatString("MM/dd/yyyy");
 
-        jButton1.setText("Search");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_search.setText("Search");
+        btn_search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_searchActionPerformed(evt);
             }
         });
 
@@ -169,14 +160,14 @@ public class Attendance_Record extends javax.swing.JFrame {
                                 .addComponent(txt_search))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dateChooser_startDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel1))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(dateChooser_endDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton1))
+                                        .addComponent(btn_search))
                                     .addComponent(jLabel2))))))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
@@ -192,9 +183,9 @@ public class Attendance_Record extends javax.swing.JFrame {
                         .addComponent(jLabel2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dateChooser_endDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_search)
+                    .addComponent(dateChooser_startDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,38 +198,38 @@ public class Attendance_Record extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
         // Button To Display The Data
 
-        try{
+        try {
 
-            jTable1.setModel(new DefaultTableModel(null, new Object[]{"id","lastname","firstname","workdate","timein","timeout"}));
+            jTable1.setModel(new DefaultTableModel(null, new Object[]{"id", "lastname", "firstname", "workdate", "timein", "timeout"}));
             SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy");
-            String date1 = df.format(jDateChooser1.getDate());
-            String date2 = df.format(jDateChooser2.getDate());
+            String date1 = df.format(dateChooser_startDate.getDate());
+            String date2 = df.format(dateChooser_endDate.getDate());
 
             showData(date1, date2);
 
-        }catch(Exception e){
+        } catch (Exception e) {
 
-            JOptionPane.showMessageDialog(null,e);
-        }finally{
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
 
             try {
 
-            }catch(Exception e){
+            } catch (Exception e) {
             }
         }
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_searchActionPerformed
 
     private void txt_searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_searchKeyReleased
         // search and filter
-        String  query = txt_search.getText().toLowerCase();
+        String query = txt_search.getText().toLowerCase();
 
         filter(query);
 
-        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
         jTable1.setRowSorter(tr);
@@ -283,9 +274,9 @@ public class Attendance_Record extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private javax.swing.JButton btn_search;
+    private com.toedter.calendar.JDateChooser dateChooser_endDate;
+    private com.toedter.calendar.JDateChooser dateChooser_startDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
