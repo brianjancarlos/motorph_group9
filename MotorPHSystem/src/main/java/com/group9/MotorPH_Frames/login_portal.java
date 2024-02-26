@@ -81,8 +81,8 @@ public class login_portal extends javax.swing.JFrame {
         btn_login = new javax.swing.JButton();
         txt_combo = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        mnubar_loginPortal = new javax.swing.JMenuBar();
+        mnu_file = new javax.swing.JMenu();
         lbl_date = new javax.swing.JMenu();
         lbl_time = new javax.swing.JMenu();
 
@@ -163,16 +163,16 @@ public class login_portal extends javax.swing.JFrame {
                 .addGap(21, 21, 21))
         );
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        mnu_file.setText("File");
+        mnubar_loginPortal.add(mnu_file);
 
         lbl_date.setText("Date");
-        jMenuBar1.add(lbl_date);
+        mnubar_loginPortal.add(lbl_date);
 
         lbl_time.setText("Time");
-        jMenuBar1.add(lbl_time);
+        mnubar_loginPortal.add(lbl_time);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(mnubar_loginPortal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -306,11 +306,11 @@ public class login_portal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu lbl_date;
     private javax.swing.JMenu lbl_time;
+    private javax.swing.JMenu mnu_file;
+    private javax.swing.JMenuBar mnubar_loginPortal;
     private javax.swing.JComboBox<String> txt_combo;
     private javax.swing.JPasswordField txt_password;
     private javax.swing.JTextField txt_username;

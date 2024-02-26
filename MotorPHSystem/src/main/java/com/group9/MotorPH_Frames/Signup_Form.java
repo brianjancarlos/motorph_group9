@@ -229,7 +229,7 @@ public class Signup_Form extends javax.swing.JFrame {
 
     private void btn_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exitActionPerformed
         this.dispose();
-        new Login().show();
+        new login_portal().show();
 
     }//GEN-LAST:event_btn_exitActionPerformed
 
