@@ -8,7 +8,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
-
+import java.sql.Date;
+import java.sql.SQLException;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import com.toedter.calendar.JDateChooser;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -20,7 +25,6 @@ public class attendanceTracker extends javax.swing.JFrame {
     Resultset rs = null;
     PreparedStatement pst = null;
     
-   private DateChooser chDate = new DateChooser();
 
     /**
      * Creates new form attendanceTracker
@@ -28,6 +32,11 @@ public class attendanceTracker extends javax.swing.JFrame {
     public attendanceTracker() {
         initComponents();
         conn = database_connection.java_database_connection();
+        
+         // Set date format for the JDateChooser components
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        jDateChooser1.setDateFormatString("yyyy-MM-dd");
+        jDateChooser2.setDateFormatString("yyyy-MM-dd");
      
     }
 
@@ -58,8 +67,11 @@ public class attendanceTracker extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        totalHoursField = new javax.swing.JTextField();
         txt_searchButton = new javax.swing.JButton();
-        txtDate = new javax.swing.JTextField();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -149,6 +161,10 @@ public class attendanceTracker extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("Work hours");
+
+        totalHoursField.setEditable(false);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -167,7 +183,11 @@ public class attendanceTracker extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
-                            .addComponent(txt_firstName, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txt_firstName, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(totalHoursField, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -191,7 +211,11 @@ public class attendanceTracker extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_employee_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txt_employee_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(totalHoursField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
@@ -206,6 +230,10 @@ public class attendanceTracker extends javax.swing.JFrame {
             }
         });
 
+        jDateChooser1.setDateFormatString("yyyy-MM-dd");
+
+        jDateChooser2.setDateFormatString("yyyy-MM-dd");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -219,10 +247,7 @@ public class attendanceTracker extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 681, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(83, 83, 83)
-                                        .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap(25, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -231,9 +256,13 @@ public class attendanceTracker extends javax.swing.JFrame {
                         .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel10)
-                        .addGap(62, 62, 62)
+                        .addGap(4, 4, 4)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel11)
-                        .addGap(56, 56, 56)
+                        .addGap(4, 4, 4)
+                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txt_searchButton)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
@@ -241,16 +270,17 @@ public class attendanceTracker extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11)
-                    .addComponent(txt_searchButton))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel10)
+                        .addComponent(jLabel11)
+                        .addComponent(txt_searchButton))
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
@@ -282,49 +312,72 @@ public class attendanceTracker extends javax.swing.JFrame {
     private void txt_searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_searchButtonActionPerformed
         // Seach button
         
-        try {
-            
-          pst = conn.prepareStatement("SELECT * FROM public.attendance_tracker where txt_employee_id=?");
-          pst.setString(1, txt_searchButton.getText());
-          ResultSet rs = pst.executeQuery();
-          
-          
-           if(rs.next()==false)
-            
-             {
-                JOptionPane.showMessageDialog(this, "Sorry Record Not Found");
-                                txt_lastName.setText("");
-                                txt_firstName.setText("");
-                              
-                                txt_employee_id.requestFocus();
-                    }
-                        else
-                        {
-                        txt_employee_id.setText(rs.getString("employee_id"));
-                        txt_lastName.setText(rs.getString("first_name"));
-                        txt_firstName.setText(rs.getString("last_name"));
-               
-                        
-                       
-                        }
-                        
-        }catch(Exception e){
-            
-            
-        }finally{
-            try{
-                
-                rs.close();
-                pst.close();
-           
-            }catch(Exception e){
-                
+      
+           try {
+        int employee_id = Integer.parseInt(txt_search.getText());
+
+        // Search in the employee_details table
+        String employeeQuery = "SELECT * FROM public.employee_details WHERE employee_id=?";
+        try (PreparedStatement employeePst = conn.prepareStatement(employeeQuery)) {
+            employeePst.setInt(1, employee_id);
+
+            try (ResultSet employeeRs = employeePst.executeQuery()) {
+                if (employeeRs.next()) {
+                    txt_employee_id.setText(employeeRs.getString("employee_id"));
+                    txt_lastName.setText(employeeRs.getString("last_name"));
+                    txt_firstName.setText(employeeRs.getString("first_name"));
+                } else {
+                    JOptionPane.showMessageDialog(this, "Employee not found");
+                    return; // Exit the method if employee not found
+                }
             }
         }
-          
-          
-         
-         
+
+        // Calculate total hours from the employee_record table
+        if (jDateChooser1.getDate() != null && jDateChooser2.getDate() != null) {
+            String recordQuery = "SELECT * FROM public.employee_record WHERE employee_id=? AND work_date BETWEEN ? AND ?";
+            try (PreparedStatement recordPst = conn.prepareStatement(recordQuery)) {
+                recordPst.setInt(1, employee_id);
+               
+                  // Convert JDateChooser dates to java.sql.Date
+                Date startDate = new Date(jDateChooser1.getDate().getTime());
+                Date endDate = new Date(jDateChooser2.getDate().getTime());
+                
+                // Ensure that the dates are not null before setting them
+                if (startDate != null && endDate != null) {
+                    recordPst.setDate(2, startDate);
+                    recordPst.setDate(3, endDate);
+
+
+                try (ResultSet recordRs = recordPst.executeQuery()) {
+                    float totalHours = 0;
+
+                    while (recordRs.next()) {
+                        LocalDateTime timeIn = recordRs.getTimestamp("time_in").toLocalDateTime();
+                        LocalDateTime timeOut = recordRs.getTimestamp("time_out").toLocalDateTime();
+
+                        // Calculate the duration between timeIn and timeOut
+                        Duration duration = Duration.between(timeIn, timeOut);
+
+                        // Convert duration to hours (as a float)
+                        float hoursWorked = duration.toMillis() / (60 * 60 * 1000.0f);
+
+                        // Add to total hours
+                        totalHours += hoursWorked;
+                    }
+
+                    totalHoursField.setText(String.valueOf(totalHours));
+                }
+                  } else {
+                    JOptionPane.showMessageDialog(this, "Please select valid start and end dates");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please enter valid start and end dates");
+        }
+    } catch (SQLException | NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Error searching for employee: " + e.getMessage());
+    }
          
     }//GEN-LAST:event_txt_searchButtonActionPerformed
 
@@ -367,6 +420,8 @@ public class attendanceTracker extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -374,11 +429,12 @@ public class attendanceTracker extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtDate;
+    private javax.swing.JTextField totalHoursField;
     private javax.swing.JTextField txt_employee_id;
     private javax.swing.JTextField txt_firstName;
     private javax.swing.JTextField txt_lastName;
