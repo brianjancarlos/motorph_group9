@@ -350,7 +350,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lbl_pagibig_num, lbl_philhealth_num, lbl_position, lbl_sss_num, lbl_supervisor, lbl_tin_num});
 
-        txt_searchbox.setText("Search...");
+        txt_searchbox.setText("Filter...");
         txt_searchbox.setToolTipText("");
         txt_searchbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
