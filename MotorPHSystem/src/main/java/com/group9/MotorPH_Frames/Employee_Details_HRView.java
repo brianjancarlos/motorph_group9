@@ -85,9 +85,8 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
         lbl_supervisor = new javax.swing.JLabel();
         txt_philhealth_num = new javax.swing.JTextField();
         txt_searchbox = new javax.swing.JTextField();
-        btn_logout = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("MotorPH Employee View");
         setName("frm_employeeDetails"); // NOI18N
         setResizable(false);
@@ -364,13 +363,6 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
             }
         });
 
-        btn_logout.setText("Logout");
-        btn_logout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_logoutActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -392,17 +384,13 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(312, 312, 312)
                 .addComponent(lbl_MotorPHEmployeeDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_logout)
-                .addGap(66, 66, 66))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl_MotorPHEmployeeDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_logout))
+                .addComponent(lbl_MotorPHEmployeeDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
@@ -605,13 +593,6 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tbl_employeesFocusLost
 
-    private void btn_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_logoutActionPerformed
-
-        login_portal login_ui = new login_portal();
-        login_ui.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btn_logoutActionPerformed
-
     /**
      * **************************************************
      *
@@ -740,8 +721,13 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new Employee_Details_HRView().setVisible(true);
+//        java.awt.EventQueue.invokeLater(() -> {
+//            new Employee_Details_HRView().setVisible(true);
+//        });
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Employee_Details_HRView().setVisible(true);
+            }
         });
     }
 
@@ -750,7 +736,6 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
     private javax.swing.JButton btn_clear;
     private javax.swing.JButton btn_delete_record;
     private javax.swing.JButton btn_edit;
-    private javax.swing.JButton btn_logout;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
