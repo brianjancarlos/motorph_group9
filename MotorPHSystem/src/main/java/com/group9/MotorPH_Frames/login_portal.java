@@ -217,14 +217,14 @@ public class login_portal extends javax.swing.JFrame {
                 count = count + 1;
 
                 if (role.equals("Admin")) {
-                    JOptionPane.showMessageDialog(null, "Login successful");
-                    MainMenuPortal j = new MainMenuPortal();
-                    j.setVisible(true);
+                    JOptionPane.showMessageDialog(null, "Login successful. Admin Portal Access");
+                    MainMenuPortal adminPortal = new MainMenuPortal();
+                    adminPortal.setVisible(true);
                     this.dispose();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Login successful");
-                    EmployeePortal e = new EmployeePortal();
-                    e.setVisible(true);
+                    JOptionPane.showMessageDialog(null, "Login successful. Employee Portal Access");
+                    EmployeePortal employeePortal = new EmployeePortal();
+                    employeePortal.setVisible(true);
                     this.dispose();
                 }
             }
