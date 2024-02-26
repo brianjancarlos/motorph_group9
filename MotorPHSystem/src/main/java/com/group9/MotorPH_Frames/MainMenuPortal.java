@@ -43,7 +43,7 @@ public class MainMenuPortal extends javax.swing.JFrame {
         lbl_welcome = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        txtarea_info_screen = new javax.swing.JTextArea();
         lbl_loggedin_user = new javax.swing.JLabel();
         lbl_emp = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -71,10 +71,10 @@ public class MainMenuPortal extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jTextArea2.setText("        \n          ----MOTORPH PAYROLL SYTEM----\n            Key Features and Functionalities:\n\n         Employee Information Management, \n               Time & Attendance, Tracking, \n                       Salary Calculation, \n              Employee Self-Service Portal and \n                 Payroll Administrator Roles");
-        jScrollPane1.setViewportView(jTextArea2);
+        txtarea_info_screen.setColumns(20);
+        txtarea_info_screen.setRows(5);
+        txtarea_info_screen.setText("        \n          ----MOTORPH PAYROLL SYTEM----\n            Key Features and Functionalities:\n\n         Employee Information Management, \n               Time & Attendance, Tracking, \n                       Salary Calculation, \n              Employee Self-Service Portal and \n                 Payroll Administrator Roles");
+        jScrollPane1.setViewportView(txtarea_info_screen);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -258,7 +258,7 @@ public class MainMenuPortal extends javax.swing.JFrame {
         //Show EmplooyeeDetails_view
         Employee_Details_HRView employeeDetailsHRView = new Employee_Details_HRView();
         employeeDetailsHRView.setVisible(true);
-        this.dispose();
+        
 //        addEmployee x = new addEmployee();
 //        x.setVisible(true);
         
@@ -319,12 +319,12 @@ public class MainMenuPortal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JLabel lbl_adminportal;
     private javax.swing.JLabel lbl_emp;
     private javax.swing.JLabel lbl_loggedin_user;
     private javax.swing.JLabel lbl_welcome;
     private javax.swing.JMenu mnu_employee;
     private javax.swing.JMenu mnu_report;
+    private javax.swing.JTextArea txtarea_info_screen;
     // End of variables declaration//GEN-END:variables
 }
