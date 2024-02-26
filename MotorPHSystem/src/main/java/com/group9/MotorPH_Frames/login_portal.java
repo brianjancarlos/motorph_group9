@@ -200,66 +200,44 @@ public class login_portal extends javax.swing.JFrame {
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
 
-        String sql = "select employee_id, emp_password, role_description FROM login_details_and_role WHERE (employee_id = ? and emp_password = ?)";
+        String sql = "SELECT employee_id, emp_password, role_description FROM login_details_and_role WHERE (employee_id = ? AND emp_password = ?)";
 
-        //  block is used to enclose code that may potentially throw exception.
         try {
             int count = 0;
-            // Establish a connection to the database MotorPH.services
             Connection conn = DatabaseConnectionManager.getConnection();
-
-            // Prepare the statement
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            /*
-           prepares a SQL statement (sql) for execution using a database connection (conn) and 
-           assigns the prepared statement to the variable pst.
-             */
-
-            //  PreparedStatement object, to store a text value in a database, making it easier to work with data.
             pstmt.setInt(1, Integer.parseInt(txt_username.getText()));
             pstmt.setString(2, txt_password.getText());
-            //pstmt.setString(3, txt_combo.getSelectedItem().toString());
-
-            //gets information from a database using the stored query.
             rs = pstmt.executeQuery();
 
-            /*
-           The "while" loop goes through each row of data retrieved from the database, 
-           counting them one by one, usually to keep track of how many rows were found.
-             */
             while (rs.next()) {
                 int id = rs.getInt(1);
                 Emp.empid = id;
+                String role = rs.getString(3);
                 count = count + 1;
-            }
-            //Retrieves the selected item from a combo box as a string and stores it in a variable called access.
-            String access = (txt_combo.getSelectedItem().toString());
 
-            if (access.equals("Admin")) {
-                if (count == 1) {
+                if (role.equals("Admin")) {
                     JOptionPane.showMessageDialog(null, "Login successful");
                     MainMenuPortal j = new MainMenuPortal();
                     j.setVisible(true);
                     this.dispose();
-
                 } else {
-                    JOptionPane.showMessageDialog(null, "Invalid username or password");
-
+                    JOptionPane.showMessageDialog(null, "Login successful");
+                    EmployeePortal e = new EmployeePortal();
+                    e.setVisible(true);
+                    this.dispose();
                 }
-
             }
+
+            if (count == 0) {
+                JOptionPane.showMessageDialog(null, "Invalid username or password");
+            }
+
             rs.close();
             conn.close();
-            //block is used to handle those exceptions gracefully.
         } catch (Exception e) {
-
             JOptionPane.showMessageDialog(null, e);
-        } /*block makes sure that certain things related to the database are closed properly, 
-       which helps keep the program running smoothly and prevents problems.
-         */ finally {
-
         }
-
     }//GEN-LAST:event_btn_loginActionPerformed
 
     private void txt_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_passwordActionPerformed

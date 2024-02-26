@@ -35,7 +35,7 @@ public class Attendance_Record extends javax.swing.JFrame {
     //Filter data
     private void filter(String query) {
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
-        jTable1.setRowSorter(tr);
+        tbl_attendance_record.setRowSorter(tr);
 
         tr.setRowFilter(RowFilter.regexFilter(query));
     }
@@ -58,7 +58,7 @@ public class Attendance_Record extends javax.swing.JFrame {
             }
 
             rs = pst.executeQuery();
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            DefaultTableModel model = (DefaultTableModel) tbl_attendance_record.getModel();
 
             Object[] row;
 
@@ -90,18 +90,18 @@ public class Attendance_Record extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_attendance_record = new javax.swing.JTable();
         dateChooser_startDate = new com.toedter.calendar.JDateChooser();
         dateChooser_endDate = new com.toedter.calendar.JDateChooser();
         btn_search = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lbl_startDate = new javax.swing.JLabel();
+        lbl_endDate = new javax.swing.JLabel();
         txt_search = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        lbl_employee_num = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_attendance_record.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -117,7 +117,7 @@ public class Attendance_Record extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbl_attendance_record);
 
         dateChooser_startDate.setDateFormatString("MM/dd/yyyy");
 
@@ -130,9 +130,9 @@ public class Attendance_Record extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Start Date");
+        lbl_startDate.setText("Start Date");
 
-        jLabel2.setText("End Date");
+        lbl_endDate.setText("End Date");
 
         txt_search.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -140,7 +140,7 @@ public class Attendance_Record extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Employee Number");
+        lbl_employee_num.setText("Employee Number");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,20 +155,20 @@ public class Attendance_Record extends javax.swing.JFrame {
                         .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel3)
+                                .addComponent(lbl_employee_num)
                                 .addGap(18, 18, 18)
                                 .addComponent(txt_search))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(dateChooser_startDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1))
+                                    .addComponent(lbl_startDate))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(dateChooser_endDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btn_search))
-                                    .addComponent(jLabel2))))))
+                                    .addComponent(lbl_endDate))))))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -177,10 +177,10 @@ public class Attendance_Record extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel1))
+                        .addComponent(lbl_startDate))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel2)))
+                        .addComponent(lbl_endDate)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(dateChooser_endDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -189,7 +189,7 @@ public class Attendance_Record extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(lbl_employee_num))
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
                 .addContainerGap())
@@ -203,7 +203,7 @@ public class Attendance_Record extends javax.swing.JFrame {
 
         try {
 
-            jTable1.setModel(new DefaultTableModel(null, new Object[]{"id", "lastname", "firstname", "workdate", "timein", "timeout"}));
+            tbl_attendance_record.setModel(new DefaultTableModel(null, new Object[]{"id", "lastname", "firstname", "workdate", "timein", "timeout"}));
             SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy");
             String date1 = df.format(dateChooser_startDate.getDate());
             String date2 = df.format(dateChooser_endDate.getDate());
@@ -229,10 +229,10 @@ public class Attendance_Record extends javax.swing.JFrame {
 
         filter(query);
 
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel model = (DefaultTableModel) tbl_attendance_record.getModel();
 
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
-        jTable1.setRowSorter(tr);
+        tbl_attendance_record.setRowSorter(tr);
 
         tr.setRowFilter(RowFilter.regexFilter(txt_search.getText().trim()));
 
@@ -277,11 +277,11 @@ public class Attendance_Record extends javax.swing.JFrame {
     private javax.swing.JButton btn_search;
     private com.toedter.calendar.JDateChooser dateChooser_endDate;
     private com.toedter.calendar.JDateChooser dateChooser_startDate;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lbl_employee_num;
+    private javax.swing.JLabel lbl_endDate;
+    private javax.swing.JLabel lbl_startDate;
+    private javax.swing.JTable tbl_attendance_record;
     private javax.swing.JTextField txt_search;
     // End of variables declaration//GEN-END:variables
 }
