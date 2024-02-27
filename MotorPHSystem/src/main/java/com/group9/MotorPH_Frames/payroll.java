@@ -4,6 +4,7 @@
  */
 package com.group9.MotorPH_Frames;
 
+import com.group9.services.DatabaseConnectionManager;
 import com.toedter.calendar.JDateChooser;
 import java.sql.Connection;
 import java.sql.Date;
@@ -33,6 +34,8 @@ public class payroll extends javax.swing.JFrame {
     public payroll() {
         initComponents();
         conn = database_connection.java_database_connection();
+        // Establish a connection to the database MotorPH.services
+        //Connection conn = DatabaseConnectionManager.getConnection();
 
         // Set date format for the JDateChooser components
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -412,10 +415,11 @@ public class payroll extends javax.swing.JFrame {
 
         try {
             int employee_id = Integer.parseInt(txt_employee_id.getText()); // Get employee_id from the text field
-
+            // Establish a connection to the database MotorPH.services
+            Connection conn = DatabaseConnectionManager.getConnection();
             // Calculate total hours from the employee_record table
             if (dateChooser_startDate.getDate() != null && dateChooser_endDate.getDate() != null) {
-                String recordQuery = "SELECT * FROM public.employee_record WHERE employee_id=? AND work_date BETWEEN ? AND ?";
+                String recordQuery = "SELECT * FROM attendance_record WHERE employee_id=? AND login_date BETWEEN ? AND ?";
                 try (PreparedStatement recordPst = conn.prepareStatement(recordQuery)) {
                     recordPst.setInt(1, employee_id);
 
@@ -432,8 +436,8 @@ public class payroll extends javax.swing.JFrame {
                             float totalHours = 0;
 
                             while (recordRs.next()) {
-                                LocalDateTime timeIn = recordRs.getTimestamp("time_in").toLocalDateTime();
-                                LocalDateTime timeOut = recordRs.getTimestamp("time_out").toLocalDateTime();
+                                LocalDateTime timeIn = recordRs.getTimestamp("timein").toLocalDateTime();
+                                LocalDateTime timeOut = recordRs.getTimestamp("timeout").toLocalDateTime();
 
                                 // Check if the employee logged in from 8:11 onwards (GRACE PERIOD)
                                 if (timeIn.getHour() >= 8 && timeIn.getMinute() >= 11) {
