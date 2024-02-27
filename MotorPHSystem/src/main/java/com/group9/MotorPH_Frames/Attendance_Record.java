@@ -4,12 +4,15 @@
  */
 package com.group9.MotorPH_Frames;
 
+import com.group9.services.DatabaseConnectionManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
@@ -22,7 +25,7 @@ public class Attendance_Record extends javax.swing.JFrame {
 
 //Global Declarations
     ResultSet rs = null;
-    PreparedStatement pst = null;
+    PreparedStatement pstmt = null;
     DefaultTableModel dm;
 
     /**
@@ -41,41 +44,52 @@ public class Attendance_Record extends javax.swing.JFrame {
     }
 
     public void showData(String d1, String d2) {
-        Connection conn = database_connection.java_database_connection();
-
         try {
-
-            // if no date selected display all data
-            if (d1.equals("") || d2.equals("")) {
-                pst = conn.prepareStatement("SELECT * FROM employee_data.attendance_record");
-
-            } else {
-                pst = conn.prepareStatement("SELECT * FROM employee_data.attendance_record WHERE workdate BETWEEN ? AND ? ");
-
-                pst.setString(1, d1);
-                pst.setString(2, d2);
-
+            //Connection conn = database_connection.java_database_connection();
+            // Establish a connection to the database MotorPH.services
+            Connection conn = DatabaseConnectionManager.getConnection();
+            String sql = " ";
+            
+            try {
+                
+                // if no date selected display all data
+                if (d1.equals("") || d2.equals("")) {
+                    //pst = conn.prepareStatement("SELECT * FROM attendance_record");
+                    sql = "SELECT * FROM attendance_record";
+                    pstmt = conn.prepareStatement(sql);
+                    
+                } else {
+                    //pst = conn.prepareStatement("SELECT * FROM attendance_record WHERE workdate BETWEEN ? AND ? ");
+                    sql = "SELECT * FROM attendance_record WHERE login_date BETWEEN ? AND ? ";
+                    pstmt = conn.prepareStatement(sql);
+                    pstmt.setString(1, d1);
+                    pstmt.setString(2, d2);
+                    
+                }
+                
+                rs = pstmt.executeQuery();
+                DefaultTableModel model = (DefaultTableModel) tbl_attendance_record.getModel();
+                
+                Object[] row;
+                
+                while (rs.next()) {
+                    row = new Object[6];
+                    row[0] = rs.getInt(1);
+                    row[1] = rs.getString(2);
+                    row[2] = rs.getString(3);
+                    row[3] = rs.getString(4);
+                    row[4] = rs.getString(5);
+                    row[5] = rs.getString(6);
+                    
+                    model.addRow(row);
+                }
+                
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
             }
-
-            rs = pst.executeQuery();
-            DefaultTableModel model = (DefaultTableModel) tbl_attendance_record.getModel();
-
-            Object[] row;
-
-            while (rs.next()) {
-                row = new Object[6];
-                row[0] = rs.getInt(1);
-                row[1] = rs.getString(2);
-                row[2] = rs.getString(3);
-                row[3] = rs.getString(4);
-                row[4] = rs.getString(5);
-                row[5] = rs.getString(6);
-
-                model.addRow(row);
-            }
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Attendance_Record.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

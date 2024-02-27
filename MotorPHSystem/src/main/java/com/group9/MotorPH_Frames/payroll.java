@@ -21,22 +21,22 @@ import javax.swing.table.DefaultTableModel;
  * @author nativ
  */
 public class payroll extends javax.swing.JFrame {
+
     Connection conn = null;
     ResultSet rs = null;
-    PreparedStatement pst = null;  
+    PreparedStatement pst = null;
     Deductions deductions;
-    
-   
+
     /**
      * Creates new form payroll
      */
     public payroll() {
         initComponents();
         conn = database_connection.java_database_connection();
-        
+
         // Set date format for the JDateChooser components
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-     
+
         // Pass the connection to the Deductions constructor
         deductions = new Deductions(conn);
     }
@@ -65,9 +65,9 @@ public class payroll extends javax.swing.JFrame {
         txt_firstName = new javax.swing.JTextField();
         txt_birthday = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btn_clear = new javax.swing.JButton();
+        btn_save = new javax.swing.JButton();
+        btn_generate = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         JTableEmployee = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
@@ -81,7 +81,7 @@ public class payroll extends javax.swing.JFrame {
         txt_hourlyRate = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
+        btn_calculate = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
@@ -179,19 +179,19 @@ public class payroll extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jButton3.setText("Clear");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btn_clear.setText("Clear");
+        btn_clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btn_clearActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Save");
+        btn_save.setText("Save");
 
-        jButton5.setText("Generate");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btn_generate.setText("Generate");
+        btn_generate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btn_generateActionPerformed(evt);
             }
         });
 
@@ -279,10 +279,10 @@ public class payroll extends javax.swing.JFrame {
 
         jLabel11.setText("End Date:");
 
-        jButton6.setText("Calculate");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btn_calculate.setText("Calculate");
+        btn_calculate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btn_calculateActionPerformed(evt);
             }
         });
 
@@ -326,12 +326,12 @@ public class payroll extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jButton6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(btn_calculate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btn_save, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(btn_generate, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btn_clear, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(61, 61, 61)
                                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -360,12 +360,12 @@ public class payroll extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_calculate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_save, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_clear, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btn_generate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -377,135 +377,133 @@ public class payroll extends javax.swing.JFrame {
 
     private void txt_searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_searchKeyReleased
         //SEARCH
-        
+
     }//GEN-LAST:event_txt_searchKeyReleased
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btn_generateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_generateActionPerformed
         // GENERATE
-        
+
         DefaultTableModel model = (DefaultTableModel) JTableEmployee.getModel();
 
         model.addRow(new Object[]{txt_employee_id.getText(), txt_lastName.getText(), txt_firstName.getText(), txt_birthday.getText()});
-        
-        
-    }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+    }//GEN-LAST:event_btn_generateActionPerformed
+
+    private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
         //CLEAR
-        
-         txt_search.setText("");
-         jDateChooser1.setDate(null);
-         jDateChooser2.setDate(null);
-         txt_employee_id.setText("");
-         txt_lastName.setText("");
-         txt_firstName.setText("");
-         txt_birthday.setText("");
-         txt_hourlyRate.setText("");
-          totalHoursField.setText("");
-         txt_grossPay.setText("");
-         txt_netPay.setText("");
-        
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-      
-       
+        txt_search.setText("");
+        jDateChooser1.setDate(null);
+        jDateChooser2.setDate(null);
+        txt_employee_id.setText("");
+        txt_lastName.setText("");
+        txt_firstName.setText("");
+        txt_birthday.setText("");
+        txt_hourlyRate.setText("");
+        totalHoursField.setText("");
+        txt_grossPay.setText("");
+        txt_netPay.setText("");
+
+
+    }//GEN-LAST:event_btn_clearActionPerformed
+
+    private void btn_calculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_calculateActionPerformed
+
         try {
-        int employee_id = Integer.parseInt(txt_employee_id.getText()); // Get employee_id from the text field
+            int employee_id = Integer.parseInt(txt_employee_id.getText()); // Get employee_id from the text field
 
-        // Calculate total hours from the employee_record table
-        if (jDateChooser1.getDate() != null && jDateChooser2.getDate() != null) {
-            String recordQuery = "SELECT * FROM public.employee_record WHERE employee_id=? AND work_date BETWEEN ? AND ?";
-            try (PreparedStatement recordPst = conn.prepareStatement(recordQuery)) {
-                recordPst.setInt(1, employee_id);
+            // Calculate total hours from the employee_record table
+            if (jDateChooser1.getDate() != null && jDateChooser2.getDate() != null) {
+                String recordQuery = "SELECT * FROM public.employee_record WHERE employee_id=? AND work_date BETWEEN ? AND ?";
+                try (PreparedStatement recordPst = conn.prepareStatement(recordQuery)) {
+                    recordPst.setInt(1, employee_id);
 
-                // Convert JDateChooser dates to java.sql.Date
-                Date startDate = new Date(jDateChooser1.getDate().getTime());
-                Date endDate = new Date(jDateChooser2.getDate().getTime());
+                    // Convert JDateChooser dates to java.sql.Date
+                    Date startDate = new Date(jDateChooser1.getDate().getTime());
+                    Date endDate = new Date(jDateChooser2.getDate().getTime());
 
-                // Ensure that the dates are not null before setting them
-                if (startDate != null && endDate != null) {
-                    recordPst.setDate(2, startDate);
-                    recordPst.setDate(3, endDate);
+                    // Ensure that the dates are not null before setting them
+                    if (startDate != null && endDate != null) {
+                        recordPst.setDate(2, startDate);
+                        recordPst.setDate(3, endDate);
 
-                    try (ResultSet recordRs = recordPst.executeQuery()) {
-                        float totalHours = 0;
+                        try (ResultSet recordRs = recordPst.executeQuery()) {
+                            float totalHours = 0;
 
-                        while (recordRs.next()) {
-                            LocalDateTime timeIn = recordRs.getTimestamp("time_in").toLocalDateTime();
-                            LocalDateTime timeOut = recordRs.getTimestamp("time_out").toLocalDateTime();
+                            while (recordRs.next()) {
+                                LocalDateTime timeIn = recordRs.getTimestamp("time_in").toLocalDateTime();
+                                LocalDateTime timeOut = recordRs.getTimestamp("time_out").toLocalDateTime();
 
-                            // Check if the employee logged in from 8:11 onwards (GRACE PERIOD)
-                            if (timeIn.getHour() >= 8 && timeIn.getMinute() >= 11) {
-                            
-                            // Calculate the duration between timeIn and timeOut
-                            Duration duration = Duration.between(timeIn, timeOut);
+                                // Check if the employee logged in from 8:11 onwards (GRACE PERIOD)
+                                if (timeIn.getHour() >= 8 && timeIn.getMinute() >= 11) {
 
-                            // Convert duration to hours (as a float)
-                            float hoursWorked = duration.toMillis() / (60 * 60 * 1000.0f);
+                                    // Calculate the duration between timeIn and timeOut
+                                    Duration duration = Duration.between(timeIn, timeOut);
 
-                            
-                            // Check if the calculated hoursWorked is greater than or equal to 8
-                            if (hoursWorked >= 8) {
-                            hoursWorked = 8;
+                                    // Convert duration to hours (as a float)
+                                    float hoursWorked = duration.toMillis() / (60 * 60 * 1000.0f);
+
+                                    // Check if the calculated hoursWorked is greater than or equal to 8
+                                    if (hoursWorked >= 8) {
+                                        hoursWorked = 8;
+                                    }
+                                    // Add to total hours
+                                    totalHours += hoursWorked;
+                                }
                             }
-                            // Add to total hours
-                            totalHours += hoursWorked;
+                            totalHoursField.setText(String.valueOf(totalHours));
                         }
-                       }       
-                        totalHoursField.setText(String.valueOf(totalHours));
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Please select valid start and end dates");
                     }
-                } else {
-                    JOptionPane.showMessageDialog(this, "Please select valid start and end dates");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Please enter valid start and end dates");
+            }
+
+            // CALCULATE GROSS PAY
+            // Fetch data from the employee_details table
+            String employeeQuery = "SELECT * FROM public.employee_details WHERE employee_id=?";
+            try (PreparedStatement employeePst = conn.prepareStatement(employeeQuery)) {
+                employeePst.setInt(1, employee_id);
+
+                try (ResultSet employeeRs = employeePst.executeQuery()) {
+                    if (employeeRs.next()) {
+                        // Retrieve necessary values from the employee_details table
+                        int hourlyRate = employeeRs.getInt("hourly_rate");
+                        int riceSubsidy = employeeRs.getInt("rice_subsidy");
+                        int phoneAllowance = employeeRs.getInt("phone_allowance");
+                        int clothingAllowance = employeeRs.getInt("clothing_allowance");
+
+                        // Calculate the gross pay based on the provided formula
+                        float totalHours = Float.parseFloat(totalHoursField.getText()); // Assuming totalHoursField contains the total worked hours
+                        int basicSalary = employeeRs.getInt("basic_salary"); // Assuming basic_salary is part of the employee_details table
+
+                        float grossPay = (hourlyRate * totalHours) + riceSubsidy + phoneAllowance + clothingAllowance + basicSalary;
+
+                        // Display the result in txt_grossPay
+                        txt_grossPay.setText(String.valueOf(grossPay));
+
+                        // Calculate total deductions
+                        float totalDeductions = deductions.computeTotalDeduction(employee_id);
+
+                        // Calculate net pay
+                        float netPay = grossPay - totalDeductions;
+
+                        // Display the result in txt_netPay
+                        txt_netPay.setText(String.valueOf(netPay));
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Employee not found");
+                    }
                 }
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Please enter valid start and end dates");
+        } catch (SQLException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error calculating pay: " + e.getMessage());
         }
 
-        // CALCULATE GROSS PAY
-        // Fetch data from the employee_details table
-        String employeeQuery = "SELECT * FROM public.employee_details WHERE employee_id=?";
-        try (PreparedStatement employeePst = conn.prepareStatement(employeeQuery)) {
-            employeePst.setInt(1, employee_id);
 
-            try (ResultSet employeeRs = employeePst.executeQuery()) {
-                if (employeeRs.next()) {
-                    // Retrieve necessary values from the employee_details table
-                    int hourlyRate = employeeRs.getInt("hourly_rate");
-                    int riceSubsidy = employeeRs.getInt("rice_subsidy");
-                    int phoneAllowance = employeeRs.getInt("phone_allowance");
-                    int clothingAllowance = employeeRs.getInt("clothing_allowance");
-
-                    // Calculate the gross pay based on the provided formula
-                    float totalHours = Float.parseFloat(totalHoursField.getText()); // Assuming totalHoursField contains the total worked hours
-                    int basicSalary = employeeRs.getInt("basic_salary"); // Assuming basic_salary is part of the employee_details table
-
-                    float grossPay = (hourlyRate * totalHours) + riceSubsidy + phoneAllowance + clothingAllowance + basicSalary;
-
-                    // Display the result in txt_grossPay
-                    txt_grossPay.setText(String.valueOf(grossPay));
-
-                    // Calculate total deductions
-                    float totalDeductions = deductions.computeTotalDeduction(employee_id);
-
-                    // Calculate net pay
-                    float netPay = grossPay - totalDeductions;
-
-                    // Display the result in txt_netPay
-                    txt_netPay.setText(String.valueOf(netPay));
-                } else {
-                    JOptionPane.showMessageDialog(this, "Employee not found");
-                }
-            }
-        }
-    } catch (SQLException | NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Error calculating pay: " + e.getMessage());
-    }
-
-       
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btn_calculateActionPerformed
 
     private void txt_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_searchActionPerformed
         // TODO add your handling code here:
@@ -513,36 +511,34 @@ public class payroll extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // SEARCH
-                                
-         try {
-        int employee_id = Integer.parseInt(txt_search.getText());
 
-        // Search in the employee_details table
-        String employeeQuery = "SELECT * FROM public.employee_details WHERE employee_id=?";
-        try (PreparedStatement employeePst = conn.prepareStatement(employeeQuery)) {
-            employeePst.setInt(1, employee_id);
+        try {
+            int employee_id = Integer.parseInt(txt_search.getText());
 
-            try (ResultSet employeeRs = employeePst.executeQuery()) {
-                if (employeeRs.next()) {
-                    txt_employee_id.setText(employeeRs.getString("employee_id"));
-                    txt_lastName.setText(employeeRs.getString("last_name"));
-                    txt_firstName.setText(employeeRs.getString("first_name"));
-                    txt_birthday.setText(employeeRs.getString("birthday"));
-                    txt_hourlyRate.setText(employeeRs.getString("hourly_rate"));
-                } else {
-                    JOptionPane.showMessageDialog(this, "Employee not found");
-                    return; // Exit the method if employee not found
+            // Search in the employee_details table
+            String employeeQuery = "SELECT * FROM public.employee_details WHERE employee_id=?";
+            try (PreparedStatement employeePst = conn.prepareStatement(employeeQuery)) {
+                employeePst.setInt(1, employee_id);
+
+                try (ResultSet employeeRs = employeePst.executeQuery()) {
+                    if (employeeRs.next()) {
+                        txt_employee_id.setText(employeeRs.getString("employee_id"));
+                        txt_lastName.setText(employeeRs.getString("last_name"));
+                        txt_firstName.setText(employeeRs.getString("first_name"));
+                        txt_birthday.setText(employeeRs.getString("birthday"));
+                        txt_hourlyRate.setText(employeeRs.getString("hourly_rate"));
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Employee not found");
+                        return; // Exit the method if employee not found
+                    }
                 }
             }
+
+        } catch (SQLException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error searching for employee: " + e.getMessage());
         }
 
-     
-    } catch (SQLException | NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Error searching for employee: " + e.getMessage());
-    }                 
-                        
-       
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -582,11 +578,11 @@ public class payroll extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable JTableEmployee;
+    private javax.swing.JButton btn_calculate;
+    private javax.swing.JButton btn_clear;
+    private javax.swing.JButton btn_generate;
+    private javax.swing.JButton btn_save;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
