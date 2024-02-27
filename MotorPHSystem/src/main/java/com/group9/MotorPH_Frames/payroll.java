@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class payroll extends javax.swing.JFrame {
 
-    Connection conn = null;
+    //Connection conn = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
     Deductions deductions;
@@ -31,17 +33,21 @@ public class payroll extends javax.swing.JFrame {
     /**
      * Creates new form payroll
      */
-    public payroll()  {
-        initComponents();
-        //conn = database_connection.java_database_connection();
-        // Establish a connection to the database MotorPH.services
-        Connection conn = DatabaseConnectionManager.getConnection();
+    public payroll() {
+        try {
+            initComponents();
+            //conn = database_connection.java_database_connection();
+            // Establish a connection to the database MotorPH.services
+            Connection conn = DatabaseConnectionManager.getConnection();
 
-        // Set date format for the JDateChooser components
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            // Set date format for the JDateChooser components
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-        // Pass the connection to the Deductions constructor
-        deductions = new Deductions(conn);
+            // Pass the connection to the Deductions constructor
+            deductions = new Deductions(conn);
+        } catch (SQLException ex) {
+            Logger.getLogger(payroll.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -415,7 +421,8 @@ public class payroll extends javax.swing.JFrame {
 
         try {
             int employee_id = Integer.parseInt(txt_employee_id.getText()); // Get employee_id from the text field
-
+            // Establish a connection to the database MotorPH.services
+            Connection conn = DatabaseConnectionManager.getConnection();
             // Calculate total hours from the employee_record table
             if (jDateChooser1.getDate() != null && jDateChooser2.getDate() != null) {
                 String recordQuery = "SELECT * FROM public.employee_record WHERE employee_id=? AND work_date BETWEEN ? AND ?";
@@ -435,8 +442,8 @@ public class payroll extends javax.swing.JFrame {
                             float totalHours = 0;
 
                             while (recordRs.next()) {
-                                LocalDateTime timeIn = recordRs.getTimestamp("time_in").toLocalDateTime();
-                                LocalDateTime timeOut = recordRs.getTimestamp("time_out").toLocalDateTime();
+                                LocalDateTime timeIn = recordRs.getTimestamp("timein").toLocalDateTime();
+                                LocalDateTime timeOut = recordRs.getTimestamp("timeout").toLocalDateTime();
 
                                 // Check if the employee logged in from 8:11 onwards (GRACE PERIOD)
                                 if (timeIn.getHour() >= 8 && timeIn.getMinute() >= 11) {
@@ -517,7 +524,8 @@ public class payroll extends javax.swing.JFrame {
 
         try {
             int employee_id = Integer.parseInt(txt_search.getText());
-
+            // Establish a connection to the database MotorPH.services
+            Connection conn = DatabaseConnectionManager.getConnection();
             // Search in the employee_details table
             String employeeQuery = "SELECT * FROM public.employee_details WHERE employee_id=?";
             try (PreparedStatement employeePst = conn.prepareStatement(employeeQuery)) {
