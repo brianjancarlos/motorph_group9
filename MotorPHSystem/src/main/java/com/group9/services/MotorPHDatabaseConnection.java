@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import com.group9.domain.EmployeeDetails;
+import com.group9.domain.Class_EmployeeDetails;
 
 /**
  *
@@ -34,13 +34,13 @@ public class MotorPHDatabaseConnection {
         }
     }
     
-    public List<EmployeeDetails> getAllEmployeeDetails() {
-        List<EmployeeDetails> employeeDetails = new ArrayList<>();
+    public List<Class_EmployeeDetails> getAllEmployeeDetails() {
+        List<Class_EmployeeDetails> employeeDetails = new ArrayList<>();
         if (connection != null) {
             String query = "SELECT * FROM employee_details ORDER by employee_id";
             try {
-                PreparedStatement preparedStatement = connection.prepareStatement(query);
-                ResultSet resultSet = preparedStatement.executeQuery();
+                PreparedStatement pstmt = connection.prepareStatement(query);
+                ResultSet resultSet = pstmt.executeQuery();
 
                 while (resultSet.next()) {
                     String employeeId = resultSet.getString("employee_id"); // these are the column names in the employee_details db
@@ -56,12 +56,12 @@ public class MotorPHDatabaseConnection {
                     String pagibig = resultSet.getString("pagibig_id");
                     String position = resultSet.getString("position_name");
                     String immediateSupervisor = resultSet.getString("immediate_supervisor");
-                    EmployeeDetails employeeDetail = new EmployeeDetails(employeeId, lastName, firstName, birthday, address, phone, status, sss, philhealth, tin, pagibig, position, immediateSupervisor);
+                    Class_EmployeeDetails employeeDetail = new Class_EmployeeDetails(employeeId, lastName, firstName, birthday, address, phone, status, sss, philhealth, tin, pagibig, position, immediateSupervisor);
                     employeeDetails.add(employeeDetail);
                 }
 
                 resultSet.close();
-                preparedStatement.close();
+                pstmt.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }

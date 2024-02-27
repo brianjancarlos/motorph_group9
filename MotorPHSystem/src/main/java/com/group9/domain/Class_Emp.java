@@ -8,11 +8,11 @@ package com.group9.domain;
  *
  * @author nativ
  */
-public class Emp {
+public class Class_Emp {
     
     public static int empid;
 
-    public Emp() {
+    public Class_Emp() {
     }
 
     public static int getEmpid() {
@@ -20,7 +20,7 @@ public class Emp {
     }
 
     public static void setEmpid(int empid) {
-        Emp.empid = empid;
+        Class_Emp.empid = empid;
     }
     
 }

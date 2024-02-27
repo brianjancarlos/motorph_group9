@@ -4,7 +4,7 @@
  */
 package com.group9.MotorPH_Frames;
 
-import com.group9.domain.Emp;
+import com.group9.domain.Class_Emp;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -23,7 +23,7 @@ public class MainMenuPortal extends javax.swing.JFrame {
         This line takes the employee ID from a specific place in the program, 
         turns it into a text, and then shows it on the screen in a specific area.
         */
-        lbl_emp.setText(String.valueOf(Emp.empid));
+        lbl_emp.setText(String.valueOf(Class_Emp.empid));
         
         Toolkit toolkit = getToolkit();
         Dimension size = toolkit.getScreenSize();

@@ -8,13 +8,13 @@ package com.group9.MotorPH_Frames;
  *
  * @author brianjancarlos
  */
-import com.group9.domain.Emp;
+import com.group9.domain.Class_Emp;
 import java.sql.Connection;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import com.group9.services.MotorPHDatabaseConnection;
-import com.group9.domain.EmployeeDetails;
+import com.group9.domain.Class_EmployeeDetails;
 import com.group9.services.DatabaseConnectionManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -36,7 +36,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
         initComponents();
         InitializeForm();
         refreshTable();
-        lbl_emp.setText(String.valueOf(Emp.empid));
+        lbl_emp.setText(String.valueOf(Class_Emp.empid));
     }
 
     /**
@@ -398,7 +398,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
                 .addComponent(lbl_loggedInAs)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbl_emp)
-                .addGap(179, 179, 179))
+                .addGap(38, 38, 38))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -667,10 +667,10 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
 
         MotorPHDatabaseConnection dbConnection = new MotorPHDatabaseConnection();
         if (dbConnection.connect()) {
-            List<EmployeeDetails> employeeDetail = dbConnection.getAllEmployeeDetails();
+            List<Class_EmployeeDetails> employeeDetailArray = dbConnection.getAllEmployeeDetails();
             dbConnection.close();
 
-            for (EmployeeDetails EmployeeDetail : employeeDetail) {
+            for (Class_EmployeeDetails EmployeeDetail : employeeDetailArray) {
                 Object[] rowData = {EmployeeDetail.getEmployeeId(), EmployeeDetail.getFirstName(), EmployeeDetail.getLastName(),
                     EmployeeDetail.getBirthday(), EmployeeDetail.getAddress(), EmployeeDetail.getPhone(),
                     EmployeeDetail.getStatus(), EmployeeDetail.getSss(), EmployeeDetail.getPhilhealth(), EmployeeDetail.getTin(), EmployeeDetail.getPagibig(),
@@ -688,10 +688,10 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
 
         MotorPHDatabaseConnection dbConnection = new MotorPHDatabaseConnection();
         if (dbConnection.connect()) {
-            List<EmployeeDetails> employeeDetail = dbConnection.getAllEmployeeDetails();
+            List<Class_EmployeeDetails> employeeDetail = dbConnection.getAllEmployeeDetails();
             dbConnection.close();
 
-            for (EmployeeDetails EmployeeDetail : employeeDetail) {
+            for (Class_EmployeeDetails EmployeeDetail : employeeDetail) {
                 Object[] rowData = {EmployeeDetail.getEmployeeId(), EmployeeDetail.getFirstName(), EmployeeDetail.getLastName(),
                     EmployeeDetail.getBirthday(), EmployeeDetail.getAddress(), EmployeeDetail.getPhone(),
                     EmployeeDetail.getStatus(), EmployeeDetail.getSss(), EmployeeDetail.getPhilhealth(), EmployeeDetail.getTin(), EmployeeDetail.getPagibig(),

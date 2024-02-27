@@ -4,7 +4,7 @@
  */
 package com.group9.MotorPH_Frames;
 
-import com.group9.domain.Emp;
+import com.group9.domain.Class_Emp;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.Connection;
@@ -214,7 +214,7 @@ public class login_portal extends javax.swing.JFrame {
 
             while (rs.next()) {
                 int id = rs.getInt(1);
-                Emp.empid = id;
+                Class_Emp.empid = id;
                 String role = rs.getString(3);
                 count = count + 1;
 

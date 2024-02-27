@@ -4,6 +4,7 @@
  */
 package com.group9.MotorPH_Frames;
 
+import com.group9.domain.Class_AttendanceRecord;
 import com.group9.services.DatabaseConnectionManager;
 import java.sql.Connection;
 import java.sql.Date;
@@ -13,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -21,7 +24,7 @@ import javax.swing.table.TableRowSorter;
 
 /**
  *
- * @author nativ
+ * @author nativ, brianjancarlos
  */
 public class Attendance_Record extends javax.swing.JFrame {
 
@@ -47,7 +50,6 @@ public class Attendance_Record extends javax.swing.JFrame {
 
     public void showData(String d1, String d2) throws ParseException {
         try {
-            //Connection conn = database_connection.java_database_connection();
             // Establish a connection to the database MotorPH.services
             Connection conn = DatabaseConnectionManager.getConnection();
             String sql = " ";
@@ -56,37 +58,43 @@ public class Attendance_Record extends javax.swing.JFrame {
 
                 // if no date selected display all data
                 if (d1.equals("") || d2.equals("")) {
-                    //pst = conn.prepareStatement("SELECT * FROM attendance_record");
                     sql = "SELECT * FROM attendance_record";
                     pstmt = conn.prepareStatement(sql);
-
                 } else {
                     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                     Date date1 = new Date(format.parse(d1).getTime());
                     Date date2 = new Date(format.parse(d2).getTime());
-                    //pst = conn.prepareStatement("SELECT * FROM attendance_record WHERE workdate BETWEEN ? AND ? ");
-                    sql = "SELECT * FROM attendance_record WHERE login_date BETWEEN ? AND ? ";
+
+                    sql = "SELECT * FROM attendance_record WHERE login_date BETWEEN ? AND ? ORDER by login_date";
                     pstmt = conn.prepareStatement(sql);
-                    //pstmt.setString(1, d1);
-                    //pstmt.setString(2, d2);
                     pstmt.setDate(1, date1);
                     pstmt.setDate(2, date2);
-
                 }
 
                 rs = pstmt.executeQuery();
-                DefaultTableModel model = (DefaultTableModel) tbl_attendance_record.getModel();
-
-                Object[] row;
+                List<Class_AttendanceRecord> recordsArray = new ArrayList<>();
 
                 while (rs.next()) {
-                    row = new Object[6];
-                    row[0] = rs.getInt(1);
-                    row[1] = rs.getString(2);
-                    row[2] = rs.getString(3);
-                    row[3] = rs.getString(4);
-                    row[4] = rs.getString(5);
-                    row[5] = rs.getString(6);
+                    Class_AttendanceRecord record = new Class_AttendanceRecord(
+                            rs.getInt(1),
+                            rs.getString(2),
+                            rs.getString(3),
+                            rs.getString(4),
+                            rs.getString(5),
+                            rs.getString(6));
+                    recordsArray.add(record);
+                }
+
+                DefaultTableModel model = (DefaultTableModel) tbl_attendance_record.getModel();
+
+                for (Class_AttendanceRecord record : recordsArray) {
+                    Object[] row = new Object[6];
+                    row[0] = record.getEmployee_id();
+                    row[1] = record.getLast_name();
+                    row[2] = record.getLast_name();
+                    row[3] = record.getLogin_date();
+                    row[4] = record.getTimein();
+                    row[5] = record.getTimeout();
 
                     model.addRow(row);
                 }
@@ -128,7 +136,7 @@ public class Attendance_Record extends javax.swing.JFrame {
 
             },
             new String [] {
-                "employee_num", "last_name", "first_name", "login_date", "timein", "timeout"
+                "Employee Num", "Last Name", "First Name", "Login Date", "TimeIn", "TimeOut"
             }
         ) {
             Class[] types = new Class [] {
@@ -156,6 +164,7 @@ public class Attendance_Record extends javax.swing.JFrame {
 
         lbl_endDate.setText("End Date");
 
+        txt_search.setText("Filter...");
         txt_search.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_searchKeyReleased(evt);
@@ -172,13 +181,13 @@ public class Attendance_Record extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
+                        .addGap(80, 80, 80)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(lbl_employee_num)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txt_search))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,7 +200,7 @@ public class Attendance_Record extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btn_search))
                                     .addComponent(lbl_endDate))))))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,11 +208,11 @@ public class Attendance_Record extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(lbl_startDate))
+                        .addComponent(lbl_endDate))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(lbl_endDate)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lbl_startDate)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(dateChooser_endDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_search)
@@ -213,7 +222,7 @@ public class Attendance_Record extends javax.swing.JFrame {
                     .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_employee_num))
                 .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -225,9 +234,7 @@ public class Attendance_Record extends javax.swing.JFrame {
 
         try {
 
-            //tbl_attendance_record.setModel(new DefaultTableModel(null, new Object[]{"id", "lastname", "firstname", "workdate", "timein", "timeout"}));
             tbl_attendance_record.setModel(new DefaultTableModel(null, new Object[]{"employee_id", "last_name", "first_name", "login_date", "timein", "timeout"}));
-            //SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy");
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             String date1 = df.format(dateChooser_startDate.getDate());
             String date2 = df.format(dateChooser_endDate.getDate());
@@ -250,14 +257,11 @@ public class Attendance_Record extends javax.swing.JFrame {
     private void txt_searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_searchKeyReleased
         // search and filter
         String query = txt_search.getText().toLowerCase();
-
         filter(query);
-
         DefaultTableModel model = (DefaultTableModel) tbl_attendance_record.getModel();
 
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
         tbl_attendance_record.setRowSorter(tr);
-
         tr.setRowFilter(RowFilter.regexFilter(txt_search.getText().trim()));
 
     }//GEN-LAST:event_txt_searchKeyReleased
