@@ -4,7 +4,6 @@
  */
 package com.group9.MotorPH_Frames;
 
-import com.group9.services.DatabaseConnectionManager;
 import com.toedter.calendar.JDateChooser;
 import java.sql.Connection;
 import java.sql.Date;
@@ -14,8 +13,6 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class payroll extends javax.swing.JFrame {
 
-    //Connection conn = null;
+    Connection conn = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
     Deductions deductions;
@@ -34,20 +31,14 @@ public class payroll extends javax.swing.JFrame {
      * Creates new form payroll
      */
     public payroll() {
-        try {
-            initComponents();
-            //conn = database_connection.java_database_connection();
-            // Establish a connection to the database MotorPH.services
-            Connection conn = DatabaseConnectionManager.getConnection();
+        initComponents();
+        conn = database_connection.java_database_connection();
 
-            // Set date format for the JDateChooser components
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        // Set date format for the JDateChooser components
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-            // Pass the connection to the Deductions constructor
-            deductions = new Deductions(conn);
-        } catch (SQLException ex) {
-            Logger.getLogger(payroll.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        // Pass the connection to the Deductions constructor
+        deductions = new Deductions(conn);
     }
 
     /**
@@ -91,9 +82,9 @@ public class payroll extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         btn_calculate = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        btn_search = new javax.swing.JButton();
+        dateChooser_startDate = new com.toedter.calendar.JDateChooser();
+        dateChooser_endDate = new com.toedter.calendar.JDateChooser();
 
         jMenu1.setText("jMenu1");
 
@@ -295,16 +286,16 @@ public class payroll extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Search");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_search.setText("Search");
+        btn_search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_searchActionPerformed(evt);
             }
         });
 
-        jDateChooser1.setDateFormatString("yyyy-MM-dd");
+        dateChooser_startDate.setDateFormatString("yyyy-MM-dd");
 
-        jDateChooser2.setDateFormatString("yyyy-MM-dd");
+        dateChooser_endDate.setDateFormatString("yyyy-MM-dd");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -322,13 +313,13 @@ public class payroll extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(dateChooser_startDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(dateChooser_endDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1))
+                                .addComponent(btn_search))
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
@@ -361,9 +352,9 @@ public class payroll extends javax.swing.JFrame {
                         .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel10)
                         .addComponent(jLabel11))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(dateChooser_startDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dateChooser_endDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_search))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -403,8 +394,8 @@ public class payroll extends javax.swing.JFrame {
         //CLEAR
 
         txt_search.setText("");
-        jDateChooser1.setDate(null);
-        jDateChooser2.setDate(null);
+        dateChooser_startDate.setDate(null);
+        dateChooser_endDate.setDate(null);
         txt_employee_id.setText("");
         txt_lastName.setText("");
         txt_firstName.setText("");
@@ -421,17 +412,16 @@ public class payroll extends javax.swing.JFrame {
 
         try {
             int employee_id = Integer.parseInt(txt_employee_id.getText()); // Get employee_id from the text field
-            // Establish a connection to the database MotorPH.services
-            Connection conn = DatabaseConnectionManager.getConnection();
+
             // Calculate total hours from the employee_record table
-            if (jDateChooser1.getDate() != null && jDateChooser2.getDate() != null) {
+            if (dateChooser_startDate.getDate() != null && dateChooser_endDate.getDate() != null) {
                 String recordQuery = "SELECT * FROM public.employee_record WHERE employee_id=? AND work_date BETWEEN ? AND ?";
                 try (PreparedStatement recordPst = conn.prepareStatement(recordQuery)) {
                     recordPst.setInt(1, employee_id);
 
                     // Convert JDateChooser dates to java.sql.Date
-                    Date startDate = new Date(jDateChooser1.getDate().getTime());
-                    Date endDate = new Date(jDateChooser2.getDate().getTime());
+                    Date startDate = new Date(dateChooser_startDate.getDate().getTime());
+                    Date endDate = new Date(dateChooser_endDate.getDate().getTime());
 
                     // Ensure that the dates are not null before setting them
                     if (startDate != null && endDate != null) {
@@ -442,8 +432,8 @@ public class payroll extends javax.swing.JFrame {
                             float totalHours = 0;
 
                             while (recordRs.next()) {
-                                LocalDateTime timeIn = recordRs.getTimestamp("timein").toLocalDateTime();
-                                LocalDateTime timeOut = recordRs.getTimestamp("timeout").toLocalDateTime();
+                                LocalDateTime timeIn = recordRs.getTimestamp("time_in").toLocalDateTime();
+                                LocalDateTime timeOut = recordRs.getTimestamp("time_out").toLocalDateTime();
 
                                 // Check if the employee logged in from 8:11 onwards (GRACE PERIOD)
                                 if (timeIn.getHour() >= 8 && timeIn.getMinute() >= 11) {
@@ -519,13 +509,12 @@ public class payroll extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_searchActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
         // SEARCH
 
         try {
             int employee_id = Integer.parseInt(txt_search.getText());
-            // Establish a connection to the database MotorPH.services
-            Connection conn = DatabaseConnectionManager.getConnection();
+
             // Search in the employee_details table
             String employeeQuery = "SELECT * FROM public.employee_details WHERE employee_id=?";
             try (PreparedStatement employeePst = conn.prepareStatement(employeeQuery)) {
@@ -550,7 +539,7 @@ public class payroll extends javax.swing.JFrame {
         }
 
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_searchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -593,9 +582,9 @@ public class payroll extends javax.swing.JFrame {
     private javax.swing.JButton btn_clear;
     private javax.swing.JButton btn_generate;
     private javax.swing.JButton btn_save;
-    private javax.swing.JButton jButton1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private javax.swing.JButton btn_search;
+    private com.toedter.calendar.JDateChooser dateChooser_endDate;
+    private com.toedter.calendar.JDateChooser dateChooser_startDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
