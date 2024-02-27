@@ -6,10 +6,12 @@ package com.group9.MotorPH_Frames;
 
 import com.group9.services.DatabaseConnectionManager;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,35 +45,40 @@ public class Attendance_Record extends javax.swing.JFrame {
         tr.setRowFilter(RowFilter.regexFilter(query));
     }
 
-    public void showData(String d1, String d2) {
+    public void showData(String d1, String d2) throws ParseException {
         try {
             //Connection conn = database_connection.java_database_connection();
             // Establish a connection to the database MotorPH.services
             Connection conn = DatabaseConnectionManager.getConnection();
             String sql = " ";
-            
+
             try {
-                
+
                 // if no date selected display all data
                 if (d1.equals("") || d2.equals("")) {
                     //pst = conn.prepareStatement("SELECT * FROM attendance_record");
                     sql = "SELECT * FROM attendance_record";
                     pstmt = conn.prepareStatement(sql);
-                    
+
                 } else {
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                    Date date1 = new Date(format.parse(d1).getTime());
+                    Date date2 = new Date(format.parse(d2).getTime());
                     //pst = conn.prepareStatement("SELECT * FROM attendance_record WHERE workdate BETWEEN ? AND ? ");
                     sql = "SELECT * FROM attendance_record WHERE login_date BETWEEN ? AND ? ";
                     pstmt = conn.prepareStatement(sql);
-                    pstmt.setString(1, d1);
-                    pstmt.setString(2, d2);
-                    
+                    //pstmt.setString(1, d1);
+                    //pstmt.setString(2, d2);
+                    pstmt.setDate(1, date1);
+                    pstmt.setDate(2, date2);
+
                 }
-                
+
                 rs = pstmt.executeQuery();
                 DefaultTableModel model = (DefaultTableModel) tbl_attendance_record.getModel();
-                
+
                 Object[] row;
-                
+
                 while (rs.next()) {
                     row = new Object[6];
                     row[0] = rs.getInt(1);
@@ -80,14 +87,14 @@ public class Attendance_Record extends javax.swing.JFrame {
                     row[3] = rs.getString(4);
                     row[4] = rs.getString(5);
                     row[5] = rs.getString(6);
-                    
+
                     model.addRow(row);
                 }
-                
+
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(Attendance_Record.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -114,13 +121,14 @@ public class Attendance_Record extends javax.swing.JFrame {
         lbl_employee_num = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         tbl_attendance_record.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "id", "lastname", "firstname", "workdate", "timein", "timeout"
+                "employee_num", "last_name", "first_name", "login_date", "timein", "timeout"
             }
         ) {
             Class[] types = new Class [] {
@@ -133,9 +141,9 @@ public class Attendance_Record extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_attendance_record);
 
-        dateChooser_startDate.setDateFormatString("MM/dd/yyyy");
+        dateChooser_startDate.setDateFormatString("yyyy-MM-dd");
 
-        dateChooser_endDate.setDateFormatString("MM/dd/yyyy");
+        dateChooser_endDate.setDateFormatString("yyyy-MM-dd");
 
         btn_search.setText("Search");
         btn_search.addActionListener(new java.awt.event.ActionListener() {
@@ -217,8 +225,10 @@ public class Attendance_Record extends javax.swing.JFrame {
 
         try {
 
-            tbl_attendance_record.setModel(new DefaultTableModel(null, new Object[]{"id", "lastname", "firstname", "workdate", "timein", "timeout"}));
-            SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy");
+            //tbl_attendance_record.setModel(new DefaultTableModel(null, new Object[]{"id", "lastname", "firstname", "workdate", "timein", "timeout"}));
+            tbl_attendance_record.setModel(new DefaultTableModel(null, new Object[]{"employee_id", "last_name", "first_name", "login_date", "timein", "timeout"}));
+            //SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy");
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             String date1 = df.format(dateChooser_startDate.getDate());
             String date2 = df.format(dateChooser_endDate.getDate());
 
