@@ -4,6 +4,7 @@
  */
 package com.group9.MotorPH_Frames;
 
+import com.group9.domain.Emp;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.Connection;

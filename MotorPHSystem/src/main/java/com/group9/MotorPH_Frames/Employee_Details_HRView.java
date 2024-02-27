@@ -8,6 +8,7 @@ package com.group9.MotorPH_Frames;
  *
  * @author brianjancarlos
  */
+import com.group9.domain.Emp;
 import java.sql.Connection;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -35,7 +36,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
         initComponents();
         InitializeForm();
         refreshTable();
-
+        lbl_emp.setText(String.valueOf(Emp.empid));
     }
 
     /**
@@ -85,6 +86,8 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
         lbl_supervisor = new javax.swing.JLabel();
         txt_philhealth_num = new javax.swing.JTextField();
         txt_searchbox = new javax.swing.JTextField();
+        lbl_loggedInAs = new javax.swing.JLabel();
+        lbl_emp = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("MotorPH Employee View");
@@ -184,6 +187,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Employee Record"));
         jPanel2.setToolTipText("");
 
         lbl_pagibig_num.setText("Pag-ibig");
@@ -363,6 +367,10 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
             }
         });
 
+        lbl_loggedInAs.setText("Logged in As: ");
+
+        lbl_emp.setText("Emp_ID");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -385,6 +393,12 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
                 .addGap(312, 312, 312)
                 .addComponent(lbl_MotorPHEmployeeDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbl_loggedInAs)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbl_emp)
+                .addGap(179, 179, 179))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -399,7 +413,11 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_loggedInAs)
+                    .addComponent(lbl_emp))
+                .addGap(25, 25, 25))
         );
 
         pack();
@@ -743,9 +761,11 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_MotorPHEmployeeDetails;
     private javax.swing.JLabel lbl_address;
     private javax.swing.JLabel lbl_birthday;
+    private javax.swing.JLabel lbl_emp;
     private javax.swing.JLabel lbl_employee_id;
     private javax.swing.JLabel lbl_first_name;
     private javax.swing.JLabel lbl_last_name;
+    private javax.swing.JLabel lbl_loggedInAs;
     private javax.swing.JLabel lbl_pagibig_num;
     private javax.swing.JLabel lbl_philhealth_num;
     private javax.swing.JLabel lbl_phone;
