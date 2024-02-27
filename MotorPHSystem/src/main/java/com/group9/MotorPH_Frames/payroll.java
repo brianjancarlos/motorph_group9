@@ -4,6 +4,7 @@
  */
 package com.group9.MotorPH_Frames;
 
+import com.group9.services.DatabaseConnectionManager;
 import com.toedter.calendar.JDateChooser;
 import java.sql.Connection;
 import java.sql.Date;
@@ -30,9 +31,11 @@ public class payroll extends javax.swing.JFrame {
     /**
      * Creates new form payroll
      */
-    public payroll() {
+    public payroll()  {
         initComponents();
-        conn = database_connection.java_database_connection();
+        //conn = database_connection.java_database_connection();
+        // Establish a connection to the database MotorPH.services
+        Connection conn = DatabaseConnectionManager.getConnection();
 
         // Set date format for the JDateChooser components
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
