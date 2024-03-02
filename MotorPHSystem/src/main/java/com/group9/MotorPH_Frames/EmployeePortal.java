@@ -9,9 +9,13 @@ import com.group9.domain.Class_EmployeeDetails;
 import com.group9.services.DatabaseConnectionManager;
 import com.group9.services.MotorPHDatabaseConnection;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,10 +48,12 @@ public class EmployeePortal extends javax.swing.JFrame {
                         rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12), rs.getString(13));
 //                String fname = employee.getFirstName();
 //                String lname = employee.getLastName();
-                lbl_firstName_and_lastName.setText(employee.getFirstName().toString() + ", " + employee.getLastName().toString());
+                lbl_firstName.setText(employee.getFirstName() + " ");
+                lbl_lastName.setText(employee.getLastName());
                 lbl_birthdate.setText(employee.getBirthday());
                 lbl_phoneNum.setText(employee.getPhone());
-                lbl_ph
+                lbl_role_designation.setText(employee.getPosition());
+                lbl_supervisor.setText(employee.getImmediateSupervisor());
                 
 
 /* Code below is implementation option 2. Still figuring out which is better
@@ -91,12 +97,13 @@ public class EmployeePortal extends javax.swing.JFrame {
         lbl_name1 = new javax.swing.JLabel();
         lbl_immediateSupervisor = new javax.swing.JLabel();
         lbl_birthdate = new javax.swing.JLabel();
-        lbl_firstName_and_lastName = new javax.swing.JLabel();
+        lbl_firstName = new javax.swing.JLabel();
         lbl_employeeId = new javax.swing.JLabel();
         lbl_phoneNum = new javax.swing.JLabel();
         lbl_position = new javax.swing.JLabel();
         lbl_name = new javax.swing.JLabel();
         lbl_role_designation = new javax.swing.JLabel();
+        lbl_lastName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -124,8 +131,8 @@ public class EmployeePortal extends javax.swing.JFrame {
         lbl_birthdate.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         lbl_birthdate.setText("Birthdate");
 
-        lbl_firstName_and_lastName.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        lbl_firstName_and_lastName.setText("FirstNameAndLastName");
+        lbl_firstName.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        lbl_firstName.setText("FirstName");
 
         lbl_employeeId.setText("Employee ID");
 
@@ -139,6 +146,9 @@ public class EmployeePortal extends javax.swing.JFrame {
         lbl_role_designation.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         lbl_role_designation.setText("Position");
 
+        lbl_lastName.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        lbl_lastName.setText(", Last Name");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -146,21 +156,28 @@ public class EmployeePortal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl_name)
-                    .addComponent(lbl_firstName_and_lastName)
-                    .addComponent(lbl_employeeId)
-                    .addComponent(lbl_emp)
-                    .addComponent(lbl_birthday)
-                    .addComponent(lbl_birthdate))
-                .addGap(27, 27, 27)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_name)
+                            .addComponent(lbl_employeeId)
+                            .addComponent(lbl_emp)
+                            .addComponent(lbl_birthday)
+                            .addComponent(lbl_birthdate))
+                        .addGap(27, 27, 27))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lbl_firstName)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                        .addComponent(lbl_lastName)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGap(13, 13, 13)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl_supervisor)
-                    .addComponent(lbl_immediateSupervisor)
-                    .addComponent(lbl_role_designation)
                     .addComponent(lbl_position)
                     .addComponent(lbl_phoneNum)
-                    .addComponent(lbl_name1))
-                .addContainerGap(123, Short.MAX_VALUE))
+                    .addComponent(lbl_name1)
+                    .addComponent(lbl_role_designation)
+                    .addComponent(lbl_immediateSupervisor))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,8 +188,9 @@ public class EmployeePortal extends javax.swing.JFrame {
                     .addComponent(lbl_name1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_firstName_and_lastName)
-                    .addComponent(lbl_phoneNum))
+                    .addComponent(lbl_firstName)
+                    .addComponent(lbl_phoneNum)
+                    .addComponent(lbl_lastName))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_employeeId)
@@ -185,7 +203,7 @@ public class EmployeePortal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_birthday)
                     .addComponent(lbl_immediateSupervisor))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_birthdate)
                     .addComponent(lbl_supervisor))
@@ -197,30 +215,51 @@ public class EmployeePortal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(44, 44, 44)
+                .addGap(18, 18, 18)
                 .addComponent(btn_timeIn)
-                .addGap(123, 123, 123))
+                .addGap(85, 85, 85))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(btn_timeIn))
+                        .addGap(24, 24, 24)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(181, Short.MAX_VALUE))
+                        .addGap(33, 33, 33)
+                        .addComponent(btn_timeIn)))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_timeInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timeInActionPerformed
-        // TODO add your handling code here:
+        
+        Date loginDate = Date.valueOf(LocalDate.now());
+        Time timeIn = Time.valueOf(LocalTime.now());
+        Time timeOut = null; // Set the timeout value as needed
+
+        // Insert values into the attendance_record table
+        try {
+            Connection connection = DatabaseConnectionManager.getConnection();
+            String query = "INSERT INTO attendance_record (employee_id, last_name, first_name, login_date, timein, timeout) VALUES (?, ?, ?, ?, ?, ?)";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, Class_Emp.empid);
+            statement.setString(2, lbl_lastName.getText());
+            statement.setString(3, lbl_firstName.getText());
+            statement.setDate(4, loginDate);
+            statement.setTime(5, timeIn);
+            statement.setTime(6, timeOut);
+            statement.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Attendance recorded successfully.");
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeePortal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Failed to record attendance.");
+        }
     }//GEN-LAST:event_btn_timeInActionPerformed
 
     /**
@@ -265,8 +304,9 @@ public class EmployeePortal extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_birthday;
     private javax.swing.JLabel lbl_emp;
     private javax.swing.JLabel lbl_employeeId;
-    private javax.swing.JLabel lbl_firstName_and_lastName;
+    private javax.swing.JLabel lbl_firstName;
     private javax.swing.JLabel lbl_immediateSupervisor;
+    private javax.swing.JLabel lbl_lastName;
     private javax.swing.JLabel lbl_name;
     private javax.swing.JLabel lbl_name1;
     private javax.swing.JLabel lbl_phoneNum;
