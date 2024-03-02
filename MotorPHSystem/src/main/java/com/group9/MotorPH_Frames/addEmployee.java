@@ -54,9 +54,9 @@ public class addEmployee extends javax.swing.JFrame {
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         txt_search = new javax.swing.JTextField();
-        jbutton1 = new javax.swing.JButton();
-        r_admin = new javax.swing.JRadioButton();
-        r_employee = new javax.swing.JRadioButton();
+        btn_search = new javax.swing.JButton();
+        rad_admin = new javax.swing.JRadioButton();
+        rad_employee = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         JTableEmployee = new javax.swing.JTable();
         javax.swing.JPanel jPanel2 = new javax.swing.JPanel();
@@ -175,24 +175,24 @@ public class addEmployee extends javax.swing.JFrame {
             }
         });
 
-        jbutton1.setText("Search");
-        jbutton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_search.setText("Search");
+        btn_search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbutton1ActionPerformed(evt);
+                btn_searchActionPerformed(evt);
             }
         });
 
-        r_admin.setText("Admin");
-        r_admin.addActionListener(new java.awt.event.ActionListener() {
+        rad_admin.setText("Admin");
+        rad_admin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                r_adminActionPerformed(evt);
+                rad_adminActionPerformed(evt);
             }
         });
 
-        r_employee.setText("Employee");
-        r_employee.addActionListener(new java.awt.event.ActionListener() {
+        rad_employee.setText("Employee");
+        rad_employee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                r_employeeActionPerformed(evt);
+                rad_employeeActionPerformed(evt);
             }
         });
 
@@ -206,11 +206,11 @@ public class addEmployee extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jbutton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_search, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(r_admin)
+                .addComponent(rad_admin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(r_employee)
+                .addComponent(rad_employee)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(56, 56, 56))
@@ -223,9 +223,9 @@ public class addEmployee extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel15)
                     .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbutton1)
-                    .addComponent(r_admin)
-                    .addComponent(r_employee))
+                    .addComponent(btn_search)
+                    .addComponent(rad_admin)
+                    .addComponent(rad_employee))
                 .addGap(12, 12, 12))
         );
 
@@ -539,8 +539,8 @@ public class addEmployee extends javax.swing.JFrame {
         jTextBasicSalary.setText(null);
         jTextSemiMonthlyRate.setText(null);
         jTextHourlyRate.setText(null);
-        r_admin.setSelected(false);
-        r_employee.setSelected(false);
+        rad_admin.setSelected(false);
+        rad_employee.setSelected(false);
         
         
         
@@ -679,7 +679,7 @@ public class addEmployee extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jText_idActionPerformed
 
-    private void jbutton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbutton1ActionPerformed
+    private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
         // TODO add your handling code here:
         
         try {      
@@ -752,7 +752,7 @@ public class addEmployee extends javax.swing.JFrame {
             }
          }
         
-    }//GEN-LAST:event_jbutton1ActionPerformed
+    }//GEN-LAST:event_btn_searchActionPerformed
 
     private void jBtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditActionPerformed
         // UPDATE DATA
@@ -833,22 +833,22 @@ public class addEmployee extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jBtnEditActionPerformed
 
-    private void r_adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_r_adminActionPerformed
+    private void rad_adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rad_adminActionPerformed
         // selectuser:
         select_access = "Admin";
-        r_admin.setSelected(true);
-        r_employee.setSelected(false);
+        rad_admin.setSelected(true);
+        rad_employee.setSelected(false);
         
-    }//GEN-LAST:event_r_adminActionPerformed
+    }//GEN-LAST:event_rad_adminActionPerformed
 
-    private void r_employeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_r_employeeActionPerformed
+    private void rad_employeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rad_employeeActionPerformed
        // selectuser
         
         select_access = "Employee";
-        r_employee.setSelected(true);
-        r_admin.setSelected(false);
+        rad_employee.setSelected(true);
+        rad_admin.setSelected(false);
         
-    }//GEN-LAST:event_r_employeeActionPerformed
+    }//GEN-LAST:event_rad_employeeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -887,6 +887,7 @@ public class addEmployee extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable JTableEmployee;
+    private javax.swing.JButton btn_search;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -910,9 +911,8 @@ public class addEmployee extends javax.swing.JFrame {
     private javax.swing.JTextField jTextSupervisor;
     private javax.swing.JTextField jTextTin;
     private javax.swing.JTextField jText_id;
-    private javax.swing.JButton jbutton1;
-    private javax.swing.JRadioButton r_admin;
-    private javax.swing.JRadioButton r_employee;
+    private javax.swing.JRadioButton rad_admin;
+    private javax.swing.JRadioButton rad_employee;
     private javax.swing.JTextField txt_search;
     // End of variables declaration//GEN-END:variables
 

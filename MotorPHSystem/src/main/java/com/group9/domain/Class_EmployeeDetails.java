@@ -7,7 +7,7 @@ package com.group9.domain;
  *
  * @author brianjancarlos
  */
-public class EmployeeDetails {
+public class Class_EmployeeDetails {
     private String employeeId;
     private String lastName ;
     private String firstName;
@@ -24,7 +24,7 @@ public class EmployeeDetails {
 
     // Contructs
 
-    public EmployeeDetails(String employeeId, String lastName, String firstName, String birthday, String address, String phone, String status, String sss, String philhealth, String tin, String pagibig, String position, String immediateSupervisor) {
+    public Class_EmployeeDetails(String employeeId, String lastName, String firstName, String birthday, String address, String phone, String status, String sss, String philhealth, String tin, String pagibig, String position, String immediateSupervisor) {
         this.employeeId = employeeId;
         this.lastName = lastName;
         this.firstName = firstName;

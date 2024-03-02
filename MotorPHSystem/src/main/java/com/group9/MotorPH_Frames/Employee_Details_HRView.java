@@ -8,12 +8,13 @@ package com.group9.MotorPH_Frames;
  *
  * @author brianjancarlos
  */
+import com.group9.domain.Class_Emp;
 import java.sql.Connection;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import com.group9.services.MotorPHDatabaseConnection;
-import com.group9.domain.EmployeeDetails;
+import com.group9.domain.Class_EmployeeDetails;
 import com.group9.services.DatabaseConnectionManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -35,7 +36,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
         initComponents();
         InitializeForm();
         refreshTable();
-
+        lbl_emp.setText(String.valueOf(Class_Emp.empid));
     }
 
     /**
@@ -84,28 +85,31 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
         lbl_tin_num = new javax.swing.JLabel();
         lbl_supervisor = new javax.swing.JLabel();
         txt_philhealth_num = new javax.swing.JTextField();
+        txt_basicSalary = new javax.swing.JTextField();
+        lbl_supervisor1 = new javax.swing.JLabel();
         txt_searchbox = new javax.swing.JTextField();
-        btn_logout = new javax.swing.JButton();
+        lbl_loggedInAs = new javax.swing.JLabel();
+        lbl_emp = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("MotorPH Employee View");
         setName("frm_employeeDetails"); // NOI18N
         setResizable(false);
 
         tbl_employees.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Employee ID", "Last Name", "First Name", "Birthday", "Address", "Phone", "Status", "SSS", "Philhealth", "TIN", "Pag-Ibig ID", "Position", "Immediate Supervisor"
+                "Employee ID", "Last Name", "First Name", "Birthday", "Address", "Phone", "Status", "SSS", "Philhealth", "TIN", "Pag-Ibig ID", "Position", "Immediate Supervisor", "Basic Salary"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, true, false
+                false, false, false, false, false, false, false, false, false, false, false, true, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -185,6 +189,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Employee Record"));
         jPanel2.setToolTipText("");
 
         lbl_pagibig_num.setText("Pag-ibig");
@@ -225,6 +230,8 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
         lbl_tin_num.setText("TIN");
 
         lbl_supervisor.setText("Supervisor");
+
+        lbl_supervisor1.setText("Basic Salary");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -268,7 +275,8 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
                         .addComponent(lbl_tin_num, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lbl_pagibig_num, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_position, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_supervisor, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbl_supervisor, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_supervisor1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_supervisor, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -277,7 +285,8 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
                     .addComponent(txt_position, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(txt_pagibig_num, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
-                        .addComponent(txt_tin_number, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addComponent(txt_tin_number, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(txt_basicSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -330,7 +339,11 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txt_supervisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbl_supervisor))
-                        .addGap(49, 49, 49))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_basicSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_supervisor1))
+                        .addGap(20, 20, 20))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -351,7 +364,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lbl_pagibig_num, lbl_philhealth_num, lbl_position, lbl_sss_num, lbl_supervisor, lbl_tin_num});
 
-        txt_searchbox.setText("Search...");
+        txt_searchbox.setText("Filter...");
         txt_searchbox.setToolTipText("");
         txt_searchbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -364,12 +377,9 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
             }
         });
 
-        btn_logout.setText("Logout");
-        btn_logout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_logoutActionPerformed(evt);
-            }
-        });
+        lbl_loggedInAs.setText("Logged in As: ");
+
+        lbl_emp.setText("Emp_ID");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -381,37 +391,46 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1029, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txt_searchbox))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txt_searchbox, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(38, 38, 38)))))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(312, 312, 312)
                 .addComponent(lbl_MotorPHEmployeeDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_logout)
-                .addGap(66, 66, 66))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbl_loggedInAs)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbl_emp)
+                .addGap(38, 38, 38))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl_MotorPHEmployeeDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_logout))
+                .addComponent(lbl_MotorPHEmployeeDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(txt_searchbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txt_searchbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_loggedInAs)
+                    .addComponent(lbl_emp))
+                .addGap(25, 25, 25))
         );
 
         pack();
@@ -605,13 +624,6 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tbl_employeesFocusLost
 
-    private void btn_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_logoutActionPerformed
-
-        login_portal login_ui = new login_portal();
-        login_ui.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btn_logoutActionPerformed
-
     /**
      * **************************************************
      *
@@ -668,10 +680,10 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
 
         MotorPHDatabaseConnection dbConnection = new MotorPHDatabaseConnection();
         if (dbConnection.connect()) {
-            List<EmployeeDetails> employeeDetail = dbConnection.getAllEmployeeDetails();
+            List<Class_EmployeeDetails> employeeDetailArray = dbConnection.getAllEmployeeDetails();
             dbConnection.close();
 
-            for (EmployeeDetails EmployeeDetail : employeeDetail) {
+            for (Class_EmployeeDetails EmployeeDetail : employeeDetailArray) {
                 Object[] rowData = {EmployeeDetail.getEmployeeId(), EmployeeDetail.getFirstName(), EmployeeDetail.getLastName(),
                     EmployeeDetail.getBirthday(), EmployeeDetail.getAddress(), EmployeeDetail.getPhone(),
                     EmployeeDetail.getStatus(), EmployeeDetail.getSss(), EmployeeDetail.getPhilhealth(), EmployeeDetail.getTin(), EmployeeDetail.getPagibig(),
@@ -689,10 +701,10 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
 
         MotorPHDatabaseConnection dbConnection = new MotorPHDatabaseConnection();
         if (dbConnection.connect()) {
-            List<EmployeeDetails> employeeDetail = dbConnection.getAllEmployeeDetails();
+            List<Class_EmployeeDetails> employeeDetail = dbConnection.getAllEmployeeDetails();
             dbConnection.close();
 
-            for (EmployeeDetails EmployeeDetail : employeeDetail) {
+            for (Class_EmployeeDetails EmployeeDetail : employeeDetail) {
                 Object[] rowData = {EmployeeDetail.getEmployeeId(), EmployeeDetail.getFirstName(), EmployeeDetail.getLastName(),
                     EmployeeDetail.getBirthday(), EmployeeDetail.getAddress(), EmployeeDetail.getPhone(),
                     EmployeeDetail.getStatus(), EmployeeDetail.getSss(), EmployeeDetail.getPhilhealth(), EmployeeDetail.getTin(), EmployeeDetail.getPagibig(),
@@ -740,8 +752,13 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new Employee_Details_HRView().setVisible(true);
+//        java.awt.EventQueue.invokeLater(() -> {
+//            new Employee_Details_HRView().setVisible(true);
+//        });
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Employee_Details_HRView().setVisible(true);
+            }
         });
     }
 
@@ -750,7 +767,6 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
     private javax.swing.JButton btn_clear;
     private javax.swing.JButton btn_delete_record;
     private javax.swing.JButton btn_edit;
-    private javax.swing.JButton btn_logout;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -758,9 +774,11 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_MotorPHEmployeeDetails;
     private javax.swing.JLabel lbl_address;
     private javax.swing.JLabel lbl_birthday;
+    private javax.swing.JLabel lbl_emp;
     private javax.swing.JLabel lbl_employee_id;
     private javax.swing.JLabel lbl_first_name;
     private javax.swing.JLabel lbl_last_name;
+    private javax.swing.JLabel lbl_loggedInAs;
     private javax.swing.JLabel lbl_pagibig_num;
     private javax.swing.JLabel lbl_philhealth_num;
     private javax.swing.JLabel lbl_phone;
@@ -768,8 +786,10 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_sss_num;
     private javax.swing.JLabel lbl_status;
     private javax.swing.JLabel lbl_supervisor;
+    private javax.swing.JLabel lbl_supervisor1;
     private javax.swing.JLabel lbl_tin_num;
     private javax.swing.JTable tbl_employees;
+    private javax.swing.JTextField txt_basicSalary;
     private javax.swing.JTextField txt_birthday;
     private javax.swing.JTextField txt_employee_id;
     private javax.swing.JTextField txt_first_name;

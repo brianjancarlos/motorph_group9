@@ -23,7 +23,8 @@ public class database_connection {
             
             
             Class.forName("org.postgresql.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/payroll_system", "admin","1234");
+            //Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/payroll_system", "admin","1234");
+            Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/motorph_masterdb", "postgres","gR0up9!");
             return conn;
             
             
