@@ -77,7 +77,7 @@
                       <Component id="lbl_name" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lbl_firstName_and_lastName" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbl_employeeNum" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbl_emp" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lbl_birthday" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="birthdate" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -114,7 +114,7 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lbl_employeeNum" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbl_emp" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lbl_role_designation" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -133,7 +133,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="lbl_employeeNum">
+        <Component class="javax.swing.JLabel" name="lbl_emp">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Helvetica Neue" size="18" style="0"/>

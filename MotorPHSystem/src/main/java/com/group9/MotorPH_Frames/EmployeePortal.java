@@ -4,6 +4,8 @@
  */
 package com.group9.MotorPH_Frames;
 
+import com.group9.domain.Class_Emp;
+
 /**
  *
  * @author brianjancarlos
@@ -15,6 +17,7 @@ public class EmployeePortal extends javax.swing.JFrame {
      */
     public EmployeePortal() {
         initComponents();
+        lbl_emp.setText(String.valueOf(Class_Emp.empid));
     }
 
     /**
@@ -28,7 +31,7 @@ public class EmployeePortal extends javax.swing.JFrame {
 
         btn_timeIn = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        lbl_employeeNum = new javax.swing.JLabel();
+        lbl_emp = new javax.swing.JLabel();
         lbl_birthday = new javax.swing.JLabel();
         lbl_supervisor = new javax.swing.JLabel();
         lbl_name1 = new javax.swing.JLabel();
@@ -52,8 +55,8 @@ public class EmployeePortal extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Employee Profile"));
 
-        lbl_employeeNum.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        lbl_employeeNum.setText("Employee_num");
+        lbl_emp.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        lbl_emp.setText("Employee_num");
 
         lbl_birthday.setText("Birthday");
 
@@ -92,7 +95,7 @@ public class EmployeePortal extends javax.swing.JFrame {
                     .addComponent(lbl_name)
                     .addComponent(lbl_firstName_and_lastName)
                     .addComponent(jLabel1)
-                    .addComponent(lbl_employeeNum)
+                    .addComponent(lbl_emp)
                     .addComponent(lbl_birthday)
                     .addComponent(birthdate))
                 .addGap(27, 27, 27)
@@ -122,7 +125,7 @@ public class EmployeePortal extends javax.swing.JFrame {
                     .addComponent(lbl_position))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_employeeNum)
+                    .addComponent(lbl_emp)
                     .addComponent(lbl_role_designation))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -207,7 +210,7 @@ public class EmployeePortal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_birthday;
-    private javax.swing.JLabel lbl_employeeNum;
+    private javax.swing.JLabel lbl_emp;
     private javax.swing.JLabel lbl_firstName_and_lastName;
     private javax.swing.JLabel lbl_immediateSupervisor;
     private javax.swing.JLabel lbl_name;
