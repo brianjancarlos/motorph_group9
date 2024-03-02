@@ -45,11 +45,6 @@ public class Class_EmployeeDetails {
     }
 //Getter and Setters
 
-    public Class_EmployeeDetails(String lastName, String firstName) {
-        this.lastName = lastName;
-        this.firstName = firstName;
-    }
-
     public String getEmployeeId() {
         return employeeId;
     }

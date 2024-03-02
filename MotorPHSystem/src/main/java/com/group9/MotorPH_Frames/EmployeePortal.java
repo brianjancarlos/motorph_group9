@@ -7,12 +7,15 @@ package com.group9.MotorPH_Frames;
 import com.group9.domain.Class_Emp;
 import com.group9.domain.Class_EmployeeDetails;
 import com.group9.services.DatabaseConnectionManager;
+import com.group9.services.MotorPHDatabaseConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,7 +30,7 @@ public class EmployeePortal extends javax.swing.JFrame {
      */
     public EmployeePortal() {
         initComponents();
-        String sql = "SELECT first_name, last_name FROM employee_details WHERE (employee_id = ?)";
+        String sql = "SELECT * FROM employee_details WHERE (employee_id = ?)";
         try {
             Connection conn = DatabaseConnectionManager.getConnection();
             lbl_emp.setText(String.valueOf(Class_Emp.empid));
@@ -36,17 +39,39 @@ public class EmployeePortal extends javax.swing.JFrame {
             pstmt.setInt(1, Integer.parseInt(lbl_emp.getText()));
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                Class_EmployeeDetails employee = new Class_EmployeeDetails(rs.getString(1), rs.getString(2));
-                String fname = employee.getFirstName();
-                String lname = employee.getLastName();
-                lbl_firstName_and_lastName.setText(fname + " " + lname);
+                Class_EmployeeDetails employee = new Class_EmployeeDetails(rs.getString(1), rs.getString(2),rs.getString(3),
+                        rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),
+                        rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12), rs.getString(13));
+//                String fname = employee.getFirstName();
+//                String lname = employee.getLastName();
+                lbl_firstName_and_lastName.setText(employee.getFirstName().toString() + ", " + employee.getLastName().toString());
+                lbl_birthdate.setText(employee.getBirthday());
+                lbl_phoneNum.setText(employee.getPhone());
+                lbl_ph
+                
+
+/* Code below is implementation option 2. Still figuring out which is better
+//            String employeeQuery = "SELECT * FROM public.employee_details WHERE employee_id=?";
+//            try (PreparedStatement employeePst = conn.prepareStatement(employeeQuery)) {
+//                 employeePst.setInt(1, Integer.parseInt(lbl_emp.getText()));
+//
+//                try (ResultSet employeeRs = employeePst.executeQuery()) {
+//                    if (employeeRs.next()) {
+//                        //txt_employee_id.setText(employeeRs.getString("employee_id"));
+//                        String fname = employeeRs.getString("last_name");
+//                        String lname = employeeRs.getString("first_name");
+//                        lbl_firstName_and_lastName.setText(fname + ", " + lname);
+//                    } else {
+//                        JOptionPane.showMessageDialog(this, "Employee not found");
+//                        return; // Exit the method if employee not found
+//                    }
+//                } */
+                rs.close(); // Comment out this line if using Option 2
+                conn.close();
             }
-            rs.close();
-            conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(EmployeePortal.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     /**
