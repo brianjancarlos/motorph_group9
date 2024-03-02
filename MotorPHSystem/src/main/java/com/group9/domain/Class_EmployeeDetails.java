@@ -3,13 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.group9.domain;
+
+import java.sql.ResultSet;
+
 /**
  *
  * @author brianjancarlos
  */
 public class Class_EmployeeDetails {
+
     private String employeeId;
-    private String lastName ;
+    private String lastName;
     private String firstName;
     private String birthday;
     private String address;
@@ -23,7 +27,6 @@ public class Class_EmployeeDetails {
     private String immediateSupervisor;
 
     // Contructs
-
     public Class_EmployeeDetails(String employeeId, String lastName, String firstName, String birthday, String address, String phone, String status, String sss, String philhealth, String tin, String pagibig, String position, String immediateSupervisor) {
         this.employeeId = employeeId;
         this.lastName = lastName;
@@ -36,9 +39,9 @@ public class Class_EmployeeDetails {
         this.philhealth = philhealth;
         this.tin = tin;
         this.pagibig = pagibig;
-        this.position= position;
+        this.position = position;
         this.immediateSupervisor = immediateSupervisor;
-        
+
     }
 //Getter and Setters
 
@@ -145,10 +148,5 @@ public class Class_EmployeeDetails {
     public void setImmediateSupervisor(String immediateSupervisor) {
         this.immediateSupervisor = immediateSupervisor;
     }
-    
-    
-    
-    }
 
-
-
+}

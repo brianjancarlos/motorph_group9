@@ -4,17 +4,80 @@
  */
 package com.group9.MotorPH_Frames;
 
+import com.group9.domain.Class_Emp;
+import com.group9.domain.Class_EmployeeDetails;
+import com.group9.services.DatabaseConnectionManager;
+import com.group9.services.MotorPHDatabaseConnection;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author brianjancarlos
  */
 public class EmployeePortal extends javax.swing.JFrame {
 
+    ResultSet rs = null;
+
     /**
      * Creates new form EmployeePortal
      */
     public EmployeePortal() {
         initComponents();
+        String sql = "SELECT * FROM employee_details WHERE (employee_id = ?)";
+        try {
+            Connection conn = DatabaseConnectionManager.getConnection();
+            lbl_emp.setText(String.valueOf(Class_Emp.empid));
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            //Get EmployeeID from Login screen
+            pstmt.setInt(1, Integer.parseInt(lbl_emp.getText()));
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Class_EmployeeDetails employee = new Class_EmployeeDetails(rs.getString(1), rs.getString(2), rs.getString(3),
+                        rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),
+                        rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13));
+//                String fname = employee.getFirstName();
+//                String lname = employee.getLastName();
+                lbl_firstName.setText(employee.getFirstName() + " ");
+                lbl_lastName.setText(employee.getLastName());
+                lbl_birthdate.setText(employee.getBirthday());
+                lbl_phoneNum.setText(employee.getPhone());
+                lbl_role_designation.setText(employee.getPosition());
+                lbl_supervisor.setText(employee.getImmediateSupervisor());
+
+
+                /* Code below is implementation option 2. Still figuring out which is better
+//            String employeeQuery = "SELECT * FROM public.employee_details WHERE employee_id=?";
+//            try (PreparedStatement employeePst = conn.prepareStatement(employeeQuery)) {
+//                 employeePst.setInt(1, Integer.parseInt(lbl_emp.getText()));
+//
+//                try (ResultSet employeeRs = employeePst.executeQuery()) {
+//                    if (employeeRs.next()) {
+//                        //txt_employee_id.setText(employeeRs.getString("employee_id"));
+//                        String fname = employeeRs.getString("last_name");
+//                        String lname = employeeRs.getString("first_name");
+//                        lbl_firstName_and_lastName.setText(fname + ", " + lname);
+//                    } else {
+//                        JOptionPane.showMessageDialog(this, "Employee not found");
+//                        return; // Exit the method if employee not found
+//                    }
+//                } */
+                rs.close(); // Comment out this line if using Option 2
+                conn.close();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeePortal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -26,21 +89,278 @@ public class EmployeePortal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel1 = new javax.swing.JPanel();
+        lbl_emp = new javax.swing.JLabel();
+        lbl_birthday = new javax.swing.JLabel();
+        lbl_supervisor = new javax.swing.JLabel();
+        lbl_name1 = new javax.swing.JLabel();
+        lbl_immediateSupervisor = new javax.swing.JLabel();
+        lbl_birthdate = new javax.swing.JLabel();
+        lbl_firstName = new javax.swing.JLabel();
+        lbl_employeeId = new javax.swing.JLabel();
+        lbl_phoneNum = new javax.swing.JLabel();
+        lbl_position = new javax.swing.JLabel();
+        lbl_name = new javax.swing.JLabel();
+        lbl_role_designation = new javax.swing.JLabel();
+        lbl_lastName = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        btn_timeIn = new javax.swing.JButton();
+        btn_timeout = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Employee Profile"));
+
+        lbl_emp.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        lbl_emp.setText("Employee_num");
+
+        lbl_birthday.setText("Birthday");
+
+        lbl_supervisor.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        lbl_supervisor.setText("Supervisor");
+
+        lbl_name1.setText("Phone Number");
+
+        lbl_immediateSupervisor.setText("Immediate Supervisor");
+
+        lbl_birthdate.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        lbl_birthdate.setText("Birthdate");
+
+        lbl_firstName.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        lbl_firstName.setText("FirstName");
+
+        lbl_employeeId.setText("Employee ID");
+
+        lbl_phoneNum.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        lbl_phoneNum.setText("Phone");
+
+        lbl_position.setText("Position");
+
+        lbl_name.setText("Name");
+
+        lbl_role_designation.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        lbl_role_designation.setText("Position");
+
+        lbl_lastName.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        lbl_lastName.setText(", Last Name");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_name)
+                            .addComponent(lbl_employeeId)
+                            .addComponent(lbl_emp)
+                            .addComponent(lbl_birthday)
+                            .addComponent(lbl_birthdate))
+                        .addGap(27, 27, 27))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lbl_firstName)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                        .addComponent(lbl_lastName)))
+                .addGap(13, 13, 13)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_supervisor)
+                    .addComponent(lbl_position)
+                    .addComponent(lbl_phoneNum)
+                    .addComponent(lbl_name1)
+                    .addComponent(lbl_role_designation)
+                    .addComponent(lbl_immediateSupervisor))
+                .addContainerGap(142, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_name)
+                    .addComponent(lbl_name1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_firstName)
+                    .addComponent(lbl_phoneNum)
+                    .addComponent(lbl_lastName))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_position)
+                    .addComponent(lbl_employeeId))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_emp)
+                    .addComponent(lbl_role_designation))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_birthday)
+                    .addComponent(lbl_immediateSupervisor))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_birthdate)
+                    .addComponent(lbl_supervisor))
+                .addContainerGap())
+        );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        btn_timeIn.setText("Time-In");
+        btn_timeIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_timeInActionPerformed(evt);
+            }
+        });
+
+        btn_timeout.setText("Time-Out");
+        btn_timeout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_timeoutActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_timeout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_timeIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btn_timeIn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_timeout)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(62, 62, 62))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_timeInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timeInActionPerformed
+
+        Date loginDate = Date.valueOf(LocalDate.now());
+        Time timeIn = Time.valueOf(LocalTime.now());
+        Time timeOut = null; // Set the timeout value as needed
+
+        // Check if user has already time in for the current date
+        if (hasTimeIn(Class_Emp.empid, loginDate)) {
+            JOptionPane.showMessageDialog(this, "You have already timed in for today.");
+            return;
+        }
+        // Insert values into the attendance_record table
+        try {
+            Connection connection = DatabaseConnectionManager.getConnection();
+            String query = "INSERT INTO attendance_record (employee_id, last_name, first_name, login_date, timein, timeout) VALUES (?, ?, ?, ?, ?, ?)";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, Class_Emp.empid);
+            statement.setString(2, lbl_lastName.getText());
+            statement.setString(3, lbl_firstName.getText());
+            statement.setDate(4, loginDate);
+            statement.setTime(5, timeIn);
+            statement.setTime(6, timeOut);
+            statement.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Attendance recorded successfully. " + loginDate + " " + timeIn);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeePortal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Failed to record attendance.");
+        }
+    }//GEN-LAST:event_btn_timeInActionPerformed
+
+    private void btn_timeoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timeoutActionPerformed
+        
+        Date loginDate = Date.valueOf(LocalDate.now());
+        Time timeOut = Time.valueOf(LocalTime.now());
+
+        // Check if user has already timed out for the current date
+        if (hasTimeOut(Class_Emp.empid, loginDate)) {
+            JOptionPane.showMessageDialog(this, "You have already timed out for today.");
+            return;
+        }
+
+        // Update the timeout value in the attendance_record table
+        try {
+            Connection connection = DatabaseConnectionManager.getConnection();
+            String query = "UPDATE attendance_record SET timeout = ? WHERE employee_id = ? AND login_date = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setTime(1, timeOut);
+            statement.setInt(2, Class_Emp.empid);
+            statement.setDate(3, loginDate);
+            statement.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Timeout recorded successfully. " + loginDate + " " + timeOut);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeePortal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Failed to record timeout.");
+        }
+    }//GEN-LAST:event_btn_timeoutActionPerformed
+
+    // Custom method to check if user has timed out for the current date
+    private boolean hasTimeOut(int employeeId, Date loginDate) {
+        try {
+            Connection connection = DatabaseConnectionManager.getConnection();
+            String query = "SELECT COUNT(*) FROM attendance_record WHERE employee_id = ? AND login_date = ? AND timeout IS NOT NULL";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, employeeId);
+            statement.setDate(2, loginDate);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            int count = resultSet.getInt(1);
+            return count > 0;
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeePortal.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+
+    }//GEN-LAST:event_btn_timeoutActionPerformed
+
+    //Custom method to check if user has timed in for the current date
+    private boolean hasTimeIn(int employeeId, Date loginDate) {
+        try {
+            Connection connection = DatabaseConnectionManager.getConnection();
+            String query = "SELECT COUNT(*) FROM attendance_record WHERE employee_id = ? AND login_date = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, employeeId);
+            statement.setDate(2, loginDate);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            int count = resultSet.getInt(1);
+            return count > 0;
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeePortal.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -78,5 +398,22 @@ public class EmployeePortal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_timeIn;
+    private javax.swing.JButton btn_timeout;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lbl_birthdate;
+    private javax.swing.JLabel lbl_birthday;
+    private javax.swing.JLabel lbl_emp;
+    private javax.swing.JLabel lbl_employeeId;
+    private javax.swing.JLabel lbl_firstName;
+    private javax.swing.JLabel lbl_immediateSupervisor;
+    private javax.swing.JLabel lbl_lastName;
+    private javax.swing.JLabel lbl_name;
+    private javax.swing.JLabel lbl_name1;
+    private javax.swing.JLabel lbl_phoneNum;
+    private javax.swing.JLabel lbl_position;
+    private javax.swing.JLabel lbl_role_designation;
+    private javax.swing.JLabel lbl_supervisor;
     // End of variables declaration//GEN-END:variables
 }
