@@ -32,12 +32,13 @@
                   <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane1" min="-2" pref="1029" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="txt_searchbox" min="-2" pref="365" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jPanel1" max="32767" attributes="0"/>
+                                  <Component id="txt_searchbox" max="32767" attributes="0"/>
+                              </Group>
                               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -66,16 +67,10 @@
               <Component id="lbl_MotorPHEmployeeDetails" min="-2" pref="56" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="jPanel1" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="txt_searchbox" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+              <Component id="txt_searchbox" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jPanel1" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="240" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -99,7 +94,7 @@
         <Component class="javax.swing.JTable" name="tbl_employees">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="14" rowCount="5">
+              <Table columnCount="13" rowCount="5">
                 <Column editable="false" title="Employee ID" type="java.lang.Object"/>
                 <Column editable="false" title="Last Name" type="java.lang.Object"/>
                 <Column editable="false" title="First Name" type="java.lang.Object"/>
@@ -113,7 +108,6 @@
                 <Column editable="false" title="Pag-Ibig ID" type="java.lang.Object"/>
                 <Column editable="true" title="Position" type="java.lang.Object"/>
                 <Column editable="false" title="Immediate Supervisor" type="java.lang.Object"/>
-                <Column editable="true" title="Basic Salary" type="java.lang.Object"/>
               </Table>
             </Property>
           </Properties>
@@ -265,7 +259,6 @@
                       <Component id="lbl_pagibig_num" min="-2" pref="135" max="-2" attributes="0"/>
                       <Component id="lbl_position" min="-2" pref="147" max="-2" attributes="0"/>
                       <Component id="lbl_supervisor" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
-                      <Component id="lbl_supervisor1" min="-2" pref="147" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -277,7 +270,6 @@
                           <Component id="txt_pagibig_num" alignment="0" pref="324" max="32767" attributes="0"/>
                           <Component id="txt_tin_number" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="txt_basicSalary" min="-2" pref="327" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -344,12 +336,7 @@
                               <Component id="txt_supervisor" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lbl_supervisor" linkSize="9" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txt_basicSalary" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lbl_supervisor1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
@@ -490,13 +477,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_philhealth_num">
-        </Component>
-        <Component class="javax.swing.JTextField" name="txt_basicSalary">
-        </Component>
-        <Component class="javax.swing.JLabel" name="lbl_supervisor1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Basic Salary"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>

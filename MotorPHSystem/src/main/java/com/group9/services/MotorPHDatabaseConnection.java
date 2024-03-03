@@ -56,7 +56,10 @@ public class MotorPHDatabaseConnection {
                     String pagibig = resultSet.getString("pagibig_id");
                     String position = resultSet.getString("position_name");
                     String immediateSupervisor = resultSet.getString("immediate_supervisor");
-                    Class_EmployeeDetails employeeDetail = new Class_EmployeeDetails(employeeId, lastName, firstName, birthday, address, phone, status, sss, philhealth, tin, pagibig, position, immediateSupervisor);
+                    //String basicsalary = resultSet.getString("basic_salary");
+                    //String ricesubsidy = resultSet.getString("rice_subsidy");
+                    Class_EmployeeDetails employeeDetail = new Class_EmployeeDetails(employeeId, lastName, firstName, birthday, address, 
+                            phone, status, sss, philhealth, tin, pagibig, position, immediateSupervisor);
                     employeeDetails.add(employeeDetail);
                 }
 
