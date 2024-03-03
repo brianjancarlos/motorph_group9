@@ -58,13 +58,14 @@ public class EmployeePortal extends javax.swing.JFrame {
                 lbl_lastName.setText(employee.getLastName());
                 lbl_birthdate.setText(employee.getBirthday());
                 lbl_phoneNum.setText(employee.getPhone());
+                //lbl_statusMain.setText(employee.getStatus());
                 lbl_role_designation.setText(employee.getPosition());
                 lbl_supervisor.setText(employee.getImmediateSupervisor());
                 lbl_addressMain.setText(employee.getAddress());
                 lbl_philhealthMain.setText(employee.getPhilhealth());
                 lbl_sssMain.setText(employee.getSss());
                 lbl_tinMain.setText(employee.getTin());
-                
+
 
                 /* Code below is implementation option 2. Still figuring out which is better
 //            String employeeQuery = "SELECT * FROM public.employee_details WHERE employee_id=?";
@@ -390,7 +391,7 @@ public class EmployeePortal extends javax.swing.JFrame {
             Logger.getLogger(EmployeePortal.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "Failed to record timeout.");
         }
-    }                                           
+    }
 
     // Custom method to check if user has timed out for the current date
     private boolean hasTimeOut(int employeeId, Date loginDate) {
