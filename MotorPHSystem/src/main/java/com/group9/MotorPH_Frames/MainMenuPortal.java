@@ -47,7 +47,7 @@ public class MainMenuPortal extends javax.swing.JFrame {
         lbl_loggedin_user = new javax.swing.JLabel();
         lbl_emp = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        btn_administrator = new javax.swing.JButton();
+        btn_timein_out = new javax.swing.JButton();
         btn_attendance = new javax.swing.JButton();
         btn_employee = new javax.swing.JButton();
         btn_payroll = new javax.swing.JButton();
@@ -97,11 +97,11 @@ public class MainMenuPortal extends javax.swing.JFrame {
 
         lbl_emp.setText("employee id");
 
-        btn_administrator.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btn_administrator.setText("Administrator");
-        btn_administrator.addActionListener(new java.awt.event.ActionListener() {
+        btn_timein_out.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_timein_out.setText("Time-in/out");
+        btn_timein_out.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_administratorActionPerformed(evt);
+                btn_timein_outActionPerformed(evt);
             }
         });
 
@@ -137,7 +137,7 @@ public class MainMenuPortal extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btn_payroll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_administrator, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                    .addComponent(btn_timein_out, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
                     .addComponent(btn_attendance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_employee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(23, Short.MAX_VALUE))
@@ -152,7 +152,7 @@ public class MainMenuPortal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btn_attendance, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
-                .addComponent(btn_administrator, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_timein_out, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51))
         );
 
@@ -264,14 +264,14 @@ public class MainMenuPortal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn_employeeActionPerformed
 
-    private void btn_administratorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_administratorActionPerformed
+    private void btn_timein_outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timein_outActionPerformed
         // Administrator
         
-        addEmployee x = new addEmployee();
+        EmployeePortal x = new EmployeePortal();
         x.setVisible(true);
         
         
-    }//GEN-LAST:event_btn_administratorActionPerformed
+    }//GEN-LAST:event_btn_timein_outActionPerformed
 
     /**
      * @param args the command line arguments
@@ -309,11 +309,11 @@ public class MainMenuPortal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_administrator;
     private javax.swing.JButton btn_attendance;
     private javax.swing.JButton btn_employee;
     private javax.swing.JButton btn_logout;
     private javax.swing.JButton btn_payroll;
+    private javax.swing.JButton btn_timein_out;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;

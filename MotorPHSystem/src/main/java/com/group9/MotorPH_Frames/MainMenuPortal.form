@@ -203,7 +203,7 @@
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="btn_payroll" max="32767" attributes="0"/>
-                      <Component id="btn_administrator" alignment="0" pref="153" max="32767" attributes="0"/>
+                      <Component id="btn_timein_out" alignment="0" pref="153" max="32767" attributes="0"/>
                       <Component id="btn_attendance" alignment="0" max="32767" attributes="0"/>
                       <Component id="btn_employee" alignment="0" max="32767" attributes="0"/>
                   </Group>
@@ -221,22 +221,22 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btn_attendance" min="-2" pref="43" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                  <Component id="btn_administrator" min="-2" pref="43" max="-2" attributes="0"/>
+                  <Component id="btn_timein_out" min="-2" pref="43" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="btn_administrator">
+        <Component class="javax.swing.JButton" name="btn_timein_out">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Administrator"/>
+            <Property name="text" type="java.lang.String" value="Time-in/out"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_administratorActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_timein_outActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btn_attendance">

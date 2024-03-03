@@ -18,11 +18,11 @@ public class Class_EmployeeDetails {
     private String birthday;
     private String address;
     private String phone;
-    private String status;
     private String sss;
     private String philhealth;
     private String tin;
     private String pagibig;
+    private String status;
     private String position;
     private String immediateSupervisor;
 
@@ -43,8 +43,8 @@ public class Class_EmployeeDetails {
         this.immediateSupervisor = immediateSupervisor;
 
     }
-//Getter and Setters
 
+    //Getter and Setters
     public String getEmployeeId() {
         return employeeId;
     }
@@ -93,14 +93,6 @@ public class Class_EmployeeDetails {
         this.phone = phone;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getSss() {
         return sss;
     }
@@ -133,6 +125,14 @@ public class Class_EmployeeDetails {
         this.pagibig = pagibig;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public String getPosition() {
         return position;
     }
@@ -148,5 +148,8 @@ public class Class_EmployeeDetails {
     public void setImmediateSupervisor(String immediateSupervisor) {
         this.immediateSupervisor = immediateSupervisor;
     }
+    
+} 
 
-}
+
+
