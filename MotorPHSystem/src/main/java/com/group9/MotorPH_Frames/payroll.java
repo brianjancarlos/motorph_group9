@@ -37,7 +37,7 @@ public class payroll extends javax.swing.JFrame {
         // Set date format for the JDateChooser components
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-        // Pass the connection to the Deductions_old constructor
+        // Pass the connection to the Deductions constructor
         deductions = new Deductions(conn);
     }
 
@@ -97,18 +97,18 @@ public class payroll extends javax.swing.JFrame {
         txt_netPay = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btn_save = new javax.swing.JButton();
+        btn_add = new javax.swing.JButton();
         btn_clear = new javax.swing.JButton();
         btn_calculate = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        txt_search = new javax.swing.JTextField();
+        dateChooser_endDate = new com.toedter.calendar.JDateChooser();
+        txt_searchEmp = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jButton1 = new javax.swing.JButton();
+        datechooser_startDate = new com.toedter.calendar.JDateChooser();
+        btn_search = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         jMenu1.setText("jMenu1");
@@ -406,12 +406,12 @@ public class payroll extends javax.swing.JFrame {
                     .addComponent(jLabel8)))
         );
 
-        jButton4.setText("Save");
+        btn_save.setText("Save");
 
-        jButton5.setText("Add");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btn_add.setText("Add");
+        btn_add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btn_addActionPerformed(evt);
             }
         });
 
@@ -436,8 +436,8 @@ public class payroll extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_add, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_save, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_clear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_calculate, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
                 .addContainerGap())
@@ -450,24 +450,24 @@ public class payroll extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_clear, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_add, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btn_save, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel11.setText("End Date:");
 
-        jDateChooser2.setDateFormatString("yyyy-MM-dd");
+        dateChooser_endDate.setDateFormatString("yyyy-MM-dd");
 
-        txt_search.addActionListener(new java.awt.event.ActionListener() {
+        txt_searchEmp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_searchActionPerformed(evt);
+                txt_searchEmpActionPerformed(evt);
             }
         });
-        txt_search.addKeyListener(new java.awt.event.KeyAdapter() {
+        txt_searchEmp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txt_searchKeyReleased(evt);
+                txt_searchEmpKeyReleased(evt);
             }
         });
 
@@ -477,12 +477,12 @@ public class payroll extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel10.setText("Start Date:");
 
-        jDateChooser1.setDateFormatString("yyyy-MM-dd");
+        datechooser_startDate.setDateFormatString("yyyy-MM-dd");
 
-        jButton1.setText("Search");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_search.setText("Search");
+        btn_search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_searchActionPerformed(evt);
             }
         });
 
@@ -494,18 +494,18 @@ public class payroll extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_searchEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(datechooser_startDate, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dateChooser_endDate, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btn_search, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(24, 24, 24))
         );
         jPanel6Layout.setVerticalGroup(
@@ -516,7 +516,7 @@ public class payroll extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_searchEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -524,9 +524,9 @@ public class payroll extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton1))))
+                                .addComponent(datechooser_startDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(dateChooser_endDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btn_search))))
                 .addContainerGap())
         );
 
@@ -581,12 +581,12 @@ public class payroll extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt_searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_searchKeyReleased
+    private void txt_searchEmpKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_searchEmpKeyReleased
         //SEARCH
 
-    }//GEN-LAST:event_txt_searchKeyReleased
+    }//GEN-LAST:event_txt_searchEmpKeyReleased
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btn_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addActionPerformed
         // GENERATE
 
         DefaultTableModel model = (DefaultTableModel) JTableEmployee.getModel();
@@ -594,14 +594,14 @@ public class payroll extends javax.swing.JFrame {
         model.addRow(new Object[]{txt_employee_id.getText(), txt_lastName.getText(), txt_firstName.getText(), txt_birthday.getText()});
 
 
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btn_addActionPerformed
 
     private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
         //CLEAR
 
-        txt_search.setText("");
-        jDateChooser1.setDate(null);
-        jDateChooser2.setDate(null);
+        txt_searchEmp.setText("");
+        datechooser_startDate.setDate(null);
+        dateChooser_endDate.setDate(null);
         txt_employee_id.setText("");
         txt_lastName.setText("");
         txt_firstName.setText("");
@@ -628,17 +628,17 @@ public class payroll extends javax.swing.JFrame {
         //Calculation
 
         try {
-            int employee_id = Integer.parseInt(txt_search.getText()); // Get employee_id from the text field
+            int employee_id = Integer.parseInt(txt_searchEmp.getText()); // Get employee_id from the text field
 
             // Calculate total hours from the employee_record table
-            if (jDateChooser1.getDate() != null && jDateChooser2.getDate() != null) {
+            if (datechooser_startDate.getDate() != null && dateChooser_endDate.getDate() != null) {
                 String recordQuery = "SELECT * FROM public.attendance_record WHERE employee_id=? AND login_date BETWEEN ? AND ?";
                 try (PreparedStatement recordPst = conn.prepareStatement(recordQuery)) {
                     recordPst.setInt(1, employee_id);
 
                     // Convert JDateChooser dates to java.sql.Date
-                    Date startDate = new Date(jDateChooser1.getDate().getTime());
-                    Date endDate = new Date(jDateChooser2.getDate().getTime());
+                    Date startDate = new Date(datechooser_startDate.getDate().getTime());
+                    Date endDate = new Date(dateChooser_endDate.getDate().getTime());
 
                     // Ensure that the dates are not null before setting them
                     if (startDate != null && endDate != null) {
@@ -737,15 +737,15 @@ public class payroll extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn_calculateActionPerformed
 
-    private void txt_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_searchActionPerformed
+    private void txt_searchEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_searchEmpActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_searchActionPerformed
+    }//GEN-LAST:event_txt_searchEmpActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
         // SEARCH
 
         try {
-            int employee_id = Integer.parseInt(txt_search.getText());
+            int employee_id = Integer.parseInt(txt_searchEmp.getText());
 
             // Search in the employee_details table
             String employeeQuery = "SELECT * FROM public.employee_details WHERE employee_id=?";
@@ -771,7 +771,7 @@ public class payroll extends javax.swing.JFrame {
         }
 
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_searchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -813,13 +813,13 @@ public class payroll extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable JTableEmployee;
+    private javax.swing.JButton btn_add;
     private javax.swing.JButton btn_calculate;
     private javax.swing.JButton btn_clear;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private javax.swing.JButton btn_save;
+    private javax.swing.JButton btn_search;
+    private com.toedter.calendar.JDateChooser dateChooser_endDate;
+    private com.toedter.calendar.JDateChooser datechooser_startDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -867,7 +867,7 @@ public class payroll extends javax.swing.JFrame {
     private javax.swing.JTextField txt_philhealthField;
     private javax.swing.JTextField txt_phoneField;
     private javax.swing.JTextField txt_riceField;
-    private javax.swing.JTextField txt_search;
+    private javax.swing.JTextField txt_searchEmp;
     private javax.swing.JTextField txt_sssField;
     private javax.swing.JTextField txt_taxField;
     private javax.swing.JTextField txt_taxIncomeField;
