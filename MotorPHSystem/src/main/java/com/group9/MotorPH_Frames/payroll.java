@@ -4,7 +4,6 @@
  */
 package com.group9.MotorPH_Frames;
 
-import com.toedter.calendar.JDateChooser;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -64,7 +63,7 @@ public class payroll extends javax.swing.JFrame {
         txt_hourlyRate = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        JTableEmployee = new javax.swing.JTable();
+        jTable_employee = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -187,7 +186,7 @@ public class payroll extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        JTableEmployee.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_employee.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -198,7 +197,7 @@ public class payroll extends javax.swing.JFrame {
                 "Date", "Employee No.", "Last Name", "First Name", "Birthday", "Hourly Rate", "Work Hours", "Gross Pay", "Net Pay"
             }
         ));
-        jScrollPane1.setViewportView(JTableEmployee);
+        jScrollPane1.setViewportView(jTable_employee);
 
         jLabel6.setText("Work Hours:");
 
@@ -589,10 +588,9 @@ public class payroll extends javax.swing.JFrame {
     private void btn_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addActionPerformed
         // GENERATE
 
-        DefaultTableModel model = (DefaultTableModel) JTableEmployee.getModel();
-
+        DefaultTableModel model = (DefaultTableModel) jTable_employee.getModel();
         model.addRow(new Object[]{txt_employee_id.getText(), txt_lastName.getText(), txt_firstName.getText(), txt_birthday.getText()});
-
+        //model.insertRow(1, new Object[]{txt_employee_id.getText(), txt_lastName.getText(), txt_firstName.getText(), txt_birthday.getText()});
 
     }//GEN-LAST:event_btn_addActionPerformed
 
@@ -812,7 +810,6 @@ public class payroll extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable JTableEmployee;
     private javax.swing.JButton btn_add;
     private javax.swing.JButton btn_calculate;
     private javax.swing.JButton btn_clear;
@@ -853,6 +850,7 @@ public class payroll extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable_employee;
     private javax.swing.JTextField totalHoursField;
     private javax.swing.JTextField txt_birthday;
     private javax.swing.JTextField txt_clothField;
