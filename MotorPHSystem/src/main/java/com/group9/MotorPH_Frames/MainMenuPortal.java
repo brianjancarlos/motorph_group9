@@ -238,7 +238,7 @@ public class MainMenuPortal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_logoutActionPerformed
 
     private void btn_payrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_payrollActionPerformed
-        // payroll
+        // payroll_old
         
         payroll x = new payroll();
         x.setVisible(true);
