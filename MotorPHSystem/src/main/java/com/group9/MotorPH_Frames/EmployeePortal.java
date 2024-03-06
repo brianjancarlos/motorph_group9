@@ -418,7 +418,7 @@ public class EmployeePortal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_timeoutActionPerformed
 
     private void btn_payslipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_payslipActionPerformed
-        payroll_employee x = new payroll_employee();
+        Payslip_employee x = new Payslip_employee();
         x.setVisible(true);
 
     }//GEN-LAST:event_btn_payslipActionPerformed

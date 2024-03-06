@@ -5,8 +5,6 @@
 package com.group9.MotorPH_Frames;
 
 import com.group9.domain.Class_Emp;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

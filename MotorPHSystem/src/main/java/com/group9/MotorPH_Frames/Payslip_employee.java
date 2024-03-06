@@ -19,7 +19,7 @@ import com.group9.services.WindowPositioner;
  *
  * @author nativ
  */
-public class payroll_employee extends javax.swing.JFrame {
+public class Payslip_employee extends javax.swing.JFrame {
 
     Connection conn = null;
     ResultSet rs = null;
@@ -29,7 +29,7 @@ public class payroll_employee extends javax.swing.JFrame {
     /**
      * Creates new form payroll
      */
-    public payroll_employee() {
+    public Payslip_employee() {
         initComponents();
         WindowPositioner.centerWindow(this);
         conn = database_connection.java_database_connection();
@@ -714,14 +714,22 @@ public class payroll_employee extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(payroll_employee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Payslip_employee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(payroll_employee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Payslip_employee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(payroll_employee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Payslip_employee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(payroll_employee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Payslip_employee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -734,7 +742,7 @@ public class payroll_employee extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new payroll_employee().setVisible(true);
+                new Payslip_employee().setVisible(true);
             }
         });
     }

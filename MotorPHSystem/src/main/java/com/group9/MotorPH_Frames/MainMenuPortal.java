@@ -6,8 +6,6 @@ package com.group9.MotorPH_Frames;
 
 import com.group9.domain.Class_Emp;
 import com.group9.services.WindowPositioner;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 
 /**
  *
@@ -285,7 +283,7 @@ public class MainMenuPortal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_timein_outActionPerformed
 
     private void btn_payslipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_payslipActionPerformed
-        payroll_employee x = new payroll_employee();
+        Payslip_employee x = new Payslip_employee();
         x.setVisible(true);
     }//GEN-LAST:event_btn_payslipActionPerformed
 
