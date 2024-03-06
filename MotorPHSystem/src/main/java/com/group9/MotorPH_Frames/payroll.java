@@ -4,6 +4,7 @@
  */
 package com.group9.MotorPH_Frames;
 
+import com.group9.services.WindowPositioner;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -31,6 +32,7 @@ public class payroll extends javax.swing.JFrame {
      */
     public payroll() {
         initComponents();
+        WindowPositioner.centerWindow(this);
         conn = database_connection.java_database_connection();
 
         // Set date format for the JDateChooser components

@@ -15,6 +15,7 @@ import java.util.Calendar;
 //import java.util.Date;
 import java.util.GregorianCalendar;
 import com.group9.services.DatabaseConnectionManager;
+import com.group9.services.WindowPositioner;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,9 +35,7 @@ public class login_portal extends javax.swing.JFrame {
     public login_portal() {
         try {
             initComponents();
-            Toolkit toolkit = getToolkit();
-            Dimension size = toolkit.getScreenSize();
-            setLocation(size.width / 2 - getWidth() / 2, size.height / 2 - getHeight() / 2);
+            WindowPositioner.centerWindow(this);
 
             // Establish a connection to the database MotorPH.services
             Connection conn = DatabaseConnectionManager.getConnection();
