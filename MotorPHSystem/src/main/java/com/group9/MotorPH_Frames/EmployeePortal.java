@@ -7,9 +7,7 @@ package com.group9.MotorPH_Frames;
 import com.group9.domain.Class_Emp;
 import com.group9.domain.Class_EmployeeDetails;
 import com.group9.services.DatabaseConnectionManager;
-import com.group9.services.MotorPHDatabaseConnection;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import com.group9.services.WindowPositioner;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -18,7 +16,6 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -36,9 +33,7 @@ public class EmployeePortal extends javax.swing.JFrame {
      */
     public EmployeePortal() {
         initComponents();
-        Toolkit toolkit = getToolkit();
-        Dimension size = toolkit.getScreenSize();
-        setLocation(size.width / 2 - getWidth() / 2, size.height / 2 - getHeight() / 2);
+        WindowPositioner.centerWindow(this);
 
         String sql = "SELECT * FROM employee_details WHERE (employee_id = ?)";
         try {
@@ -52,8 +47,6 @@ public class EmployeePortal extends javax.swing.JFrame {
                 Class_EmployeeDetails employee = new Class_EmployeeDetails(rs.getString(1), rs.getString(2), rs.getString(3),
                         rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),
                         rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13));
-//                String fname = employee.getFirstName();
-//                String lname = employee.getLastName();
                 lbl_firstName.setText(employee.getFirstName() + " ");
                 lbl_lastName.setText(employee.getLastName());
                 lbl_birthdate.setText(employee.getBirthday());
@@ -117,6 +110,7 @@ public class EmployeePortal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btn_timeIn = new javax.swing.JButton();
         btn_timeout = new javax.swing.JButton();
+        btn_payslip = new javax.swing.JButton();
         lbl_address = new javax.swing.JLabel();
         lbl_addressMain = new javax.swing.JLabel();
         lbl_sss = new javax.swing.JLabel();
@@ -179,7 +173,7 @@ public class EmployeePortal extends javax.swing.JFrame {
                     .addComponent(lbl_emp)
                     .addComponent(lbl_birthday)
                     .addComponent(lbl_birthdate))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl_supervisor)
                     .addComponent(lbl_position)
@@ -187,7 +181,7 @@ public class EmployeePortal extends javax.swing.JFrame {
                     .addComponent(lbl_name1)
                     .addComponent(lbl_role_designation)
                     .addComponent(lbl_immediateSupervisor))
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addContainerGap(160, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,15 +230,24 @@ public class EmployeePortal extends javax.swing.JFrame {
             }
         });
 
+        btn_payslip.setText("Payslip");
+        btn_payslip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_payslipActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_timeout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_timeIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btn_timeout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_timeIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_payslip))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -254,6 +257,8 @@ public class EmployeePortal extends javax.swing.JFrame {
                 .addComponent(btn_timeIn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_timeout)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(btn_payslip)
                 .addContainerGap())
         );
 
@@ -412,6 +417,12 @@ public class EmployeePortal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn_timeoutActionPerformed
 
+    private void btn_payslipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_payslipActionPerformed
+        Payslip_employee x = new Payslip_employee();
+        x.setVisible(true);
+
+    }//GEN-LAST:event_btn_payslipActionPerformed
+
     //Custom method to check if user has timed in for the current date
     private boolean hasTimeIn(int employeeId, Date loginDate) {
         try {
@@ -466,6 +477,7 @@ public class EmployeePortal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_payslip;
     private javax.swing.JButton btn_timeIn;
     private javax.swing.JButton btn_timeout;
     private javax.swing.JPanel jPanel1;

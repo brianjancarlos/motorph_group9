@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import com.group9.services.MotorPHDatabaseConnection;
 import com.group9.domain.Class_EmployeeDetails;
 import com.group9.services.DatabaseConnectionManager;
+import com.group9.services.WindowPositioner;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -34,6 +35,7 @@ public class Employee_Details_HRView extends javax.swing.JFrame {
     //Connection con;
     public Employee_Details_HRView() {
         initComponents();
+        WindowPositioner.centerWindow(this);
         InitializeForm();
         refreshTable();
         lbl_emp.setText(String.valueOf(Class_Emp.empid));
