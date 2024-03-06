@@ -22,12 +22,12 @@ public class MainMenuPortal extends javax.swing.JFrame {
         /*
         This line takes the employee ID from a specific place in the program, 
         turns it into a text, and then shows it on the screen in a specific area.
-        */
+         */
         lbl_emp.setText(String.valueOf(Class_Emp.empid));
-        
+
         Toolkit toolkit = getToolkit();
         Dimension size = toolkit.getScreenSize();
-        setLocation(size.width/2 - getWidth()/2,size.height/2 - getHeight()/2);
+        setLocation(size.width / 2 - getWidth() / 2, size.height / 2 - getHeight() / 2);
     }
 
     /**
@@ -51,6 +51,7 @@ public class MainMenuPortal extends javax.swing.JFrame {
         btn_attendance = new javax.swing.JButton();
         btn_employee = new javax.swing.JButton();
         btn_payroll = new javax.swing.JButton();
+        btn_payslip = new javax.swing.JButton();
         lbl_adminportal = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnu_employee = new javax.swing.JMenu();
@@ -129,6 +130,14 @@ public class MainMenuPortal extends javax.swing.JFrame {
             }
         });
 
+        btn_payslip.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_payslip.setText("Payslip");
+        btn_payslip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_payslipActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -139,7 +148,8 @@ public class MainMenuPortal extends javax.swing.JFrame {
                     .addComponent(btn_payroll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_timein_out, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
                     .addComponent(btn_attendance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_employee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_employee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_payslip, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -151,9 +161,11 @@ public class MainMenuPortal extends javax.swing.JFrame {
                 .addComponent(btn_payroll, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_attendance, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_timein_out, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_payslip, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
         );
 
         lbl_adminportal.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
@@ -239,18 +251,18 @@ public class MainMenuPortal extends javax.swing.JFrame {
 
     private void btn_payrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_payrollActionPerformed
         // payroll_old
-        
+
         payroll x = new payroll();
         x.setVisible(true);
-        
+
     }//GEN-LAST:event_btn_payrollActionPerformed
 
     private void btn_attendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_attendanceActionPerformed
         // Attendance
-        
+
         attendanceTracker x = new attendanceTracker();
         x.setVisible(true);
-        
+
     }//GEN-LAST:event_btn_attendanceActionPerformed
 
     private void btn_employeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_employeeActionPerformed
@@ -258,20 +270,25 @@ public class MainMenuPortal extends javax.swing.JFrame {
         //Show EmplooyeeDetails_view
         Employee_Details_HRView employeeDetailsHRView = new Employee_Details_HRView();
         employeeDetailsHRView.setVisible(true);
-        
+
 //        addEmployee x = new addEmployee();
 //        x.setVisible(true);
-        
+
     }//GEN-LAST:event_btn_employeeActionPerformed
 
     private void btn_timein_outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timein_outActionPerformed
         // Administrator
-        
+
         EmployeePortal x = new EmployeePortal();
         x.setVisible(true);
-        
-        
+
+
     }//GEN-LAST:event_btn_timein_outActionPerformed
+
+    private void btn_payslipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_payslipActionPerformed
+        payroll_employee x = new payroll_employee();
+        x.setVisible(true);
+    }//GEN-LAST:event_btn_payslipActionPerformed
 
     /**
      * @param args the command line arguments
@@ -313,6 +330,7 @@ public class MainMenuPortal extends javax.swing.JFrame {
     private javax.swing.JButton btn_employee;
     private javax.swing.JButton btn_logout;
     private javax.swing.JButton btn_payroll;
+    private javax.swing.JButton btn_payslip;
     private javax.swing.JButton btn_timein_out;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;

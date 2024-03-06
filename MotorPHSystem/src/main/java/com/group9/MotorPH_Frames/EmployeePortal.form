@@ -117,7 +117,7 @@
                       <Component id="lbl_birthday" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lbl_birthdate" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="16" max="32767" attributes="0"/>
+                  <EmptySpace pref="15" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lbl_supervisor" min="-2" max="-2" attributes="0"/>
                       <Component id="lbl_position" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -126,7 +126,7 @@
                       <Component id="lbl_role_designation" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lbl_immediateSupervisor" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="161" max="32767" attributes="0"/>
+                  <EmptySpace pref="160" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -272,9 +272,12 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="btn_timeout" max="32767" attributes="0"/>
-                      <Component id="btn_timeIn" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="btn_timeout" max="32767" attributes="0"/>
+                          <Component id="btn_timeIn" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="btn_payslip" alignment="1" min="-2" pref="86" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -287,7 +290,9 @@
                   <Component id="btn_timeIn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="btn_timeout" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="btn_payslip" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -307,6 +312,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_timeoutActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btn_payslip">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Payslip"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_payslipActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
