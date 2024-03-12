@@ -38,6 +38,11 @@ public class Attendance_Record extends javax.swing.JFrame {
      */
     public Attendance_Record() {
         initComponents();
+        
+         //Jframe Color
+        setBackground(new java.awt.Color(255, 214, 196));
+         getContentPane().setBackground(new java.awt.Color(255, 214, 196));
+         
     }
 
     //Filter data
@@ -127,10 +132,12 @@ public class Attendance_Record extends javax.swing.JFrame {
         lbl_endDate = new javax.swing.JLabel();
         txt_search = new javax.swing.JTextField();
         lbl_employee_num = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
+        tbl_attendance_record.setBackground(new java.awt.Color(255, 182, 185));
         tbl_attendance_record.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -147,12 +154,15 @@ public class Attendance_Record extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tbl_attendance_record.setSelectionBackground(new java.awt.Color(255, 182, 185));
         jScrollPane1.setViewportView(tbl_attendance_record);
 
         dateChooser_startDate.setDateFormatString("yyyy-MM-dd");
 
         dateChooser_endDate.setDateFormatString("yyyy-MM-dd");
 
+        btn_search.setBackground(new java.awt.Color(14, 49, 113));
+        btn_search.setForeground(new java.awt.Color(255, 255, 255));
         btn_search.setText("Search");
         btn_search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,7 +174,11 @@ public class Attendance_Record extends javax.swing.JFrame {
 
         lbl_endDate.setText("End Date");
 
-        txt_search.setText("Filter...");
+        txt_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_searchActionPerformed(evt);
+            }
+        });
         txt_search.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_searchKeyReleased(evt);
@@ -172,6 +186,9 @@ public class Attendance_Record extends javax.swing.JFrame {
         });
 
         lbl_employee_num.setText("Employee Number");
+
+        jLabel1.setFont(new java.awt.Font("Helvetica", 1, 14)); // NOI18N
+        jLabel1.setText("Time and Attendance Tracker");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -199,18 +216,23 @@ public class Attendance_Record extends javax.swing.JFrame {
                                         .addComponent(dateChooser_endDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btn_search))
-                                    .addComponent(lbl_endDate))))))
+                                    .addComponent(lbl_endDate)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(45, 45, 45)
                         .addComponent(lbl_endDate))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lbl_startDate)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,6 +249,7 @@ public class Attendance_Record extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
@@ -265,6 +288,10 @@ public class Attendance_Record extends javax.swing.JFrame {
         tr.setRowFilter(RowFilter.regexFilter(txt_search.getText().trim()));
 
     }//GEN-LAST:event_txt_searchKeyReleased
+
+    private void txt_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_searchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_searchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -305,6 +332,7 @@ public class Attendance_Record extends javax.swing.JFrame {
     private javax.swing.JButton btn_search;
     private com.toedter.calendar.JDateChooser dateChooser_endDate;
     private com.toedter.calendar.JDateChooser dateChooser_startDate;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_employee_num;
     private javax.swing.JLabel lbl_endDate;

@@ -5,7 +5,12 @@
 package com.group9.MotorPH_Frames;
 
 import com.group9.domain.Class_Emp;
+import com.group9.services.DatabaseConnectionManager;
 import com.group9.services.WindowPositioner;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -16,8 +21,18 @@ public class MainMenuPortal extends javax.swing.JFrame {
     /**
      * Creates new form MainMenuPortal
      */
-    public MainMenuPortal() {
+    public MainMenuPortal()   {
         initComponents();
+        
+        //Jframe Color
+        setBackground(new java.awt.Color(255, 214, 196));
+         getContentPane().setBackground(new java.awt.Color(255, 214, 196));
+        // Establish a connection to the database MotorPH.services
+         
+            //Displays Current date in form
+            currentDate();
+            
+            
         /*
         This line takes the employee ID from a specific place in the program, 
         turns it into a text, and then shows it on the screen in a specific area.
@@ -26,7 +41,23 @@ public class MainMenuPortal extends javax.swing.JFrame {
 
         WindowPositioner.centerWindow(this);
     }
+    
+    public final void currentDate() {
 
+        Calendar cal = new GregorianCalendar();
+        int month = cal.get(Calendar.MONTH);
+        int year = cal.get(Calendar.YEAR);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        lbl_date.setText((month + 1) + "/" + day + "/" + year);
+
+        int second = cal.get(Calendar.SECOND);
+        int minute = cal.get(Calendar.MINUTE);
+        int hour = cal.get(Calendar.HOUR);
+
+        lbl_time.setText(hour + ":" + (minute) + ":" + second);
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,203 +68,128 @@ public class MainMenuPortal extends javax.swing.JFrame {
     private void initComponents() {
 
         btn_logout = new javax.swing.JButton();
-        lbl_welcome = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtarea_info_screen = new javax.swing.JTextArea();
         lbl_loggedin_user = new javax.swing.JLabel();
         lbl_emp = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        btn_timein_out = new javax.swing.JButton();
-        btn_attendance = new javax.swing.JButton();
-        btn_employee = new javax.swing.JButton();
-        btn_payroll = new javax.swing.JButton();
         btn_payslip = new javax.swing.JButton();
-        lbl_adminportal = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        mnu_employee = new javax.swing.JMenu();
-        mnu_report = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        btn_payroll = new javax.swing.JButton();
+        btn_employee = new javax.swing.JButton();
+        btn_attendance = new javax.swing.JButton();
+        btn_timein_out = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        mnubar_loginPortal = new javax.swing.JMenuBar();
+        mnu_file = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        lbl_date = new javax.swing.JMenu();
+        lbl_time = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btn_logout.setBackground(new java.awt.Color(255, 145, 0));
+        btn_logout.setForeground(new java.awt.Color(14, 49, 113));
         btn_logout.setText("Logout");
         btn_logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_logoutActionPerformed(evt);
             }
         });
-
-        lbl_welcome.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
-        lbl_welcome.setText("Welcome to MotorPH");
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
-
-        txtarea_info_screen.setColumns(20);
-        txtarea_info_screen.setRows(5);
-        txtarea_info_screen.setText("        \n          ----MOTORPH PAYROLL SYTEM----\n            Key Features and Functionalities:\n\n         Employee Information Management, \n               Time & Attendance, Tracking, \n                       Salary Calculation, \n              Employee Self-Service Portal and \n                 Payroll Administrator Roles");
-        jScrollPane1.setViewportView(txtarea_info_screen);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        getContentPane().add(btn_logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, 90, 30));
 
         lbl_loggedin_user.setText("Logged in as:");
+        getContentPane().add(lbl_loggedin_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 350, -1, -1));
 
         lbl_emp.setText("employee id");
+        getContentPane().add(lbl_emp, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 350, -1, -1));
 
-        btn_timein_out.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btn_timein_out.setText("Time-in/out");
-        btn_timein_out.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_timein_outActionPerformed(evt);
-            }
-        });
-
-        btn_attendance.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btn_attendance.setText("Attendance");
-        btn_attendance.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_attendanceActionPerformed(evt);
-            }
-        });
-
-        btn_employee.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btn_employee.setText("Employee  ");
-        btn_employee.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_employeeActionPerformed(evt);
-            }
-        });
-
-        btn_payroll.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btn_payroll.setText("Payroll");
-        btn_payroll.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_payrollActionPerformed(evt);
-            }
-        });
-
+        btn_payslip.setBackground(new java.awt.Color(14, 49, 113));
         btn_payslip.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_payslip.setForeground(new java.awt.Color(255, 255, 255));
         btn_payslip.setText("Payslip");
         btn_payslip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_payslipActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_payslip, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 153, 43));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_payroll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_timein_out, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-                    .addComponent(btn_attendance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_employee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_payslip, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))
-                .addContainerGap(23, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_employee, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btn_payroll, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btn_attendance, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_timein_out, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_payslip, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
-        );
+        btn_payroll.setBackground(new java.awt.Color(14, 49, 113));
+        btn_payroll.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_payroll.setForeground(new java.awt.Color(255, 255, 255));
+        btn_payroll.setText("Payroll");
+        btn_payroll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_payrollActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_payroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 153, 43));
 
-        lbl_adminportal.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
-        lbl_adminportal.setText("Admin Portal");
+        btn_employee.setBackground(new java.awt.Color(14, 49, 113));
+        btn_employee.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_employee.setForeground(new java.awt.Color(255, 255, 255));
+        btn_employee.setText("Employee  ");
+        btn_employee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_employeeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_employee, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 153, 43));
 
-        mnu_employee.setText("Employee");
-        jMenuBar1.add(mnu_employee);
+        btn_attendance.setBackground(new java.awt.Color(14, 49, 113));
+        btn_attendance.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_attendance.setForeground(new java.awt.Color(255, 255, 255));
+        btn_attendance.setText("Attendance");
+        btn_attendance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_attendanceActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_attendance, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 153, 43));
 
-        mnu_report.setText("Report");
-        jMenuBar1.add(mnu_report);
+        btn_timein_out.setBackground(new java.awt.Color(14, 49, 113));
+        btn_timein_out.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_timein_out.setForeground(new java.awt.Color(255, 255, 255));
+        btn_timein_out.setText("Time-in/out");
+        btn_timein_out.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_timein_outActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_timein_out, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 153, 43));
 
-        jMenu3.setText("About");
-        jMenuBar1.add(jMenu3);
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\nativ\\Downloads\\aesthetics pNG720p.png")); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 10, 690, 390));
 
-        setJMenuBar(jMenuBar1);
+        mnubar_loginPortal.setBackground(new java.awt.Color(14, 49, 113));
+        mnubar_loginPortal.setForeground(new java.awt.Color(14, 49, 113));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btn_logout)
-                        .addGap(14, 14, 14))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbl_welcome, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(lbl_adminportal)
-                                        .addGap(39, 39, 39)))))
-                        .addGap(0, 32, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbl_loggedin_user)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbl_emp)
-                .addGap(71, 71, 71))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btn_logout)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                        .addComponent(lbl_welcome)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbl_adminportal)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbl_loggedin_user)
-                            .addComponent(lbl_emp))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(45, Short.MAX_VALUE))))
-        );
+        mnu_file.setForeground(new java.awt.Color(14, 49, 113));
+        mnu_file.setText("MotorPH");
+        mnu_file.setFont(new java.awt.Font("Helvetica", 1, 12)); // NOI18N
+        mnu_file.setMaximumSize(new java.awt.Dimension(60, 32767));
+        mnubar_loginPortal.add(mnu_file);
+
+        jMenu2.setForeground(new java.awt.Color(14, 49, 113));
+        jMenu2.setText("About");
+        jMenu2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenu2.setMaximumSize(new java.awt.Dimension(500, 32767));
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu2MouseClicked(evt);
+            }
+        });
+        mnubar_loginPortal.add(jMenu2);
+
+        lbl_date.setForeground(new java.awt.Color(14, 49, 113));
+        lbl_date.setText("Date");
+        lbl_date.setFont(new java.awt.Font("Helvetica", 0, 12)); // NOI18N
+        mnubar_loginPortal.add(lbl_date);
+
+        lbl_time.setForeground(new java.awt.Color(14, 49, 113));
+        lbl_time.setText("Time");
+        lbl_time.setFont(new java.awt.Font("Helvetica", 0, 12)); // NOI18N
+        mnubar_loginPortal.add(lbl_time);
+
+        setJMenuBar(mnubar_loginPortal);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -257,7 +213,7 @@ public class MainMenuPortal extends javax.swing.JFrame {
     private void btn_attendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_attendanceActionPerformed
         // Attendance
 
-        attendanceTracker x = new attendanceTracker();
+        Attendance_Record x = new Attendance_Record();
         x.setVisible(true);
 
     }//GEN-LAST:event_btn_attendanceActionPerformed
@@ -286,6 +242,13 @@ public class MainMenuPortal extends javax.swing.JFrame {
         Payslip_employee x = new Payslip_employee();
         x.setVisible(true);
     }//GEN-LAST:event_btn_payslipActionPerformed
+
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+        // About
+        
+         about x = new about();
+        x.setVisible(true);
+    }//GEN-LAST:event_jMenu2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -329,17 +292,13 @@ public class MainMenuPortal extends javax.swing.JFrame {
     private javax.swing.JButton btn_payroll;
     private javax.swing.JButton btn_payslip;
     private javax.swing.JButton btn_timein_out;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lbl_adminportal;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu lbl_date;
     private javax.swing.JLabel lbl_emp;
     private javax.swing.JLabel lbl_loggedin_user;
-    private javax.swing.JLabel lbl_welcome;
-    private javax.swing.JMenu mnu_employee;
-    private javax.swing.JMenu mnu_report;
-    private javax.swing.JTextArea txtarea_info_screen;
+    private javax.swing.JMenu lbl_time;
+    private javax.swing.JMenu mnu_file;
+    private javax.swing.JMenuBar mnubar_loginPortal;
     // End of variables declaration//GEN-END:variables
 }
