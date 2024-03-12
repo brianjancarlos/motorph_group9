@@ -17,6 +17,9 @@ import com.toedter.calendar.JDateChooser;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -27,11 +30,18 @@ public class attendanceTracker extends javax.swing.JFrame {
     //Connection conn = null;
     Resultset rs = null;
     PreparedStatement pst = null;
+     DefaultTableModel dm;
 
     /**
      * Creates new form attendanceTracker
      */
     public attendanceTracker() {
+        
+         //Jframe Color
+        setBackground(new java.awt.Color(255, 214, 196));
+         getContentPane().setBackground(new java.awt.Color(255, 214, 196));
+         
+         
         try {
             initComponents();
             //conn = database_connection.java_database_connection();
@@ -47,6 +57,13 @@ public class attendanceTracker extends javax.swing.JFrame {
 
     }
 
+     //Filter data
+    private void filter(String query) {
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tbl_attendance_record.setRowSorter(tr);
+
+        tr.setRowFilter(RowFilter.regexFilter(query));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,7 +80,7 @@ public class attendanceTracker extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_attendance_record = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -82,7 +99,9 @@ public class attendanceTracker extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(255, 214, 196));
+
+        jLabel1.setFont(new java.awt.Font("Helvetica", 1, 14)); // NOI18N
         jLabel1.setText("Time and Attendance Tracker");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -108,18 +127,19 @@ public class attendanceTracker extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Helvetica", 1, 12)); // NOI18N
         jLabel2.setText("Employee Number:");
 
+        jLabel11.setFont(new java.awt.Font("Helvetica", 1, 12)); // NOI18N
         jLabel11.setText("End Date:");
 
+        jLabel10.setFont(new java.awt.Font("Helvetica", 1, 12)); // NOI18N
         jLabel10.setText("Start Date:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_attendance_record.setBackground(new java.awt.Color(255, 182, 185));
+        tbl_attendance_record.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Employee No.", "Last Name", "First Name", "Date", "Time-in", "Time-out"
@@ -133,7 +153,10 @@ public class attendanceTracker extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        tbl_attendance_record.setGridColor(new java.awt.Color(255, 214, 196));
+        jScrollPane1.setViewportView(tbl_attendance_record);
+
+        jPanel2.setBackground(new java.awt.Color(255, 214, 196));
 
         jLabel5.setText("First Name");
 
@@ -290,7 +313,7 @@ public class attendanceTracker extends javax.swing.JFrame {
                     .addComponent(dateChooser_endDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
@@ -300,6 +323,15 @@ public class attendanceTracker extends javax.swing.JFrame {
 
     private void btn_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addActionPerformed
         // TODO add your handling code here:
+        
+        
+         String query = btn_add.getText().toLowerCase();
+        filter(query);
+        DefaultTableModel model = (DefaultTableModel) tbl_attendance_record.getModel();
+
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
+        tbl_attendance_record.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(btn_add.getText().trim()));
     }//GEN-LAST:event_btn_addActionPerformed
 
     private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
@@ -440,7 +472,7 @@ public class attendanceTracker extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbl_attendance_record;
     private javax.swing.JTextField txt_emp_num_search;
     private javax.swing.JTextField txt_employee_id;
     private javax.swing.JTextField txt_firstName;
