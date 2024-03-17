@@ -251,13 +251,13 @@ public class login_portal extends javax.swing.JFrame {
             }
 
             if (count == 0) {
-                JOptionPane.showMessageDialog(null, "Invalid username or password");
+                JOptionPane.showMessageDialog(null, "Invalid Employee ID or password");
             }
 
             rs.close();
             conn.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Invalid Employee ID or password");
         }
     }//GEN-LAST:event_btn_loginActionPerformed
 
