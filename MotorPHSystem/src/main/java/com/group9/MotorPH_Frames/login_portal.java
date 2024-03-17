@@ -79,7 +79,7 @@ public class login_portal extends javax.swing.JFrame {
         txt_username = new javax.swing.JTextField();
         txt_password = new javax.swing.JPasswordField();
         btn_login = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btn_forgot_pwd = new javax.swing.JButton();
         mnubar_loginPortal = new javax.swing.JMenuBar();
         mnu_file = new javax.swing.JMenu();
         lbl_date = new javax.swing.JMenu();
@@ -130,18 +130,18 @@ public class login_portal extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Helvetica", 0, 10)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(102, 102, 102));
-        jButton1.setText("Forgot Password?");
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setFocusPainted(false);
-        jButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton1.setOpaque(false);
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_forgot_pwd.setFont(new java.awt.Font("Helvetica", 0, 10)); // NOI18N
+        btn_forgot_pwd.setForeground(new java.awt.Color(102, 102, 102));
+        btn_forgot_pwd.setText("Forgot Password?");
+        btn_forgot_pwd.setBorderPainted(false);
+        btn_forgot_pwd.setContentAreaFilled(false);
+        btn_forgot_pwd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_forgot_pwd.setFocusPainted(false);
+        btn_forgot_pwd.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        btn_forgot_pwd.setOpaque(false);
+        btn_forgot_pwd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                btn_forgot_pwdMouseClicked(evt);
             }
         });
 
@@ -152,7 +152,7 @@ public class login_portal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(92, 92, 92)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
+                    .addComponent(btn_forgot_pwd)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(lbl_password)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -176,7 +176,7 @@ public class login_portal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btn_login, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(btn_forgot_pwd)
                 .addGap(48, 48, 48))
         );
 
@@ -265,7 +265,7 @@ public class login_portal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_passwordActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void btn_forgot_pwdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_forgot_pwdMouseClicked
         //forgot password
                 
                 
@@ -276,7 +276,7 @@ public class login_portal extends javax.swing.JFrame {
                        JOptionPane.showMessageDialog(null, e);
                     
                 }
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_btn_forgot_pwdMouseClicked
 
     /**
      * @param args the command line arguments
@@ -314,8 +314,8 @@ public class login_portal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_forgot_pwd;
     private javax.swing.JButton btn_login;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu lbl_date;
     private javax.swing.JLabel lbl_employeeID;
