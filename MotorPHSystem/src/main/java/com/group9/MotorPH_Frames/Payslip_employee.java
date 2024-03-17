@@ -577,10 +577,10 @@ public class Payslip_employee extends javax.swing.JFrame {
         //txt_emp_num.setText("");
         datechooser_startDate.setDate(null);
         dateChooser_endDate.setDate(null);
-        txt_employee_id.setText("");
-        txt_lastName.setText("");
-        txt_firstName.setText("");
-        txt_position.setText("");
+//        txt_employee_id.setText("");
+//        txt_lastName.setText("");
+//        txt_firstName.setText("");
+//        txt_position.setText("");
         txt_hourlyRate.setText("");
         totalHoursField.setText("");
         txt_grossPay.setText("");
