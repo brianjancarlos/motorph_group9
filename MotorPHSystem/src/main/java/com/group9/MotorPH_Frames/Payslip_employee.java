@@ -535,7 +535,7 @@ public class Payslip_employee extends javax.swing.JFrame {
 //        txt_lastName.setText("");
 //        txt_firstName.setText("");
 //        txt_position.setText("");
-        txt_hourlyRate.setText("");
+//        txt_hourlyRate.setText("");
         totalHoursField.setText("");
         txt_grossPay.setText("");
         txt_netPay.setText("");
