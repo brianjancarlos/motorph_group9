@@ -10,9 +10,11 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -76,12 +78,12 @@ public class payroll extends javax.swing.JFrame {
         txt_grossPay = new javax.swing.JTextField();
         txt_datePeriodField = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
-        txt_riceField = new javax.swing.JTextField();
+        txt_totalRiceSubsidy = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        txt_phoneField = new javax.swing.JTextField();
+        txt_totalPhoneAllowance = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
-        txt_clothField = new javax.swing.JTextField();
+        txt_totalClothAllowance = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -204,11 +206,16 @@ public class payroll extends javax.swing.JFrame {
         txt_grossPay.setEditable(false);
 
         txt_datePeriodField.setEditable(false);
+        txt_datePeriodField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_datePeriodFieldActionPerformed(evt);
+            }
+        });
 
         jLabel22.setFont(new java.awt.Font("Helvetica", 0, 12)); // NOI18N
         jLabel22.setText("Date Period:");
 
-        txt_riceField.setEditable(false);
+        txt_totalRiceSubsidy.setEditable(false);
 
         jLabel12.setFont(new java.awt.Font("Helvetica", 0, 12)); // NOI18N
         jLabel12.setText("Rice Subsidy");
@@ -216,12 +223,12 @@ public class payroll extends javax.swing.JFrame {
         jLabel23.setFont(new java.awt.Font("Helvetica", 0, 12)); // NOI18N
         jLabel23.setText("Phone Allowance");
 
-        txt_phoneField.setEditable(false);
+        txt_totalPhoneAllowance.setEditable(false);
 
         jLabel24.setFont(new java.awt.Font("Helvetica", 0, 12)); // NOI18N
         jLabel24.setText("Cloth Allowance");
 
-        txt_clothField.setEditable(false);
+        txt_totalClothAllowance.setEditable(false);
 
         jLabel19.setFont(new java.awt.Font("Helvetica", 1, 10)); // NOI18N
         jLabel19.setText("Benefits");
@@ -247,15 +254,15 @@ public class payroll extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txt_riceField, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_totalRiceSubsidy, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel23)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txt_phoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_totalPhoneAllowance, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel24)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txt_clothField, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_totalClothAllowance, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel19)
@@ -285,15 +292,15 @@ public class payroll extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(txt_riceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_totalRiceSubsidy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
-                    .addComponent(txt_phoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_totalPhoneAllowance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24)
-                    .addComponent(txt_clothField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_totalClothAllowance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_grossPay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -603,9 +610,9 @@ public class payroll extends javax.swing.JFrame {
         txt_pagibigField.setText("");
         txt_taxField.setText("");
         txt_totalDeductField.setText("");
-        txt_riceField.setText("");
-        txt_phoneField.setText("");
-        txt_clothField.setText("");
+        txt_totalRiceSubsidy.setText("");
+        txt_totalPhoneAllowance.setText("");
+        txt_totalClothAllowance.setText("");
         txt_taxIncomeField.setText("");
         txt_datePeriodField.setText("");
 
@@ -681,19 +688,37 @@ public class payroll extends javax.swing.JFrame {
                         int clothingAllowance = employeeRs.getInt("clothing_allowance");
 
                         // Display the result in jTxtField
-                        txt_riceField.setText(employeeRs.getString("rice_subsidy"));
-                        txt_phoneField.setText(employeeRs.getString("phone_allowance"));
-                        txt_clothField.setText(employeeRs.getString("clothing_allowance"));
+                        txt_totalRiceSubsidy.setText(employeeRs.getString("rice_subsidy"));
+                        txt_totalPhoneAllowance.setText(employeeRs.getString("phone_allowance"));
+                        txt_totalClothAllowance.setText(employeeRs.getString("clothing_allowance"));
+
+                        
+                        //NEW ADDED CALCULATE  FOR MONTHLY ALLOWANCE BENEFITS
+                         // Calculate the total monthly benefits based on the duration of the period
+                        Date startDate = new Date(datechooser_startDate.getDate().getTime());
+                        Date endDate = new Date(dateChooser_endDate.getDate().getTime());
+                        long durationInDays = ChronoUnit.DAYS.between(startDate.toLocalDate(), endDate.toLocalDate());
+
+                        // Calculate the number of months
+                        int numberOfMonths = (int) (durationInDays / 28); // Assuming a month is 30 days. Note: April have 28 days.
+
+                        // Calculate the total benefits for each allowance for the entire duration
+                        float totalRiceSubsidy = riceSubsidy * numberOfMonths;
+                        float totalPhoneAllowance = phoneAllowance * numberOfMonths;
+                        float totalClothAllowance = clothingAllowance * numberOfMonths;
+                        
+                        // Display the total benefits in JTextFields
+                        txt_totalRiceSubsidy.setText(String.valueOf(totalRiceSubsidy));
+                        txt_totalPhoneAllowance.setText(String.valueOf(totalPhoneAllowance));
+                        txt_totalClothAllowance.setText(String.valueOf(totalClothAllowance));
 
                         // Calculate the gross pay based on the provided formula
                         float totalHours = Float.parseFloat(totalHoursField.getText());
+                        float salary = hourlyRate * totalHours;
+                        float grossPay = totalRiceSubsidy + totalPhoneAllowance + totalClothAllowance + salary;
 
-                        float benefits = riceSubsidy + phoneAllowance + clothingAllowance;
-                        float salary = (hourlyRate * totalHours);
-                        float grossPay = benefits + salary;
-
-                        // Display the result in txt_grossPay
-                        txt_grossPay.setText(String.valueOf(grossPay));
+            // Display the result in txt_grossPay
+            txt_grossPay.setText(String.valueOf(grossPay));
 
                         // Calculate total deductions
                         float totalDeductions = deductions.computeTotalDeduction(employee_id, grossPay);
@@ -704,15 +729,23 @@ public class payroll extends javax.swing.JFrame {
                         txt_pagibigField.setText(String.valueOf(deductions.computePagibig(grossPay)));
                         txt_totalDeductField.setText(String.valueOf(deductions.totalDeduction(grossPay)));
                         txt_taxIncomeField.setText(String.valueOf(deductions.computeTaxable(grossPay)));
-                        txt_taxField.setText(String.valueOf(deductions.computeTax(grossPay)));
+                        
 
                         // Calculate net pay
                         float netPay = grossPay - totalDeductions;
 
                         float tax = (float) deductions.computeTax(grossPay);
+                           
+                        
+                        
+                        // Format tax and net pay to two decimal places
+                        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+                        String formattedTax = decimalFormat.format(tax);
+                        String formattedNetPay = decimalFormat.format(netPay);
 
-                        // Display the result in txt_netPay
-                        txt_netPay.setText(String.valueOf(netPay));
+                        // Display the formatted values in txt_tax and txt_netPay
+                        txt_taxField.setText(formattedTax);
+                        txt_netPay.setText(formattedNetPay);
                     } else {
                         JOptionPane.showMessageDialog(this, "Employee not found");
                     }
@@ -760,6 +793,10 @@ public class payroll extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btn_searchActionPerformed
+
+    private void txt_datePeriodFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_datePeriodFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_datePeriodFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -839,7 +876,6 @@ public class payroll extends javax.swing.JFrame {
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JTextField totalHoursField;
     private javax.swing.JTextField txt_birthday;
-    private javax.swing.JTextField txt_clothField;
     private javax.swing.JTextField txt_datePeriodField;
     private javax.swing.JTextField txt_employee_id;
     private javax.swing.JTextField txt_firstName;
@@ -849,12 +885,13 @@ public class payroll extends javax.swing.JFrame {
     private javax.swing.JTextField txt_netPay;
     private javax.swing.JTextField txt_pagibigField;
     private javax.swing.JTextField txt_philhealthField;
-    private javax.swing.JTextField txt_phoneField;
-    private javax.swing.JTextField txt_riceField;
     private javax.swing.JTextField txt_searchEmp;
     private javax.swing.JTextField txt_sssField;
     private javax.swing.JTextField txt_taxField;
     private javax.swing.JTextField txt_taxIncomeField;
+    private javax.swing.JTextField txt_totalClothAllowance;
     private javax.swing.JTextField txt_totalDeductField;
+    private javax.swing.JTextField txt_totalPhoneAllowance;
+    private javax.swing.JTextField txt_totalRiceSubsidy;
     // End of variables declaration//GEN-END:variables
 }
