@@ -252,17 +252,17 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="txt_riceField" min="-2" pref="152" max="-2" attributes="0"/>
+                          <Component id="txt_totalRiceSubsidy" min="-2" pref="152" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="txt_phoneField" min="-2" pref="152" max="-2" attributes="0"/>
+                          <Component id="txt_totalPhoneAllowance" min="-2" pref="152" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="txt_clothField" min="-2" pref="152" max="-2" attributes="0"/>
+                          <Component id="txt_totalClothAllowance" min="-2" pref="152" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -301,17 +301,17 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txt_riceField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txt_totalRiceSubsidy" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txt_phoneField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txt_totalPhoneAllowance" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txt_clothField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txt_totalClothAllowance" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -354,6 +354,9 @@
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_datePeriodFieldActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel22">
           <Properties>
@@ -363,7 +366,7 @@
             <Property name="text" type="java.lang.String" value="Date Period:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_riceField">
+        <Component class="javax.swing.JTextField" name="txt_totalRiceSubsidy">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
@@ -384,7 +387,7 @@
             <Property name="text" type="java.lang.String" value="Phone Allowance"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_phoneField">
+        <Component class="javax.swing.JTextField" name="txt_totalPhoneAllowance">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
@@ -397,7 +400,7 @@
             <Property name="text" type="java.lang.String" value="Cloth Allowance"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_clothField">
+        <Component class="javax.swing.JTextField" name="txt_totalClothAllowance">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
