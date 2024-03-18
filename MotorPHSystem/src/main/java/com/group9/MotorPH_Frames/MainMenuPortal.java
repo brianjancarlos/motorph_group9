@@ -156,8 +156,11 @@ public class MainMenuPortal extends javax.swing.JFrame {
         });
         getContentPane().add(btn_timein_out, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 153, 43));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\nativ\\Downloads\\aesthetics pNG720p.png")); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 10, 690, 390));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background_image/aesthetics pNG.png"))); // NOI18N
+        jLabel1.setMixingCutoutShape(null);
+        jLabel1.setPreferredSize(new java.awt.Dimension(800, 600));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-210, 0, 910, 390));
 
         mnubar_loginPortal.setBackground(new java.awt.Color(14, 49, 113));
         mnubar_loginPortal.setForeground(new java.awt.Color(14, 49, 113));

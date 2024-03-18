@@ -15,6 +15,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 import com.group9.services.WindowPositioner;
+import java.time.temporal.ChronoUnit;
 /**
  *
  * @author nativ
@@ -577,11 +578,11 @@ public class Payslip_employee extends javax.swing.JFrame {
         //txt_emp_num.setText("");
         datechooser_startDate.setDate(null);
         dateChooser_endDate.setDate(null);
-        txt_employee_id.setText("");
-        txt_lastName.setText("");
-        txt_firstName.setText("");
-        txt_position.setText("");
-        txt_hourlyRate.setText("");
+//        txt_employee_id.setText("");
+//        txt_lastName.setText("");
+//        txt_firstName.setText("");
+//        txt_position.setText("");
+//        txt_hourlyRate.setText("");
         totalHoursField.setText("");
         txt_grossPay.setText("");
         txt_netPay.setText("");
@@ -710,11 +711,36 @@ public class Payslip_employee extends javax.swing.JFrame {
                         txt_clothField.setText(employeeRs.getString("clothing_allowance"));
 
                         // Calculate the gross pay based on the provided formula
-                        float totalHours = Float.parseFloat(totalHoursField.getText());
+                        //float totalHours = Float.parseFloat(totalHoursField.getText());
 
-                        float benefits = riceSubsidy + phoneAllowance + clothingAllowance;
-                        float salary = (hourlyRate * totalHours);
-                        float grossPay = benefits + salary;
+//                        float benefits = riceSubsidy + phoneAllowance + clothingAllowance;
+//                        float salary = (hourlyRate * totalHours);
+//                        float grossPay = benefits + salary;
+                                                   
+                        //NEW ADDED CALCULATE  FOR MONTHLY ALLOWANCE BENEFITS
+                         // Calculate the total monthly benefits based on the duration of the period
+                        Date startDate = new Date(datechooser_startDate.getDate().getTime());
+                        Date endDate = new Date(dateChooser_endDate.getDate().getTime());
+                        long durationInDays = ChronoUnit.DAYS.between(startDate.toLocalDate(), endDate.toLocalDate());
+
+                        // Calculate the number of months
+                        int numberOfMonths = (int) (durationInDays / 28); // Assuming a month is 30 days. Note: April have 28 days.
+
+                        // Calculate the total benefits for each allowance for the entire duration
+                        float totalRiceSubsidy = riceSubsidy * numberOfMonths;
+                        float totalPhoneAllowance = phoneAllowance * numberOfMonths;
+                        float totalClothAllowance = clothingAllowance * numberOfMonths;
+                        
+                        // Display the total benefits in JTextFields
+                        txt_riceField.setText(String.valueOf(totalRiceSubsidy));
+                        txt_phoneField.setText(String.valueOf(totalPhoneAllowance));
+                        txt_clothField.setText(String.valueOf(totalClothAllowance));
+
+                        // Calculate the gross pay based on the provided formula
+                        float totalHours = Float.parseFloat(totalHoursField.getText());
+                        float salary = hourlyRate * totalHours;
+                        float grossPay = totalRiceSubsidy + totalPhoneAllowance + totalClothAllowance + salary;
+
 
                         // Display the result in txt_grossPay
                         txt_grossPay.setText(String.valueOf(grossPay));
