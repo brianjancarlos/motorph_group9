@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -728,15 +729,23 @@ public class payroll extends javax.swing.JFrame {
                         txt_pagibigField.setText(String.valueOf(deductions.computePagibig(grossPay)));
                         txt_totalDeductField.setText(String.valueOf(deductions.totalDeduction(grossPay)));
                         txt_taxIncomeField.setText(String.valueOf(deductions.computeTaxable(grossPay)));
-                        txt_taxField.setText(String.valueOf(deductions.computeTax(grossPay)));
+                        
 
                         // Calculate net pay
                         float netPay = grossPay - totalDeductions;
 
                         float tax = (float) deductions.computeTax(grossPay);
+                           
+                        
+                        
+                        // Format tax and net pay to two decimal places
+                        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+                        String formattedTax = decimalFormat.format(tax);
+                        String formattedNetPay = decimalFormat.format(netPay);
 
-                        // Display the result in txt_netPay
-                        txt_netPay.setText(String.valueOf(netPay));
+                        // Display the formatted values in txt_tax and txt_netPay
+                        txt_taxField.setText(formattedTax);
+                        txt_netPay.setText(formattedNetPay);
                     } else {
                         JOptionPane.showMessageDialog(this, "Employee not found");
                     }
