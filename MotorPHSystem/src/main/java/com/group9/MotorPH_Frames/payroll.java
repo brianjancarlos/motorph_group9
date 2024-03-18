@@ -699,7 +699,7 @@ public class payroll extends javax.swing.JFrame {
                         long durationInDays = ChronoUnit.DAYS.between(startDate.toLocalDate(), endDate.toLocalDate());
 
                         // Calculate the number of months
-                        int numberOfMonths = (int) (durationInDays / 30); // Assuming a month is 30 days
+                        int numberOfMonths = (int) (durationInDays / 28); // Assuming a month is 30 days. Note: April have 28 days.
 
                         // Calculate the total benefits for each allowance for the entire duration
                         float totalRiceSubsidy = riceSubsidy * numberOfMonths;
